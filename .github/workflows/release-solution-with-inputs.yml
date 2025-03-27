@@ -1,0 +1,22 @@
+name: Release action
+# Call the reusable workflow release-solution-with-inputs.yml
+# Release your solution to prod when you create a new release.
+
+on:
+  release:
+      types: [created]        
+permissions:
+  contents: write
+jobs:
+  Release-solution-ALMLab:
+    uses: ./.github/workflows/release-solution-to-prod-with-inputs.yml
+    with:
+      #You can specify the solution name here
+      solution_name: SelfServiceAgent
+      #Update your values here
+      BUILD_ENVIRONMENT_URL: 'https://orga378c90d.crm.dynamics.com'
+      PRODUCTION_ENVIRONMENT_URL: 'https://orgc5739d51.crm.dynamics.com'
+      CLIENT_ID: '40d1484d-fca4-41b1-adf2-22aa1347977f'
+      TENANT_ID: '582af8b1-0ad0-4519-bae9-067c35c065c2'    
+    secrets:
+      envSecret: ${{ secrets.POWERPLATFORMSPN }}
