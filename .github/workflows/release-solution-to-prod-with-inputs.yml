@@ -59,7 +59,7 @@ jobs:
     steps:
     - name: Install Power Platform Tools 
       uses: microsoft/powerplatform-actions/actions-install@v1
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
       with:
         lfs: true
 
