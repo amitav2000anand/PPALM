@@ -1,0 +1,48 @@
+name: Power Apps Solution Deployment
+ 
+on:
+  push:
+    branches:
+      - main  # Change this to your deployment branch
+ 
+jobs:
+  deploy:
+    runs-on: windows-latest
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+ 
+      - name: Install Power Platform CLI
+        run: |
+          npm install -g pac-cli
+          pac auth create --name "github-auth" `
+            --client-id ${{ secrets.POWERPLATFORM_CLIENT_ID }} `
+            --tenant ${{ secrets.POWERPLATFORM_TENANT_ID }} `
+            --client-secret ${{ secrets.POWERPLATFORM_CLIENT_SECRET }} `
+            --url "https://orga378c90d.crm.dynamics.com"
+ 
+      - name: Export solution from Source
+        run: |
+          pac solution export --name "SelfServiceAgent" --path "./solutions/SelfServiceAgent.zip" --managed false --async
+ 
+      - name: Unpack solution for version control
+        run: |
+          pac solution unpack --zipfile "./solutions/SelfServiceAgent.zip" --folder "./solutions/SelfServiceAgent" --processCanvasApps true
+ 
+      - name: Commit unpacked solution
+        run: |
+          git config --global user.email "amitav.anand@accenture.com"
+          git config --global user.name "GitHub Actions"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/amitav2000anand/PPALM.git
+          git add ./solutions
+          git commit -m "Updated PowerApps solution" || echo "No changes to commit"
+          git push
+ 
+      - name: Pack solution for deployment
+        run: |
+          pac solution pack --folder "./solutions/SelfServiceAgent" --zipfile "./solutions/SelfServiceAgent_Managed.zip"
+ 
+      - name: Import solution to Target Environment
+        run: |
+          pac solution import --path "./solutions/SelfServiceAgent_Managed.zip" --async
