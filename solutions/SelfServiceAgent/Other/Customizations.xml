@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25023.200" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25023.00200">
+  <Entities />
+  <Roles />
+  <Workflows />
+  <FieldSecurityProfiles />
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <EntityDataProviders />
+  <AIModels>
+    <AIModel>
+      <msdyn_aimodelid>{fdf98225-dfba-496f-ba12-346a53eee110}</msdyn_aimodelid>
+      <msdyn_name>Classify Text</msdyn_name>
+      <msdyn_templateid>{edfdb190-3791-45d8-9a6c-8f90a37c278a}</msdyn_templateid>
+      <statecode>1</statecode>
+      <statuscode>1</statuscode>
+      <IsCustomizable>1</IsCustomizable>
+      <msdyn_activerunconfigurationid>{6ba08f88-1f82-42ec-950b-3367db4b7ce7}</msdyn_activerunconfigurationid>
+      <AIConfigurations>
+        <AIConfiguration>
+          <msdyn_aiconfigurationid>{6ba08f88-1f82-42ec-950b-3367db4b7ce7}</msdyn_aiconfigurationid>
+          <msdyn_customconfiguration>{"version":"GptDynamicPrompt-2","prompt":[{"type":"literal","text":"Classify the "},{"type":"inputVariable","id":"User_20query"},{"type":"literal","text":" into one of the "},{"type":"inputVariable","id":"Departments"},{"type":"literal","text":". \nUnderstand which of these "},{"type":"inputVariable","id":"Departments"},{"type":"literal","text":" departments, the users query/issue is related to . \nProvide response in one of the categories. Example as Department:HR"}],"definitions":{"inputs":[{"id":"User_20query","text":"User query","type":"text","quickTestValue":"I want to know about the leave policy"},{"id":"Departments","text":"Departments","type":"text","quickTestValue":"IT, HR, Finance"}],"data":[],"output":{"formats":["text"]}},"modelParameters":{"modelType":"default","gptParameters":{"temperature":0}},"settings":{"recordRetrievalLimit":30,"shouldPreserveRecordLinks":null,"runtime":null}}</msdyn_customconfiguration>
+          <msdyn_majoriterationnumber>4</msdyn_majoriterationnumber>
+          <msdyn_minoriterationnumber>0</msdyn_minoriterationnumber>
+          <msdyn_name>fdf98225-dfba-496f-ba12-346a53eee110_3/21/2025 3:52:35 PM</msdyn_name>
+          <msdyn_modelrundataspecification>H4sIAAAAAAAACpWRuwoCMRBFf0WmTqEiFtv5BBsXfLUy6qiB3SRmJuAi/ru7rqIYC63PnTOvC8wdbcfW5ygr8qytgaSlYGJckJm1MjKipYDkAkPNLsNiijlBAqCgJ+L1JghxhZdMft1ungL5L/GKNmqmIHVS9sEMkj1mTAoWhatC89JnDnBVMCSHXnIywrHrHf4iw91O15mBNUJniZW9KPIuFh9e3j4ydTtP+7X0p0H+Pdb3KRZ142iBvTaajzNCrr7zWTW+08YDR+XliDeX8tg65QEAAA==</msdyn_modelrundataspecification>
+          <msdyn_type>190690001</msdyn_type>
+          <msdyn_aimodelid>{fdf98225-dfba-496f-ba12-346a53eee110}</msdyn_aimodelid>
+          <msdyn_trainedmodelaiconfigurationpareid>{ffbb8fc3-3606-f011-bae2-0022483dc7aa}</msdyn_trainedmodelaiconfigurationpareid>
+          <statecode>2</statecode>
+          <statuscode>7</statuscode>
+          <IsCustomizable>1</IsCustomizable>
+          <msdyn_templateversion>1</msdyn_templateversion>
+        </AIConfiguration>
+        <AIConfiguration>
+          <msdyn_aiconfigurationid>{ffbb8fc3-3606-f011-bae2-0022483dc7aa}</msdyn_aiconfigurationid>
+          <msdyn_majoriterationnumber>1</msdyn_majoriterationnumber>
+          <msdyn_minoriterationnumber>0</msdyn_minoriterationnumber>
+          <msdyn_modeldata>e518fb2c-c960-428a-8405-330129578866</msdyn_modeldata>
+          <msdyn_name>Classify Text_3/21/2025 9:27:54 AM</msdyn_name>
+          <msdyn_modelrundataspecification>
+        {
+          "schemaVersion": 2,
+          "input": {},
+          "output": {}
+        }
+      </msdyn_modelrundataspecification>
+          <msdyn_type>190690000</msdyn_type>
+          <msdyn_aimodelid>{fdf98225-dfba-496f-ba12-346a53eee110}</msdyn_aimodelid>
+          <statecode>2</statecode>
+          <statuscode>6</statuscode>
+          <IsCustomizable>1</IsCustomizable>
+          <msdyn_templateversion>1</msdyn_templateversion>
+        </AIConfiguration>
+      </AIConfigurations>
+    </AIModel>
+    <AIModel>
+      <msdyn_aimodelid>{eef29acd-a826-4563-a168-b5b529a3f6a1}</msdyn_aimodelid>
+      <msdyn_name>CheckForCommonIssues</msdyn_name>
+      <msdyn_templateid>{edfdb190-3791-45d8-9a6c-8f90a37c278a}</msdyn_templateid>
+      <statecode>1</statecode>
+      <statuscode>1</statuscode>
+      <IsCustomizable>1</IsCustomizable>
+      <msdyn_activerunconfigurationid>{be0ddf54-04e2-44b1-bc4b-3f23872eb37b}</msdyn_activerunconfigurationid>
+      <AIConfigurations>
+        <AIConfiguration>
+          <msdyn_aiconfigurationid>{be0ddf54-04e2-44b1-bc4b-3f23872eb37b}</msdyn_aiconfigurationid>
+          <msdyn_customconfiguration>{"version":"GptDynamicPrompt-2","prompt":[{"type":"literal","text":"Search  "},{"type":"data","id":"crfb3_itsupportticket.crfb3_issuedescription","text":"Common Issues Resolution.Issue/Query"},{"type":"literal","text":" to see if the "},{"type":"inputVariable","id":"UserIssue"},{"type":"literal","text":" or similar issue exists. Check if the similar issue exists even if exact match is not found. Check for intent rather than keywords.\nIf an issue exists, retrieve the  "},{"type":"data","id":"crfb3_itsupportticket.crfb3_resolutionsteps","text":"Common Issues Resolution.Resolution"},{"type":"literal","text":"  and reply with just the resolution formatted in easy to understand language.\nIf the issue does not exist, don't respond."}],"definitions":{"inputs":[{"id":"Department","text":"Department","type":"text","quickTestValue":"IT"},{"id":"UserIssue","text":"UserIssue","type":"text","quickTestValue":"Install Office in my laptop"}],"data":[{"id":"crfb3_itsupportticket","displayName":"Common Issues Resolution","type":"dataverseTable","connectionId":null,"filters":[{"filterType":"equal","attribute":"crfb3_department","valueType":"inputVariable","value":"Department"}]}],"output":{"formats":["text"]}},"modelParameters":{"modelType":"default","gptParameters":{"temperature":0}},"settings":{"recordRetrievalLimit":30,"shouldPreserveRecordLinks":null,"runtime":null}}</msdyn_customconfiguration>
+          <msdyn_majoriterationnumber>3</msdyn_majoriterationnumber>
+          <msdyn_minoriterationnumber>0</msdyn_minoriterationnumber>
+          <msdyn_name>eef29acd-a826-4563-a168-b5b529a3f6a1_3/21/2025 3:55:10 PM</msdyn_name>
+          <msdyn_modelrundataspecification>H4sIAAAAAAAACpWRPQvCMBCG/4rcnEUQh25+gouCVvfTnhpok5C7gKX4341VUUwHnZ/3nvtqYOPoMLe+QtmRZ20NZH0FC+OCrK2VmREtNWQNTDW7EuslVgQZgIKRiNf7IMQtJodeKjKShj+YgpWT2AVLyI5YMinIa3cPbaLNnOCqYMvkF8yBUtMb/SLCotCPzMQaoUvHaKMk8ikWH97eMTINBy/7NfpXQf49U/cU+aNxssBRG83nNSHf//JdNW9p74k7ygsUjBcrOj4SSa9FSVnc7AZFrv7tFgIAAA==</msdyn_modelrundataspecification>
+          <msdyn_type>190690001</msdyn_type>
+          <msdyn_aimodelid>{eef29acd-a826-4563-a168-b5b529a3f6a1}</msdyn_aimodelid>
+          <msdyn_trainedmodelaiconfigurationpareid>{0d8b4080-5806-f011-bae2-000d3af3a04a}</msdyn_trainedmodelaiconfigurationpareid>
+          <statecode>2</statecode>
+          <statuscode>7</statuscode>
+          <IsCustomizable>1</IsCustomizable>
+          <msdyn_templateversion>1</msdyn_templateversion>
+        </AIConfiguration>
+        <AIConfiguration>
+          <msdyn_aiconfigurationid>{0d8b4080-5806-f011-bae2-000d3af3a04a}</msdyn_aiconfigurationid>
+          <msdyn_majoriterationnumber>1</msdyn_majoriterationnumber>
+          <msdyn_minoriterationnumber>0</msdyn_minoriterationnumber>
+          <msdyn_modeldata>863555aa-bd97-4e7c-933f-c23045222fe4</msdyn_modeldata>
+          <msdyn_name>CheckForCommonIssues_3/21/2025 1:29:24 PM</msdyn_name>
+          <msdyn_modelrundataspecification>
+        {
+          "schemaVersion": 2,
+          "input": {},
+          "output": {}
+        }
+      </msdyn_modelrundataspecification>
+          <msdyn_type>190690000</msdyn_type>
+          <msdyn_aimodelid>{eef29acd-a826-4563-a168-b5b529a3f6a1}</msdyn_aimodelid>
+          <statecode>2</statecode>
+          <statuscode>6</statuscode>
+          <IsCustomizable>1</IsCustomizable>
+          <msdyn_templateversion>1</msdyn_templateversion>
+        </AIConfiguration>
+      </AIConfigurations>
+    </AIModel>
+  </AIModels>
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>

@@ -1,0 +1,10 @@
+<dvtablesearchentity dvtablesearchentityid="9dcbdd1e-a54f-4c11-92f4-c3768e7e70bf">
+  <dvtablesearch>
+    <dvtablesearchid>ce6b0737-c653-4ebe-b4b0-db4c6da03879</dvtablesearchid>
+  </dvtablesearch>
+  <entitylogicalname>crfb3_itsupportticket</entitylogicalname>
+  <iscustomizable>0</iscustomizable>
+  <name>crfb3_itsupportticket</name>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</dvtablesearchentity>
