@@ -45,4 +45,4 @@ jobs:
  
       - name: Import solution to Target Environment
         run: |
-          pac solution import --path "./solutions/SelfServiceAgent_Managed.zip" --async --skip-upgrade
+          pac solution import --path "./solutions/SelfServiceAgent_Managed.zip" --async true --import-as-holding false
