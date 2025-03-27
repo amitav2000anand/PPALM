@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{11dd8de0-88ae-41c7-a0f7-698e64153c69}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="crfb3_department" select="1" icon="1" preview="1">
+        <row name="result" id="crfb3_itsupportticketid">
+          <cell name="crfb3_department" width="300" />
+          <cell name="createdon" width="125" />
+          <cell name="crfb3_ticketid" width="150" />
+          <cell name="crfb3_issuecategory" width="150" />
+          <cell name="crfb3_issuedescription" width="150" />
+          <cell name="crfb3_resolutionsteps" width="150" />
+          <cell name="crfb3_relatedkeywords" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="crfb3_itsupportticket">
+          <attribute name="crfb3_itsupportticketid" />
+          <attribute name="crfb3_department" />
+          <attribute name="createdon" />
+          <order attribute="crfb3_department" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="crfb3_ticketid" />
+          <attribute name="crfb3_issuecategory" />
+          <attribute name="crfb3_issuedescription" />
+          <attribute name="crfb3_resolutionsteps" />
+          <attribute name="crfb3_relatedkeywords" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active IT Support Ticket" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
