@@ -13,9 +13,9 @@ jobs:
       #You can specify the solution name here
       solution_name: SelfServiceAgent
       #Update your values here
-      BUILD_ENVIRONMENT_URL: ${{ secrets.BUILD_ENVIRONMENT_URL }}
-      PRODUCTION_ENVIRONMENT_URL: ${{ secrets.PRODUCTION_ENVIRONMENT_URL }}
-      CLIENT_ID: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
-      TENANT_ID: ${{ secrets.POWERPLATFORM_TENANT_ID }}
+      BUILD_ENVIRONMENT_URL: ${{ env.BUILD_ENVIRONMENT_URL }}
+      PRODUCTION_ENVIRONMENT_URL: ${{ env.PRODUCTION_ENVIRONMENT_URL }}
+      CLIENT_ID: ${{ env.POWERPLATFORM_CLIENT_ID }}
+      TENANT_ID: ${{ env.POWERPLATFORM_TENANT_ID }}
     secrets:
-      envSecret: ${{ secrets.POWERPLATFORMSPN }}
+      envSecret: ${{ env.POWERPLATFORMSPN }}
