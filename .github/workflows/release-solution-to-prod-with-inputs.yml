@@ -121,7 +121,7 @@ jobs:
     - name: Fetch the ready to ship solution from GH artifact store
       uses: actions/download-artifact@v2
       with:
-        name: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
+        name: ${{ inputs.solution_name }}_managed.zip
         path: ${{ inputs.solution_release_folder}}
     - name: Import solution to prod env
       uses: microsoft/powerplatform-actions/import-solution@v1
