@@ -122,7 +122,8 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: ${{ inputs.solution_name }}_managed.zip
-        path: ${{ inputs.solution_release_folder}}
+        path: ${{ inputs.solution_release_folder}}/
+        
     - name: Import solution to prod env
       uses: microsoft/powerplatform-actions/import-solution@v1
       with:
