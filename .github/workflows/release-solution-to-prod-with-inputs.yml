@@ -114,6 +114,9 @@ jobs:
       RUNNER_DEBUG: 1
 
     steps:
+    - name: Install Power Platform Tools
+      uses: microsoft/powerplatform-actions/actions-install@v1
+    
     - uses: actions/checkout@v3
       with:
         lfs: true
