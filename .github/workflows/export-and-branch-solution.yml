@@ -25,9 +25,9 @@ on:
        default: solutions/
 env:
 #edit your values here
-  ENVIRONMENT_URL: 'https://orgd3fd9a0e.crm.dynamics.com'
-  CLIENT_ID: '40d1484d-fca4-41b1-adf2-22aa1347977f'
-  TENANT_ID: '582af8b1-0ad0-4519-bae9-067c35c065c2'
+  ENVIRONMENT_URL: ${{env.ENVIRONMENT_URL}}
+  CLIENT_ID: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
+  TENANT_ID: ${{ secrets.POWERPLATFORM_TENANT_ID }}
 permissions:
   contents: write
 jobs:
@@ -74,5 +74,5 @@ jobs:
       with:
         solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
         solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_name }}
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ secrets.GH_PAT }}
         allow-empty-commit: true
