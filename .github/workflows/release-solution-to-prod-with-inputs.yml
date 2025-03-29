@@ -134,6 +134,6 @@ jobs:
         app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
         client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
         tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
-        solution-file: ${{ inputs.solution_name }}_managed.zip
+        solution-file: SelfServiceAgent_managed.zip
         force-overwrite: true
         publish-changes: true
