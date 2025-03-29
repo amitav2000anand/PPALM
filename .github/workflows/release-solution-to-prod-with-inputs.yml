@@ -118,36 +118,36 @@ jobs:
         name: ${{ inputs.solution_name }}_managed.zip
         path: ${{ inputs.solution_shipping_folder}}/
 
-  release-to-staging:
-    needs: [ convert-to-managed ]
-    runs-on: windows-latest
-    env:
-      RUNNER_DEBUG: 1
+#   release-to-staging:
+#     needs: [ convert-to-managed ]
+#     runs-on: windows-latest
+#     env:
+#       RUNNER_DEBUG: 1
 
-    steps:
-    - name: Install Power Platform Tools
-      uses: microsoft/powerplatform-actions/actions-install@v1
+#     steps:
+#     - name: Install Power Platform Tools
+#       uses: microsoft/powerplatform-actions/actions-install@v1
     
-    - uses: actions/checkout@v3
-      with:
-        lfs: true
+#     - uses: actions/checkout@v3
+#       with:
+#         lfs: true
 
-    - name: Fetch the ready to ship solution from GH artifact store
-      uses: actions/download-artifact@v4
-      with:
-        name: ${{ inputs.solution_name }}_managed.zip
-        path: ${{ inputs.solution_release_folder}}/
+#     - name: Fetch the ready to ship solution from GH artifact store
+#       uses: actions/download-artifact@v4
+#       with:
+#         name: ${{ inputs.solution_name }}_managed.zip
+#         path: ${{ inputs.solution_release_folder}}/
 
-    - name: Debug solution name
-      run: 'echo "##[debug]Solution Name: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed.zip"'
+#     - name: Debug solution name
+#       run: 'echo "##[debug]Solution Name: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed.zip"'
         
-    - name: Import solution to prod env
-      uses: microsoft/powerplatform-actions/import-solution@v1
-      with:
-        environment-url: 'https://orga378c90d.crm.dynamics.com'
-        app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
-        client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
-        tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
-        solution-file: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed.zip
-        force-overwrite: true
-        publish-changes: true
+#     - name: Import solution to prod env
+#       uses: microsoft/powerplatform-actions/import-solution@v1
+#       with:
+#         environment-url: 'https://orga378c90d.crm.dynamics.com'
+#         app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
+#         client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
+#         tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
+#         solution-file: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed.zip
+#         force-overwrite: true
+#         publish-changes: true
