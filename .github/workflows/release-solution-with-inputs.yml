@@ -18,4 +18,4 @@ jobs:
       CLIENT_ID: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
       TENANT_ID: ${{ secrets.POWERPLATFORM_TENANT_ID }}
     secrets:
-      envSecret: ${{ secrets.POWERPLATFORMSPN }}
+      envSecret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
