@@ -67,10 +67,10 @@ jobs:
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v1
       with:
-        environment-url: 'https://orgc5739d51.crm.dynamics.com'
-        app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
-        client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
-        tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
+        environment-url: ${{ inputs.ENVIRONMENT_URL }}
+        app-id: ${{ inputs.POWERPLATFORM_CLIENT_ID }}
+        client-secret: ${{ secrets.envSecret }}
+        tenant-id: ${{ inputs.POWERPLATFORM_TENANT_ID }}
               
     - name: Pack solution
       uses: microsoft/powerplatform-actions/pack-solution@v1
@@ -82,10 +82,10 @@ jobs:
     - name: Import solution as unmanaged to build env
       uses: microsoft/powerplatform-actions/import-solution@v1
       with:
-        environment-url: 'https://orgc5739d51.crm.dynamics.com'
-        app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
-        client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
-        tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
+        environment-url: ${{ inputs.BUILD_ENVIRONMENT_URL }}
+        app-id: ${{ inputs.POWERPLATFORM_CLIENT_ID }}
+        client-secret: ${{ secrets.envSecret }}
+        tenant-id: ${{ inputs.POWERPLATFORM_TENANT_ID }}
         solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
         force-overwrite: true
         publish-changes: true
@@ -93,10 +93,10 @@ jobs:
     - name: Export solution as managed
       uses: microsoft/powerplatform-actions/export-solution@v1
       with:
-        environment-url: 'https://orgc5739d51.crm.dynamics.com'
-        app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
-        client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl' 
-        tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
+        environment-url: ${{ inputs.BUILD_ENVIRONMENT_URL }}
+        app-id: ${{ inputs.POWERPLATFORM_CLIENT_ID }}
+        client-secret: ${{ secrets.envSecret }} 
+        tenant-id: ${{ inputs.POWERPLATFORM_TENANT_ID }}
         solution-name: ${{ inputs.solution_name }}
         managed: true
         solution-output-file: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
@@ -104,10 +104,10 @@ jobs:
     - name: Import solution to prod env
       uses: microsoft/powerplatform-actions/import-solution@v1
       with:
-        environment-url: 'https://orga378c90d.crm.dynamics.com'
-        app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
-        client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
-        tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
+        environment-url: ${{ inputs.BUILD_ENVIRONMENT_URL }}
+        app-id: ${{ inputs.POWERPLATFORM_CLIENT_ID }}
+        client-secret: ${{ secrets.envSecret }}
+        tenant-id: ${{ inputs.POWERPLATFORM_TENANT_ID }}
         solution-file: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
         force-overwrite: true
         publish-changes: true
