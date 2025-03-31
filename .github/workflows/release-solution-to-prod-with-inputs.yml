@@ -68,9 +68,9 @@ jobs:
       uses: microsoft/powerplatform-actions/who-am-i@v1
       with:
         environment-url: ${{ secrets.ENVIRONMENT_URL }}
-        app-id: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
-        client-secret: ${{ secrets.POWERPLATFORMSPN }}
-        tenant-id: ${{ secrets.POWERPLATFORM_TENANT_ID }}
+        app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
+        client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
+        tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
               
     - name: Pack solution
       uses: microsoft/powerplatform-actions/pack-solution@v1
@@ -83,9 +83,9 @@ jobs:
       uses: microsoft/powerplatform-actions/import-solution@v1
       with:
         environment-url: ${{ secrets.BUILD_ENVIRONMENT_URL }}
-        app-id: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
-        client-secret: ${{ secrets.POWERPLATFORMSPN }}
-        tenant-id: ${{ secrets.POWERPLATFORM_TENANT_ID }}
+        app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
+        client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
+        tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
         solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
         force-overwrite: true
         publish-changes: true
@@ -94,9 +94,9 @@ jobs:
       uses: microsoft/powerplatform-actions/export-solution@v1
       with:
         environment-url: ${{ secrets.BUILD_ENVIRONMENT_URL }}
-        app-id: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
-        client-secret: ${{ secrets.POWERPLATFORMSPN }} 
-        tenant-id: ${{ secrets.POWERPLATFORM_TENANT_ID }}
+        app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
+        client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
+        tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
         solution-name: ${{ inputs.solution_name }}
         managed: true
         solution-output-file: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
@@ -104,10 +104,10 @@ jobs:
     - name: Import solution to prod env
       uses: microsoft/powerplatform-actions/import-solution@v1
       with:
-        environment-url: ${{ secrets.BUILD_ENVIRONMENT_URL }}
-        app-id: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
-        client-secret: ${{ secrets.POWERPLATFORMSPN }}
-        tenant-id: ${{ secrets.POWERPLATFORM_TENANT_ID }}
+        environment-url: ${{ secrets.PRODUCTION_ENVIRONMENT_URL }}
+        app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
+        client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
+        tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
         solution-file: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
         force-overwrite: true
         publish-changes: true
