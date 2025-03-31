@@ -17,5 +17,4 @@ jobs:
       PRODUCTION_ENVIRONMENT_URL: ${{ secrets.PRODUCTION_ENVIRONMENT_URL }}
       CLIENT_ID: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
       TENANT_ID: ${{ secrets.POWERPLATFORM_TENANT_ID }}
-    secrets:
-      envSecret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
+      envSecret: ${{ secrets.POWERPLATFORMSPN }}
