@@ -44,10 +44,10 @@ on:
         description: 'The tenant id'
         type: string
         required: true
-    secrets:
-      envSecret:
-        description: 'The secret value for authentication using SPN'
-        required: true
+#    secrets:
+#      envSecret:
+#        description: 'The secret value for authentication using SPN'
+#        required: true
 
 jobs:
   convert-to-managed:
