@@ -67,7 +67,7 @@ jobs:
     - name: who-am-i action
       uses: microsoft/powerplatform-actions/who-am-i@v1
       with:
-        environment-url: ${{ secrets.ENVIRONMENT_URL }}
+        environment-url: 'https://orgd3fd9a0e.crm.dynamics.com'
         app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
         client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
         tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
@@ -82,7 +82,7 @@ jobs:
     - name: Import solution as unmanaged to build env
       uses: microsoft/powerplatform-actions/import-solution@v1
       with:
-        environment-url: ${{ secrets.BUILD_ENVIRONMENT_URL }}
+        environment-url: 'https://orga378c90d.crm.dynamics.com'
         app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
         client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
         tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
@@ -93,7 +93,7 @@ jobs:
     - name: Export solution as managed
       uses: microsoft/powerplatform-actions/export-solution@v1
       with:
-        environment-url: ${{ secrets.BUILD_ENVIRONMENT_URL }}
+        environment-url: 'https://orga378c90d.crm.dynamics.com'
         app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
         client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
         tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
@@ -104,7 +104,7 @@ jobs:
     - name: Import solution to prod env
       uses: microsoft/powerplatform-actions/import-solution@v1
       with:
-        environment-url: ${{ secrets.PRODUCTION_ENVIRONMENT_URL }}
+        environment-url: 'https://orgc5739d51.crm.dynamics.com'
         app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
         client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
         tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
