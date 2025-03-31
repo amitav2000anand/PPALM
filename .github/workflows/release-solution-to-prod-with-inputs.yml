@@ -69,7 +69,7 @@ jobs:
       with:
         environment-url: ${{ inputs.ENVIRONMENT_URL }}
         app-id: ${{ inputs.POWERPLATFORM_CLIENT_ID }}
-        client-secret: ${{ secrets.envSecret }}
+        client-secret: ${{ secrets.POWERPLATFORMSPN }}
         tenant-id: ${{ inputs.POWERPLATFORM_TENANT_ID }}
               
     - name: Pack solution
@@ -84,7 +84,7 @@ jobs:
       with:
         environment-url: ${{ inputs.BUILD_ENVIRONMENT_URL }}
         app-id: ${{ inputs.POWERPLATFORM_CLIENT_ID }}
-        client-secret: ${{ secrets.envSecret }}
+        client-secret: ${{ secrets.POWERPLATFORMSPN }}
         tenant-id: ${{ inputs.POWERPLATFORM_TENANT_ID }}
         solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
         force-overwrite: true
@@ -95,7 +95,7 @@ jobs:
       with:
         environment-url: ${{ inputs.BUILD_ENVIRONMENT_URL }}
         app-id: ${{ inputs.POWERPLATFORM_CLIENT_ID }}
-        client-secret: ${{ secrets.envSecret }} 
+        client-secret: ${{ secrets.POWERPLATFORMSPN }} 
         tenant-id: ${{ inputs.POWERPLATFORM_TENANT_ID }}
         solution-name: ${{ inputs.solution_name }}
         managed: true
@@ -106,7 +106,7 @@ jobs:
       with:
         environment-url: ${{ inputs.BUILD_ENVIRONMENT_URL }}
         app-id: ${{ inputs.POWERPLATFORM_CLIENT_ID }}
-        client-secret: ${{ secrets.envSecret }}
+        client-secret: ${{ secrets.POWERPLATFORMSPN }}
         tenant-id: ${{ inputs.POWERPLATFORM_TENANT_ID }}
         solution-file: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
         force-overwrite: true
