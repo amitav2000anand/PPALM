@@ -1,5 +1,5 @@
 
-name: Stagin Release Action
+name: Staging Release Action
 # Call the reusable workflow release-solution-with-inputs.yml
 # Release your solution to prod when you create a new release.
 
