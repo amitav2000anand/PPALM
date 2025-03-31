@@ -17,4 +17,4 @@ jobs:
       PRODUCTION_ENVIRONMENT_URL: 'https://orgc5739d51.crm.dynamics.com'
       CLIENT_ID: '40d1484d-fca4-41b1-adf2-22aa1347977f'
       TENANT_ID: '582af8b1-0ad0-4519-bae9-067c35c065c2'
-      envSecret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
+#     envSecret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
