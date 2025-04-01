@@ -3,9 +3,9 @@ name: release-solution-to-uat
 # convert solution to managed (using a build PowerPlatform environment for the conversion)
 # upload the solution to the GitHub artifacts
 on:
-  push:
+  pull_request:
     branches:
-      -main
+      - main
     
 env:
   DEV_ENVIRONMENT_URL : ${{ secrets.ENVIRONMENT_URL }}
