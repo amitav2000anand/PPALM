@@ -3,7 +3,9 @@ name: release-solution-to-uat
 # convert solution to managed (using a build PowerPlatform environment for the conversion)
 # upload the solution to the GitHub artifacts
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
       - main
 env:
@@ -20,10 +22,6 @@ env:
   solution_release_folder: out/release
 
 jobs:
-  build-on-merge:
-    if: startsWith(github.event.head_commit.message, 'Merge pull request')
-    runs-on: windows-latest
-
   convert-to-managed:
     runs-on: windows-latest
     # or you can say runs-on: ubuntu-latest
