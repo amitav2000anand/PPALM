@@ -36,7 +36,7 @@ permissions:
 
 jobs:
   convert-to-managed:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
       RUNNER_DEBUG: 1
 
