@@ -5,7 +5,7 @@ name: release-solution-to-uat
 on:
   push:
     branches:
-      -main 
+      -main
     
 env:
   DEV_ENVIRONMENT_URL : ${{ secrets.ENVIRONMENT_URL }}
