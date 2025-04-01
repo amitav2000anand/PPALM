@@ -8,8 +8,8 @@ beginDialog:
       activity:
         text:
           - |-
-            Hello {System.User.FirstName}, Good Day! 
-            I'm  {System.Bot.Name}, a virtual assistant. Just so you are aware, I sometimes use AI to answer your questions.
+            Hello {System.User.FirstName}, Good Day!
+            I'm  {System.Bot.Name}, an agent. Just so you are aware, I sometimes use AI to answer your questions. 
         speak:
           - Thanks for calling, how can I help?
 
