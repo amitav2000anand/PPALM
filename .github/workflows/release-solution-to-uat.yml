@@ -57,11 +57,11 @@ jobs:
         client-secret: ${{ env.SECRET }}
         tenant-id: ${{ env.TENANT_ID }}
               
-    - name: Pack solution
+    - name: Pack solution from source control into a solution.zip
       uses: microsoft/powerplatform-actions/pack-solution@v1
       with:
         solution-folder: ${{ inputs.solution_source_folder}}/${{ inputs.solution_name }}
-        solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
+        solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}_managed.zip
         solution-type: Managed
 
     - name: Export solution as managed
