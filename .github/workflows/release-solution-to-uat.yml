@@ -3,6 +3,10 @@ name: release-solution-to-uat
 # convert solution to managed (using a build PowerPlatform environment for the conversion)
 # upload the solution to the GitHub artifacts
 on:
+  push:
+    branches:
+      -main
+      
   workflow_dispatch:
     inputs:
       solution_name:
