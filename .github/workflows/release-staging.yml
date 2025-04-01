@@ -1,34 +1,28 @@
-
 name: Staging Release Action
-# Call the reusable workflow release-solution-with-inputs.yml
-# Release your solution to prod when you create a new release.
 
 on:
   workflow_dispatch:
     inputs:
-          #Do Not change these values
-          #Values are set by the caller
-          #caller sample: release-action-call.ymnl
-          solution_name:
-            description: 'The solution name.'
-            type: string
-            default: SelfServiceAgent
-          solution_shipping_folder:
-            description: 'folder name for staging the exported solution *do not change*'
-            type: string
-            default: out/ship
-          solution_outbound_folder:
-            description: 'staging the unpacked solution folder before check-in *do not change*'
-            type: string
-            default: out/solutions/
-          solution_source_folder:
-            description: 'folder name to be created and checked in *do not change*'
-            type: string
-            default: solutions/
-          solution_release_folder:
-            description: 'folder where the released binaries are going to be hosted *do not change*'
-            type: string
-            default: out/release
+      solution_name:
+        description: 'The solution name.'
+        type: string
+        default: SelfServiceAgent
+      solution_shipping_folder:
+        description: 'Folder for staging the exported solution *do not change*'
+        type: string
+        default: out/ship
+      solution_outbound_folder:
+        description: 'Folder for unpacking solutions *do not change*'
+        type: string
+        default: out/solutions/
+      solution_source_folder:
+        description: 'Source folder for solutions *do not change*'
+        type: string
+        default: solutions/
+      solution_release_folder:
+        description: 'Folder for hosting release binaries *do not change*'
+        type: string
+        default: out/release
 
 env:
   BUILD_ENVIRONMENT_URL: ${{ secrets.BUILD_ENVIRONMENT_URL }}
@@ -43,7 +37,6 @@ permissions:
 jobs:
   convert-to-managed:
     runs-on: windows-latest
-    # or you can say runs-on: ubuntu-latest
     env:
       RUNNER_DEBUG: 1
 
@@ -55,7 +48,7 @@ jobs:
       with:
         lfs: true
 
-    - name: Verifies the service connection by connecting to the service and sending a WhoAmI
+    - name: Verifies the service connection by connecting to the service
       uses: microsoft/powerplatform-actions/who-am-i@v1
       with:
         environment-url: ${{ env.BUILD_ENVIRONMENT_URL }}
@@ -92,6 +85,14 @@ jobs:
         managed: true
         solution-output-file: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
 
+    - name: Verify file exists before upload
+      run: |
+        if [ -f "${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip" ]; then
+          echo "File exists!";
+        else
+          echo "File does not exist!"; exit 1;
+        fi
+
     - name: Upload the ready to ship solution to GH artifact store
       uses: actions/upload-pages-artifact@v3
       with:
@@ -118,6 +119,9 @@ jobs:
           name: ${{ inputs.solution_name }}_managed
           path: ${{ inputs.solution_release_folder}}/
 
+      - name: List files in the release folder
+        run: dir ${{ inputs.solution_release_folder }}
+
       - name: Debug solution name
         run: 'echo "##[debug]Solution Name: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed.zip"'
 
@@ -128,6 +132,6 @@ jobs:
           app-id: ${{ env.CLIENT_ID }}
           client-secret: ${{ env.SECRET }}
           tenant-id: ${{ env.TENANT_ID }}
-          solution-file: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed
+          solution-file: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed.zip
           force-overwrite: true
           publish-changes: true
