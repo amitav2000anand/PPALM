@@ -47,8 +47,8 @@ jobs:
     - name: Pack solution from source control into a solution.zip
       uses: microsoft/powerplatform-actions/pack-solution@v1
       with:
-        solution-folder: ${{ inputs.solution_source_folder}}/${{ inputs.solution_name }}
-        solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
+        solution-folder: ${{ env.solution_source_folder}}/${{ env.solution_name }}
+        solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}.zip
         solution-type: Unmanaged
 
     - name: Export solution as managed
@@ -58,9 +58,9 @@ jobs:
         app-id: ${{ env.CLIENT_ID }}
         client-secret: ${{ env.SECRET }}
         tenant-id: ${{ env.TENANT_ID }}
-        solution-name: ${{ inputs.solution_name }}
+        solution-name: ${{ env.solution_name }}
         managed: true
-        solution-output-file: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
+        solution-output-file: ${{ env.solution_shipping_folder}}/${{ env.solution_name }}_managed.zip
 
     - name: Import solution as managed to build env
       uses: microsoft/powerplatform-actions/import-solution@v1
@@ -69,12 +69,12 @@ jobs:
         app-id: ${{ env.CLIENT_ID }}
         client-secret: ${{ env.SECRET }}
         tenant-id: ${{ env.TENANT_ID }}
-        solution-file: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
+        solution-file: ${{ env.solution_shipping_folder}}/${{ env.solution_name }}_managed.zip
         force-overwrite: true
         publish-changes: true
 
     - name: Upload the ready to ship solution to GH artifact store
       uses: actions/upload-pages-artifact@v3
       with:
-        name: ${{ inputs.solution_name }}_managed
-        path: ${{ inputs.solution_shipping_folder}}/
+        name: ${{ env.solution_name }}_managed
+        path: ${{ env.solution_shipping_folder}}/
