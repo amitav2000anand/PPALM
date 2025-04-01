@@ -22,7 +22,7 @@ env:
   solution_release_folder: out/release
 
 jobs:
-  convert-to-managed:
+  pack-and-upload:
     runs-on: windows-latest
     # or you can say runs-on: ubuntu-latest
     env:
@@ -62,7 +62,7 @@ jobs:
 #        managed: true
 #        solution-output-file: ${{ env.solution_shipping_folder}}/${{ env.solution_name }}_managed.zip
 
-    - name: Import solution as managed to build env
+    - name: Import solution as managed to uat env
       uses: microsoft/powerplatform-actions/import-solution@v1
       with:
         environment-url: ${{ env.BUILD_ENVIRONMENT_URL }}
@@ -73,8 +73,8 @@ jobs:
         force-overwrite: true
         publish-changes: true
 
-    - name: Upload the ready to ship solution to GH artifact store
-      uses: actions/upload-pages-artifact@v3
-      with:
-        name: ${{ env.solution_name }}_managed
-        path: ${{ env.solution_shipping_folder}}/
+    # - name: Upload the ready to ship solution to GH artifact store
+    #   uses: actions/upload-pages-artifact@v3
+    #   with:
+    #     name: ${{ env.solution_name }}_managed
+    #     path: ${{ env.solution_shipping_folder}}/
