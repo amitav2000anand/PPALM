@@ -1,0 +1,81 @@
+name: release-solution-to-uat
+
+# convert solution to managed (using a build PowerPlatform environment for the conversion)
+# upload the solution to the GitHub artifacts
+on:
+  workflow_dispatch:
+    inputs:
+      solution_name:
+        description: 'The solution name.'
+        type: string
+        default: SelfServiceAgent
+      solution_shipping_folder:
+        description: 'Folder for staging the exported solution *do not change*'
+        type: string
+        default: out/ship
+      solution_outbound_folder:
+        description: 'Folder for unpacking solutions *do not change*'
+        type: string
+        default: out/solutions/
+      solution_source_folder:
+        description: 'Source folder for solutions *do not change*'
+        type: string
+        default: solutions/
+      solution_release_folder:
+        description: 'Folder for hosting release binaries *do not change*'
+        type: string
+        default: out/release
+
+env:
+  BUILD_ENVIRONMENT_URL: ${{ secrets.BUILD_ENVIRONMENT_URL }}
+  PROD_ENVIRONMENT_URL: ${{ secrets.PRODUCTION_ENVIRONMENT_URL }}
+  CLIENT_ID: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
+  TENANT_ID: ${{ secrets.POWERPLATFORM_TENANT_ID }}
+  SECRET: ${{ secrets.POWERPLATFORMSPN }}
+
+jobs:
+  convert-to-managed:
+    runs-on: windows-latest
+    # or you can say runs-on: ubuntu-latest
+    env:
+      RUNNER_DEBUG: 1
+
+    steps:
+    - name: Install Power Platform Tools
+      uses: microsoft/powerplatform-actions/actions-install@v1
+      
+    - uses: actions/checkout@v3
+      with:
+        lfs: true
+
+    - name: who-am-i action
+      uses: microsoft/powerplatform-actions/who-am-i@v1
+      with:
+        environment-url: ${{ env.BUILD_ENVIRONMENT_URL }}
+        app-id: ${{ env.CLIENT_ID }}
+        client-secret: ${{ env.SECRET }}
+        tenant-id: ${{ env.TENANT_ID }}
+              
+    - name: Pack solution
+      uses: microsoft/powerplatform-actions/pack-solution@v1
+      with:
+        solution-folder: ${{ inputs.solution_source_folder}}/${{ inputs.solution_name }}
+        solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
+        solution-type: Managed
+
+    - name: Import solution as managed to build env
+      uses: microsoft/powerplatform-actions/import-solution@v1
+      with:
+        environment-url: 'https://orga378c90d.crm.dynamics.com'
+        app-id: ${{ env.CLIENT_ID }}
+        client-secret: ${{ env.SECRET }}
+        tenant-id: ${{ env.TENANT_ID }}
+        solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}.zip
+        force-overwrite: true
+        publish-changes: true
+
+    - name: Upload the ready to ship solution to GH artifact store
+      uses: actions/upload-pages-artifact@v3
+      with:
+        name: ${{ inputs.solution_name }}_managed.zip
+        path: ${{ inputs.solution_shipping_folder}}/
