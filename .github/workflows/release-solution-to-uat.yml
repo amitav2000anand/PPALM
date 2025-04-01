@@ -89,5 +89,5 @@ jobs:
     - name: Upload the ready to ship solution to GH artifact store
       uses: actions/upload-pages-artifact@v3
       with:
-        name: ${{ inputs.solution_name }}_managed.zip
+        name: ${{ inputs.solution_name }}_managed
         path: ${{ inputs.solution_shipping_folder}}/
