@@ -48,19 +48,19 @@ jobs:
       uses: microsoft/powerplatform-actions/pack-solution@v1
       with:
         solution-folder: ${{ env.solution_source_folder}}/${{ env.solution_name }}
-        solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}.zip
-        solution-type: Unmanaged
+        solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}_managed.zip
+        solution-type: Managed
 
-    - name: Export solution as managed
-      uses: microsoft/powerplatform-actions/export-solution@v1
-      with:
-        environment-url: ${{ env.DEV_ENVIRONMENT_URL }}
-        app-id: ${{ env.CLIENT_ID }}
-        client-secret: ${{ env.SECRET }}
-        tenant-id: ${{ env.TENANT_ID }}
-        solution-name: ${{ env.solution_name }}
-        managed: true
-        solution-output-file: ${{ env.solution_shipping_folder}}/${{ env.solution_name }}_managed.zip
+#    - name: Export solution as managed
+#      uses: microsoft/powerplatform-actions/export-solution@v1
+#      with:
+#        environment-url: ${{ env.DEV_ENVIRONMENT_URL }}
+#        app-id: ${{ env.CLIENT_ID }}
+#        client-secret: ${{ env.SECRET }}
+#        tenant-id: ${{ env.TENANT_ID }}
+#        solution-name: ${{ env.solution_name }}
+#        managed: true
+#        solution-output-file: ${{ env.solution_shipping_folder}}/${{ env.solution_name }}_managed.zip
 
     - name: Import solution as managed to build env
       uses: microsoft/powerplatform-actions/import-solution@v1
@@ -69,7 +69,7 @@ jobs:
         app-id: ${{ env.CLIENT_ID }}
         client-secret: ${{ env.SECRET }}
         tenant-id: ${{ env.TENANT_ID }}
-        solution-file: ${{ env.solution_shipping_folder}}/${{ env.solution_name }}_managed.zip
+        solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}_managed.zip
         force-overwrite: true
         publish-changes: true
 
