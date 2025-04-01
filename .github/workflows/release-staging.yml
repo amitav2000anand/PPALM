@@ -128,6 +128,6 @@ jobs:
           app-id: ${{ env.CLIENT_ID }}
           client-secret: ${{ env.SECRET }}
           tenant-id: ${{ env.TENANT_ID }}
-          solution-file: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed.zip
+          solution-file: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed
           force-overwrite: true
           publish-changes: true
