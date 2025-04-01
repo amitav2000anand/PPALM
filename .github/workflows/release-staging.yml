@@ -96,7 +96,7 @@ jobs:
       uses: actions/upload-pages-artifact@v3
       with:
         name: ${{ inputs.solution_name }}_managed
-        path: ${{ inputs.solution_shipping_folder}}/
+        path: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
 
   release-to-staging:
       needs: [ convert-to-managed ]
