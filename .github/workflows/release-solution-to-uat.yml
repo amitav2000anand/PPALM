@@ -27,6 +27,7 @@ on:
         default: out/release
 
 env:
+  DEV_ENVIRONMENT_URL : ${{ secrets.ENVIRONMENT_URL }}
   BUILD_ENVIRONMENT_URL: ${{ secrets.BUILD_ENVIRONMENT_URL }}
   PROD_ENVIRONMENT_URL: ${{ secrets.PRODUCTION_ENVIRONMENT_URL }}
   CLIENT_ID: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
@@ -66,7 +67,7 @@ jobs:
     - name: Export solution as managed
       uses: microsoft/powerplatform-actions/export-solution@v1
       with:
-        environment-url: 'https://orga378c90d.crm.dynamics.com'
+        environment-url: ${{ env.DEV_ENVIRONMENT_URL }}
         app-id: ${{ env.CLIENT_ID }}
         client-secret: ${{ env.SECRET }}
         tenant-id: ${{ env.TENANT_ID }}
@@ -77,11 +78,11 @@ jobs:
     - name: Import solution as managed to build env
       uses: microsoft/powerplatform-actions/import-solution@v1
       with:
-        environment-url: 'https://orga378c90d.crm.dynamics.com'
+        environment-url: ${{ env.BUILD_ENVIRONMENT_URL }}
         app-id: ${{ env.CLIENT_ID }}
         client-secret: ${{ env.SECRET }}
         tenant-id: ${{ env.TENANT_ID }}
-        solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}_managed.zip
+        solution-file: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
         force-overwrite: true
         publish-changes: true
 
