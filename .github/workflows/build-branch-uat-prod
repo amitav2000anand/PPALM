@@ -22,11 +22,11 @@ on:
       unmanaged_solution_target_folder: 
        description: 'folder name to be created and checked in *do not change*'
        required: true
-       default: solutions/
+       default: unmanagedsolutions/
       managed_solution_target_folder: 
        description: 'folder name to be created and checked in *do not change*'
        required: true
-       default: solutions/
+       default: managedsolutions/
 
 env:
 #edit your values here
@@ -58,7 +58,50 @@ jobs:
         client-secret: ${{ secrets.POWERPLATFORMSPN }}
         tenant-id: ${{env.TENANT_ID}}
 
-      
+    - name: export-solution action for managed solution
+      uses: microsoft/powerplatform-actions/export-solution@v1
+      with:
+        environment-url: ${{env.ENVIRONMENT_URL}}
+        app-id: ${{env.CLIENT_ID}}
+        client-secret: ${{ secrets.POWERPLATFORMSPN }}
+        tenant-id: ${{env.TENANT_ID}}
+        managed: true
+        solution-name: ${{ github.event.inputs.solution_name }}
+        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
+
+    - name: unpack-solution action for managed solution
+      uses: microsoft/powerplatform-actions/unpack-solution@v1
+      with:
+        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
+        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
+        solution-type: 'Managed'
+        overwrite-files: true
+
+    - name: branch-solution for managed, prepare it for a PullRequest
+      uses: microsoft/powerplatform-actions/branch-solution@v1
+      with:
+        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
+        solution-target-folder: ${{ github.event.inputs.managed_solution_target_folder}}/${{ github.event.inputs.solution_name }}
+        repo-token: ${{ secrets.GH_PAT }}
+        allow-empty-commit: true
+
+    - name: export-solution action for unmanaged solution
+      uses: microsoft/powerplatform-actions/export-solution@v1
+      with:
+        environment-url: ${{env.ENVIRONMENT_URL}}
+        app-id: ${{env.CLIENT_ID}}
+        client-secret: ${{ secrets.POWERPLATFORMSPN }}
+        tenant-id: ${{env.TENANT_ID}}
+        solution-name: ${{ github.event.inputs.solution_name }}
+        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
+
+    - name: unpack-solution action for unmanaged solution
+      uses: microsoft/powerplatform-actions/unpack-solution@v1
+      with:
+        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
+        solution-folder: ${{ github.event.inputs.unmanaged_solution_target_folder}}/${{ github.event.inputs.solution_name }}
+        solution-type: 'Unmanaged'
+        overwrite-files: true
 
   deploy-to-uat:
   deploy-to-prod:
