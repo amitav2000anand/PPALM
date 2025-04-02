@@ -120,7 +120,7 @@ jobs:
       run: 'echo "##[debug]Solution Name: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip"'
 
     - name: Upload the ready to ship solution to GH artifact store
-      uses: actions/upload-pages-artifact@v3
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ inputs.solution_name }}_managed.zip
         path: ${{ inputs.solution_shipping_folder}}
