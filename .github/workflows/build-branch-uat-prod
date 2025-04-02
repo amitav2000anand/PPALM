@@ -113,5 +113,9 @@ jobs:
         allow-empty-commit: true
 
   deploy-to-uat:
+    - name: Debug solution name
+       run: 'echo "Steps for Production Deployment"'
   deploy-to-prod:
+    - name: Debug solution name
+       run: 'echo "Steps for Production Deployment"'
   
