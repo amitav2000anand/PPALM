@@ -31,19 +31,23 @@ on:
       BUILD_ENVIRONMENT_URL:
         description: 'Build environment url.'
         type: string
-        required: true      
+        required: true
+        default: 'https://orga378c90d.crm.dynamics.com'
       PRODUCTION_ENVIRONMENT_URL: 
         description: 'Production environment url.'
         type: string
         required: true
+        default: 'https://orgc5739d51.crm.dynamics.com'
       CLIENT_ID: 
         description: 'The client id'
         type: string
         required: true
+        default: '40d1484d-fca4-41b1-adf2-22aa1347977f'
       TENANT_ID: 
         description: 'The tenant id'
         type: string
         required: true
+        default: '582af8b1-0ad0-4519-bae9-067c35c065c2'
 #    secrets:
 #      envSecret:
 #        description: 'The secret value for authentication using SPN'
@@ -76,16 +80,17 @@ jobs:
       uses: microsoft/powerplatform-actions/pack-solution@v1
       with:
         solution-folder: ${{ inputs.solution_source_folder}}/${{ inputs.solution_name }}
-        solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}_managed.zip
+        solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}_managed.zip
         solution-type: Managed
 
-    - name: Import solution as unmanaged to build env
+    - name: Import solution as managed to uat env
       uses: microsoft/powerplatform-actions/import-solution@v1
       with:
         environment-url: 'https://orga378c90d.crm.dynamics.com'
         app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
         client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
         tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
+        managed: true
         solution-file: ${{ inputs.solution_outbound_folder}}/${{ inputs.solution_name }}_managed.zip
         force-overwrite: true
         publish-changes: true
@@ -112,11 +117,11 @@ jobs:
     #     force-overwrite: true
     #     publish-changes: true
 
-    - name: Upload the ready to ship solution to GH artifact store
-      uses: actions/upload-pages-artifact@v3
-      with:
-        name: ${{ inputs.solution_name }}_managed.zip
-        path: ${{ inputs.solution_shipping_folder}}/
+    # - name: Upload the ready to ship solution to GH artifact store
+    #   uses: actions/upload-pages-artifact@v3
+    #   with:
+    #     name: ${{ inputs.solution_name }}_managed.zip
+    #     path: ${{ inputs.solution_shipping_folder}}/
 
   release-to-staging:
     needs: [ convert-to-managed ]
@@ -136,7 +141,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: ${{ inputs.solution_name }}_managed.zip
-        path: ${{ inputs.solution_release_folder}}/
+        path: ${{ inputs.solution_shipping_folder}}/
 
     - name: Debug solution name
       run: 'echo "##[debug]Solution Name: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed.zip"'
@@ -148,6 +153,6 @@ jobs:
         app-id: '40d1484d-fca4-41b1-adf2-22aa1347977f'
         client-secret: 'fM28Q~-vgi8XyyPnnJkwlOJISagNJalEtrvrFckl'
         tenant-id: '582af8b1-0ad0-4519-bae9-067c35c065c2'
-        solution-file: ${{ inputs.solution_release_folder}}/${{ inputs.solution_name }}_managed.zip
+        solution-file: ${{ inputs.solution_shipping_folder}}/${{ inputs.solution_name }}_managed.zip
         force-overwrite: true
         publish-changes: true
