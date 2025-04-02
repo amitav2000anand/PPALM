@@ -19,7 +19,7 @@ beginDialog:
         allowInterruption: true
 
       variable: init:Topic.varOption
-      prompt: How can I help you today? Please use the choose below options to proceed. 
+      prompt: How can I help you today? Please use the select below options to proceed.
       entity:
         kind: EmbeddedEntity
         definition:
