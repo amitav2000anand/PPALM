@@ -10,7 +10,7 @@ on:
         description: 'name of the solution to worked on from Power Platform'
         required: true
         default: SelfServiceAgent
-       #Do Not change these values
+      #Do Not change these values
       solution_exported_folder:
         description: 'folder name for staging the exported solution *do not change*'
         required: true
@@ -114,8 +114,8 @@ jobs:
 
   deploy-to-uat:
     - name: Debug solution steps
-       run: 'echo "Steps for Production Deployment"'
+      run: 'echo "Steps for Production Deployment"'
   deploy-to-prod:
     - name: Debug solution steps
-       run: 'echo "Steps for Production Deployment"'
+      run: 'echo "Steps for Production Deployment"'
   
