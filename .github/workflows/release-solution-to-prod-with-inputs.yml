@@ -15,7 +15,7 @@ on:
       solution_shipping_folder:
         description: 'folder name for staging the exported solution *do not change*'        
         type: string
-        default: out/ship/
+        default: out/ship
       solution_outbound_folder:
         description: 'staging the unpacked solution folder before check-in *do not change*'
         type: string
