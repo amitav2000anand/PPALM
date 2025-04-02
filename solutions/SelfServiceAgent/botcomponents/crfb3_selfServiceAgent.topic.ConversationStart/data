@@ -31,12 +31,6 @@ beginDialog:
             - id: I need help in resolving an issue.
               displayName: I need help in resolving an issue.
 
-            - id: I want to create a Jira ticket
-              displayName: I want to create a Jira ticket
-
-            - id: Please make it work
-              displayName: Please make it work
-
     - kind: ConditionGroup
       id: conditionGroup_GlJVcK
       conditions:
