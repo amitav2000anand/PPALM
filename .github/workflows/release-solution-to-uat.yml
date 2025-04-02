@@ -63,9 +63,9 @@ jobs:
         publish-changes: true
 
     - name: Upload the ready to ship solution to GH artifact store
-      uses: actions/upload-pages-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
-        name: ${{ env.solution_name }}_managed
+        name: ${{ env.solution_name }}_managed.zip
         path: ${{ env.solution_shipping_folder}}/
 
   release-to-staging:
