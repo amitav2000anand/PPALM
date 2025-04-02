@@ -113,6 +113,7 @@ jobs:
         allow-empty-commit: true
 
   deploy-to-uat:
+    needs: [ checkin-to-repo-from-dev ]
     runs-on: windows-latest
     # or you can say runs-on: ubuntu-latest
     env:
@@ -120,16 +121,19 @@ jobs:
 
     environment:
       name: UAT
-      url: https://copilotstudio.microsoft.com/environments/b342a3e1-3bd5-e88f-b364-f764fdcc0019/bots/7b6bc62e-5361-46d9-9219-ce9fc064eefe?source=powerAppsMakerPortal_solutions_row
-
+      
     steps:
       - name: Debug solution steps
         run: 'echo "Steps for Production Deployment"'
   deploy-to-prod:
+    needs: [ deploy-to-uat ]
     runs-on: windows-latest
     # or you can say runs-on: ubuntu-latest
     env:
       RUNNER_DEBUG: 1
+
+    environment:
+      name: PROD  
 
     steps:
       - name: Debug solution steps
