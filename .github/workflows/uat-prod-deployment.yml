@@ -29,8 +29,8 @@ jobs:
       env:
         RUNNER_DEBUG: 1
 
-      environment:
-        name: UAT
+      # environment:
+      #   name: UAT
 
       steps:
       - name: Install Power Platform Tools
@@ -67,7 +67,7 @@ jobs:
           publish-changes: true
 
       - name: Upload the ready to ship solution to GH artifact store
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.solution_name }}_managed.zip
           path: ${{ env.solution_shipping_folder}}/
