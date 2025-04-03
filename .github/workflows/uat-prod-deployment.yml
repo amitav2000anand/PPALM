@@ -3,14 +3,15 @@ name: release-solution-to-uat-prod
 # convert solution to managed (using a build PowerPlatform environment for the conversion)
 # upload the solution to the GitHub artifacts
 
-on:
-  workflow_dispatch:
 # on:
-#   pull_request:
-#     types:
-#       - closed
-#     branches:
-#       - main
+#   workflow_dispatch:
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+      
 env:
   DEV_ENVIRONMENT_URL : ${{ secrets.ENVIRONMENT_URL }}
   BUILD_ENVIRONMENT_URL: ${{ secrets.BUILD_ENVIRONMENT_URL }}
