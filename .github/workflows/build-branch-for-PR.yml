@@ -1,4 +1,4 @@
-name: export-and-branch-solution-deploy-to-uat-deploy-to-prod
+name: export-and-branch-solution
 # Export solution from DEV environment
 # unpack it and prepare, commit and push a git branch with the changes
 
