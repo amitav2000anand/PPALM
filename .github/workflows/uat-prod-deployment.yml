@@ -4,11 +4,13 @@ name: release-solution-to-uat-prod
 # upload the solution to the GitHub artifacts
 
 on:
-  pull_request:
-    types:
-      - closed
-    branches:
-      - main
+  workflow_dispatch:
+# on:
+#   pull_request:
+#     types:
+#       - closed
+#     branches:
+#       - main
 env:
   DEV_ENVIRONMENT_URL : ${{ secrets.ENVIRONMENT_URL }}
   BUILD_ENVIRONMENT_URL: ${{ secrets.BUILD_ENVIRONMENT_URL }}
