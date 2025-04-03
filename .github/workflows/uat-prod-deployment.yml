@@ -31,9 +31,6 @@ jobs:
       env:
         RUNNER_DEBUG: 1
 
-      # environment:
-      #   name: UAT
-
       steps:
       - name: Install Power Platform Tools
         uses: microsoft/powerplatform-actions/actions-install@v1
