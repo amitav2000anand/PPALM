@@ -81,8 +81,8 @@ jobs:
       env:
         RUNNER_DEBUG: 1
 
-      # environment:
-      #   name: PROD  
+      environment:
+        name: PROD  
 
       steps:
         - name: Install Power Platform Tools
