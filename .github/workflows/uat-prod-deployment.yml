@@ -85,6 +85,9 @@ jobs:
       #   name: PROD  
 
       steps:
+        - name: Install Power Platform Tools
+          uses: microsoft/powerplatform-actions/actions-install@v1
+        
         - name: Debug solution steps
           run: 'echo "Steps for Production Deployment"'
         
