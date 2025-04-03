@@ -71,7 +71,7 @@ jobs:
       - name: Upload the ready to ship solution to GH artifact store
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.solution_name }}_managed.zip
+          name: ${{ env.solution_name }}_managed
           path: ${{ env.solution_outbound_folder}}/
 
   # deploy-to-prod:
