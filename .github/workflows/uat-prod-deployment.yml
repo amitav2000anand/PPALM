@@ -74,22 +74,22 @@ jobs:
           name: ${{ env.solution_name }}_managed
           path: ${{ env.solution_outbound_folder}}/
 
-  # deploy-to-prod:
-  #     needs: [ deploy-to-uat ]
-  #     runs-on: windows-latest
-  #     # or you can say runs-on: ubuntu-latest
-  #     env:
-  #       RUNNER_DEBUG: 1
+  deploy-to-prod:
+      needs: [ deploy-to-uat ]
+      runs-on: windows-latest
+      # or you can say runs-on: ubuntu-latest
+      env:
+        RUNNER_DEBUG: 1
 
-  #     environment:
-  #       name: PROD  
+      # environment:
+      #   name: PROD  
 
-  #     steps:
-  #       - name: Debug solution steps
-  #         run: 'echo "Steps for Production Deployment"'
+      steps:
+        - name: Debug solution steps
+          run: 'echo "Steps for Production Deployment"'
         
-  #       - name: Fetch the ready to ship solution from GH artifact store
-  #         uses: actions/download-artifact@v4
-  #         with:
-  #           name: ${{ env.solution_name }}_managed
-  #           path: ${{ env.solution_shipping_folder}}/
+        - name: Fetch the ready to ship solution from GH artifact store
+          uses: actions/download-artifact@v4
+          with:
+            name: ${{ env.solution_name }}_managed
+            path: ${{ env.solution_shipping_folder}}/
