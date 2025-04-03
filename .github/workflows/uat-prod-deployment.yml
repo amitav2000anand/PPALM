@@ -72,7 +72,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.solution_name }}_managed.zip
-          path: ${{ env.solution_shipping_folder}}/
+          path: ${{ env.solution_outbound_folder}}/
 
   # deploy-to-prod:
   #     needs: [ deploy-to-uat ]
