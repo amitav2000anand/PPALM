@@ -59,23 +59,25 @@ jobs:
         client-secret: ${{ secrets.POWERPLATFORMSPN }}
         tenant-id: ${{env.TENANT_ID}}
 
-    - name: export-solution action for managed solution
+    - name: export-solution action for unmanaged solution
       uses: microsoft/powerplatform-actions/export-solution@v1
       with:
         environment-url: ${{env.ENVIRONMENT_URL}}
         app-id: ${{env.CLIENT_ID}}
         client-secret: ${{ secrets.POWERPLATFORMSPN }}
         tenant-id: ${{env.TENANT_ID}}
-        managed: true
+        # managed: true
         solution-name: ${{ github.event.inputs.solution_name }}
-        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
+        # solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
+        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
 
-    - name: unpack-solution action for managed solution
+    - name: unpack-solution action for unmanaged solution
       uses: microsoft/powerplatform-actions/unpack-solution@v1
       with:
-        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
+        # solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
+        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
         solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
-        solution-type: 'Managed'
+        # solution-type: 'Managed'
         overwrite-files: true
 
     - name: branch-solution for managed, prepare it for a PullRequest
