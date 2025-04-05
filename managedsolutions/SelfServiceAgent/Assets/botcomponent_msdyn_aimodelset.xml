@@ -1,8 +1,0 @@
-<botcomponent_msdyn_aimodelset>
-  <botcomponent_msdyn_aimodel botcomponentid.schemaname="crfb3_selfServiceAgent.topic.HelpwithIssueResolution" msdyn_aimodelid.msdyn_aimodelid="eef29acd-a826-4563-a168-b5b529a3f6a1">
-    <iscustomizable>1</iscustomizable>
-  </botcomponent_msdyn_aimodel>
-  <botcomponent_msdyn_aimodel botcomponentid.schemaname="crfb3_selfServiceAgent.topic.HelpwithIssueResolution" msdyn_aimodelid.msdyn_aimodelid="fdf98225-dfba-496f-ba12-346a53eee110">
-    <iscustomizable>1</iscustomizable>
-  </botcomponent_msdyn_aimodel>
-</botcomponent_msdyn_aimodelset>
