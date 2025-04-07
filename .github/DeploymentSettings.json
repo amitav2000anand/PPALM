@@ -1,0 +1,15 @@
+{
+  "EnvironmentVariables": [
+    {
+      "SchemaName": "ava_SubscriptionKeySecretName",
+      "Value": ""
+    }
+  ],
+  "ConnectionReferences": [
+    {
+      "LogicalName": "ava_sharedoffice365_b6f35",
+      "ConnectionId": "target_environment_connection_id",
+      "ConnectorId": "connector_id"
+    }
+  ]
+}
