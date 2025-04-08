@@ -59,6 +59,9 @@ jobs:
         client-secret: ${{ secrets.POWERPLATFORMSPN }}
         tenant-id: ${{env.TENANT_ID}}
 
+    - name: generate-configuration-settings-file
+        pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file deployment-settings.json
+
     - name: export-solution action for unmanaged solution
       uses: microsoft/powerplatform-actions/export-solution@v1
       with:
