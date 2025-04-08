@@ -1,0 +1,10 @@
+<botcomponent schemaname="crfb3_selfServiceAgent.topic.GetInformationfromConfluence">
+  <componenttype>9</componenttype>
+  <iscustomizable>0</iscustomizable>
+  <name>Get Information from Confluence</name>
+  <parentbotid>
+    <schemaname>crfb3_selfServiceAgent</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>
