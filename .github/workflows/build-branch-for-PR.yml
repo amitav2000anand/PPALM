@@ -19,14 +19,14 @@ on:
         description: 'staging the unpacked solution folder before check-in *do not change*'
         required: true
         default: out/solutions/
-      unmanaged_solution_target_folder: 
-       description: 'folder name to be created and checked in *do not change*'
-       required: true
-       default: unmanagedsolutions/
-      managed_solution_target_folder: 
-       description: 'folder name to be created and checked in *do not change*'
-       required: true
-       default: managedsolutions/
+      # unmanaged_solution_target_folder: 
+      #  description: 'folder name to be created and checked in *do not change*'
+      #  required: true
+      #  default: unmanagedsolutions/
+      # managed_solution_target_folder: 
+      #  description: 'folder name to be created and checked in *do not change*'
+      #  required: true
+      #  default: managedsolutions/
       solution_target_folder:
        description: 'folder name to be created and checked in *do not change*'
        required: true
