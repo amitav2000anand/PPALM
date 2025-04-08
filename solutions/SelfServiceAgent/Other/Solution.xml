@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.25024.216" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25024.216" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25031.00228">
+<ImportExportXml version="9.2.25031.228" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25031.228" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25031.00228">
   <SolutionManifest>
     <UniqueName>SelfServiceAgent</UniqueName>
     <LocalizedNames>
@@ -7,7 +7,7 @@
     </LocalizedNames>
     <Descriptions />
     <Version>1.0.0.2</Version>
-    <Managed>1</Managed>
+    <Managed>0</Managed>
     <Publisher>
       <UniqueName>Avanade</UniqueName>
       <LocalizedNames>
@@ -81,6 +81,7 @@
     </Publisher>
     <RootComponents>
       <RootComponent type="1" schemaName="crfb3_itsupportticket" behavior="0" />
+      <RootComponent type="29" id="{5ece1401-9c11-f011-998a-000d3a8b4491}" behavior="0" />
       <RootComponent type="401" id="{eef29acd-a826-4563-a168-b5b529a3f6a1}" behavior="0" />
       <RootComponent type="401" id="{fdf98225-dfba-496f-ba12-346a53eee110}" behavior="0" />
     </RootComponents>

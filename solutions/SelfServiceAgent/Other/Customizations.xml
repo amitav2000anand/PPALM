@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25024.216" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25031.00228">
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25031.228" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25031.00228">
   <Entities />
   <Roles />
   <Workflows />
@@ -105,6 +105,24 @@
       </AIConfigurations>
     </AIModel>
   </AIModels>
+  <connectionreferences>
+    <connectionreference connectionreferencelogicalname="ava_sharedoffice365_b6f35">
+      <connectionreferencedisplayname>Office 365 Outlook SelfServiceAgent-b6f35</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedsmartsheet_e63bf">
+      <connectionreferencedisplayname>Smartsheet</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_smartsheet</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+  </connectionreferences>
   <Languages>
     <Language>1033</Language>
   </Languages>
