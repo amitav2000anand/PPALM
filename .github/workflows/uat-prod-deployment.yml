@@ -5,12 +5,12 @@ name: release-solution-to-uat-prod
 # Commented out on:pull_request- workflow should not fire-Testing
 # on:
 #   workflow_dispatch:
-# on:
-#   pull_request:
-#     types:
-#       - closed
-#     branches:
-#       - main
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
       
 #   workflow_dispatch:
 env:
