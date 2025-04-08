@@ -3,14 +3,14 @@ name: release-solution-to-uat-prod
 # convert solution to managed (using a build PowerPlatform environment for the conversion)
 # upload the solution to the GitHub artifacts
 # Commented out on:pull_request- workflow should not fire-Testing
-# on:
-#   workflow_dispatch:
 on:
-  pull_request:
-    types:
-      - closed
-    branches:
-      - main
+  workflow_dispatch:
+# on:
+#   pull_request:
+#     types:
+#       - closed
+#     branches:
+#       - main
       
 #   workflow_dispatch:
 env:
