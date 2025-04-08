@@ -1,0 +1,15 @@
+{
+  "EnvironmentVariables": [
+    {
+      "SchemaName": "ava_SubscriptionKeySecretName",
+      "Value": "#{environmentvariable.ava_SubscriptionKeySecretName}#"
+    }
+  ],
+  "ConnectionReferences": [
+    {
+      "LogicalName": "ava_sharedoffice365_b6f35",
+      "ConnectionId": "#{connectionreference.ava_sharedoffice365_b6f35}#",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+    }
+  ]
+}
