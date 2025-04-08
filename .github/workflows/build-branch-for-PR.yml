@@ -61,6 +61,7 @@ jobs:
 
     - name: generate-configuration-settings-file
       run: |
+        npm install -g pac-cli
         pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file deployment-settings.json
 
     - name: export-solution action for unmanaged solution
