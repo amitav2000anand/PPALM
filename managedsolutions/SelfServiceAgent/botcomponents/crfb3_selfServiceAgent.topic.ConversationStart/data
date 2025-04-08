@@ -1,0 +1,49 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnConversationStart
+  id: main
+  actions:
+    - kind: SendActivity
+      id: sendMessage_M0LuhV
+      activity:
+        text:
+          - |-
+            Hello {System.User.FirstName}, Good Day!
+            I'm  {System.Bot.Name}, an agent. Just so you are aware, I sometimes use AI to answer your questions. Ask me any thing you want. For a Demo.
+        speak:
+          - Thanks for calling, how can I help?
+
+    - kind: Question
+      id: question_MySzk1
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.varOption
+      prompt: How can I help you today? Please use the select below options to proceed.
+      entity:
+        kind: EmbeddedEntity
+        definition:
+          kind: ClosedListEntity
+          items:
+            - id: I want help in getting some information.
+              displayName: I want help in getting some information.
+
+            - id: I need help in resolving an issue.
+              displayName: I need help in resolving an issue.
+
+    - kind: ConditionGroup
+      id: conditionGroup_GlJVcK
+      conditions:
+        - id: conditionItem_6nPyIj
+          condition: =Topic.varOption = 'crfb3_selfServiceAgent.topic.ConversationStart.main.question_MySzk1'.'I want help in getting some information.'
+          actions:
+            - kind: BeginDialog
+              id: TMFAVF
+              dialog: crfb3_selfServiceAgent.topic.GetInformationfromConfluence
+
+        - id: conditionItem_fvlQyd
+          condition: =Topic.varOption = 'crfb3_selfServiceAgent.topic.ConversationStart.main.question_MySzk1'.'I need help in resolving an issue.'
+          actions:
+            - kind: BeginDialog
+              id: yxOc8b
+              dialog: crfb3_selfServiceAgent.topic.HelpwithIssueResolution

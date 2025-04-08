@@ -1,0 +1,56 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRedirect
+  id: main
+  actions:
+    - kind: Question
+      id: question_SGRhOO
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.varUserQuery
+      prompt: Please explain what information you would like to get?
+      entity: StringPrebuiltEntity
+
+    - kind: SearchAndSummarizeContent
+      id: m2vqYg
+      variable: Topic.varAnswer
+      userInput: =Topic.varUserQuery
+
+    - kind: Question
+      id: question_aEgq95
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.varChoice
+      prompt: Do you need help with anything else?
+      entity:
+        kind: EmbeddedEntity
+        definition:
+          kind: ClosedListEntity
+          items:
+            - id: Yes
+              displayName: Yes
+
+            - id: No
+              displayName: No
+
+    - kind: ConditionGroup
+      id: conditionGroup_E6h9LK
+      conditions:
+        - id: conditionItem_uFJDen
+          condition: =Topic.varChoice = 'crfb3_selfServiceAgent.topic.GetInformationfromConfluence.main.question_aEgq95'.Yes
+          actions:
+            - kind: BeginDialog
+              id: EipX3o
+              dialog: crfb3_selfServiceAgent.topic.GoToMainMenu
+
+    - kind: SendActivity
+      id: sendActivity_wMQoUs
+      activity: Thank you! Have a great time ahead.
+
+    - kind: EndDialog
+      id: lql7RQ
+
+inputType: {}
+outputType: {}
