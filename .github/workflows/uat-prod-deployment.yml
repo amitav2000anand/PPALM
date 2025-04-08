@@ -64,7 +64,7 @@ jobs:
           client-secret: ${{ env.SECRET }}
           tenant-id: ${{ env.TENANT_ID }}
           solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}_managed.zip
-          deployment-settings-file: .github/DeploymentSettings.json
+          deployment-settings-file: .github/DeploymentSettings-UAT.json
           force-overwrite: true
           publish-changes: true
 
@@ -105,6 +105,6 @@ jobs:
            client-secret: ${{ env.SECRET }}
            tenant-id: ${{ env.TENANT_ID }}
            solution-file: ${{ env.solution_shipping_folder}}/${{ env.solution_name }}_managed.zip
-           deployment-settings-file: .github/DeploymentSettings.json
+           deployment-settings-file: .github/DeploymentSettings-Prod.json
            force-overwrite: true
            publish-changes: true
