@@ -125,4 +125,4 @@ jobs:
             app-id: ${{ env.CLIENT_ID }}
             client-secret: ${{ env.SECRET }}
             tenant-id: ${{ env.TENANT_ID }}
-            solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}_managed.zip
+            solution-file: ${{ env.solution_shipping_folder}}/${{ env.solution_name }}_managed.zip
