@@ -19,14 +19,6 @@ on:
         description: 'staging the unpacked solution folder before check-in *do not change*'
         required: true
         default: out/solutions/
-      # unmanaged_solution_target_folder: 
-      #  description: 'folder name to be created and checked in *do not change*'
-      #  required: true
-      #  default: unmanagedsolutions/
-      # managed_solution_target_folder: 
-      #  description: 'folder name to be created and checked in *do not change*'
-      #  required: true
-      #  default: managedsolutions/
       solution_target_folder:
        description: 'folder name to be created and checked in *do not change*'
        required: true
@@ -63,30 +55,23 @@ jobs:
         client-secret: ${{ secrets.POWERPLATFORMSPN }}
         tenant-id: ${{env.TENANT_ID}}
 
-    # - name: generate-configuration-settings-file
-    #   run: |
-    #     npm install -g pac-cli
-    #     pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file deployment-settings.json
-
-    - name: export-solution action for unmanaged solution
+    - name: export-solution action for managed solution
       uses: microsoft/powerplatform-actions/export-solution@v1
       with:
         environment-url: ${{env.ENVIRONMENT_URL}}
         app-id: ${{env.CLIENT_ID}}
         client-secret: ${{ secrets.POWERPLATFORMSPN }}
         tenant-id: ${{env.TENANT_ID}}
-        # managed: true
+        managed: true
         solution-name: ${{ github.event.inputs.solution_name }}
-        # solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
-        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
-
+        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
+        
     - name: unpack-solution action for unmanaged solution
       uses: microsoft/powerplatform-actions/unpack-solution@v1
       with:
-        # solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
-        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}.zip
+        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
         solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
-        # solution-type: 'Managed'
+        solution-type: 'Managed'
         overwrite-files: true
 
     - name: branch-solution for managed, prepare it for a PullRequest
