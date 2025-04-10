@@ -1,0 +1,11 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRedirect
+  id: main
+  actions:
+    - kind: SendActivity
+      id: sendActivity_fL0z0V
+      activity: Placeholder for adaptive card.
+
+inputType: {}
+outputType: {}

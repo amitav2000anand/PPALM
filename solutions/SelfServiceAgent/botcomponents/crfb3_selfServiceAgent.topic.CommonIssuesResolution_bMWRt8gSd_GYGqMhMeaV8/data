@@ -1,0 +1,4 @@
+kind: KnowledgeSourceConfiguration
+source:
+  kind: DataverseStructuredSearchSource
+  skillConfiguration: CommonIssuesResolution_4uUNtbEYO1nC04w8aS3rp
