@@ -1,0 +1,155 @@
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnRedirect
+  id: main
+  actions:
+    - kind: Question
+      id: question_klDwAC
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.varIssue
+      prompt: Can you please describe your issue.
+      entity: StringPrebuiltEntity
+
+    - kind: InvokeAIBuilderModelAction
+      id: invokeAIBuilderModelAction_soWsGZ
+      input:
+        binding:
+          Departments: IT, HR, Finance
+          User_20query: =Topic.varIssue
+
+      output:
+        binding:
+          predictionOutput: Topic.varPredictionOutput
+
+      aIModelId: fdf98225-dfba-496f-ba12-346a53eee110
+
+    - kind: InvokeAIBuilderModelAction
+      id: invokeAIBuilderModelAction_T5Bq73
+      input:
+        binding:
+          Department: =Substitute(Topic.varPredictionOutput.text,"Department:","")
+          UserIssue: =Topic.varIssue
+
+      output:
+        binding:
+          predictionOutput: Topic.varIssueResolution
+
+      aIModelId: eef29acd-a826-4563-a168-b5b529a3f6a1
+
+    - kind: ConditionGroup
+      id: conditionGroup_5zs5TD
+      conditions:
+        - id: conditionItem_BtNZ0s
+          condition: =!IsBlank(Topic.varIssueResolution)
+          actions:
+            - kind: SendActivity
+              id: sendActivity_MrI4dG
+              activity: "{Topic.varIssueResolution.text}"
+
+    - kind: Question
+      id: question_PyYa7k
+      interruptionPolicy:
+        allowInterruption: true
+
+      variable: init:Topic.varDepartment
+      prompt: I think you are planning to address your concern related to {Substitute(Topic.varPredictionOutput.text,"Department:"," ")} If not, please select appropriate department.
+      entity:
+        kind: EmbeddedEntity
+        definition:
+          kind: ClosedListEntity
+          items:
+            - id: IT
+              displayName: IT
+
+            - id: HR
+              displayName: HR
+
+            - id: Finance
+              displayName: Finance
+
+    - kind: SearchAndSummarizeContent
+      id: kwnYlz
+      variable: Topic.varAnswer
+      userInput: =Topic.varIssue
+      additionalInstructions: Get the resolution for user isse {Topic.varIssue} related to {Topic.varDepartment}. Provide clear steps of resolution in short.
+
+    - kind: ConditionGroup
+      id: conditionGroup_5O8lGQ
+      conditions:
+        - id: conditionItem_mqWXkQ
+          condition: =!IsBlank(Topic.varAnswer)
+          actions:
+            - kind: Question
+              id: question_oI9Y9u
+              interruptionPolicy:
+                allowInterruption: true
+
+              variable: init:Topic.Var1
+              prompt: Are these known issues helpful for your specific concern? Or you want to create a JIRA Ticket?
+              entity:
+                kind: EmbeddedEntity
+                definition:
+                  kind: ClosedListEntity
+                  items:
+                    - id: Create JIRA Ticket
+                      displayName: Create JIRA Ticket
+
+                    - id: No Thanks
+                      displayName: No Thanks
+
+            - kind: ConditionGroup
+              id: conditionGroup_3bo3sC
+              conditions:
+                - id: conditionItem_33Az17
+                  condition: =Topic.Var1 = 'crfb3_selfServiceAgent.topic.HelpwithIssueResolution.main.question_oI9Y9u'.'Create JIRA Ticket'
+                  actions:
+                    - kind: BeginDialog
+                      id: w2Cx7O
+                      dialog: crfb3_selfServiceAgent.topic.CreateJIRATicket
+
+              elseActions:
+                - kind: SendActivity
+                  id: sendActivity_bUGT9X
+                  activity: Thank you. Have a great time ahead.
+
+      elseActions:
+        - kind: Question
+          id: question_i41eHs
+          interruptionPolicy:
+            allowInterruption: true
+
+          variable: init:Topic.Var2
+          prompt: Would you like to create a JIRA Ticket?
+          entity:
+            kind: EmbeddedEntity
+            definition:
+              kind: ClosedListEntity
+              items:
+                - id: Create JIRA Ticket
+                  displayName: Create JIRA Ticket
+
+                - id: No Thanks
+                  displayName: No Thanks
+
+        - kind: ConditionGroup
+          id: conditionGroup_RdIbKw
+          conditions:
+            - id: conditionItem_CBFG14
+              condition: =Topic.Var2 = 'crfb3_selfServiceAgent.topic.HelpwithIssueResolution.main.question_i41eHs'.'Create JIRA Ticket'
+              actions:
+                - kind: GotoAction
+                  id: n2OfS5
+                  actionId: w2Cx7O
+
+          elseActions:
+            - kind: GotoAction
+              id: ENVrhT
+              actionId: sendActivity_bUGT9X
+
+    - kind: EndDialog
+      id: g4Feox
+
+inputType: {}
+outputType: {}
