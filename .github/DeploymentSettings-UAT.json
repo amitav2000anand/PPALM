@@ -7,13 +7,13 @@
   ],
   "ConnectionReferences": [
     {
-      "LogicalName": "ava_sharedoffice365_b6f35",
-      "ConnectionId": "fa19efa2f506430cbe55af11d9d45371",
+      "LogicalName": "shared_office365",
+      "ConnectionId": "a231211e3a374880893203fbbed84b24",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365"
     },
     {
-      "LogicalName": "new_sharedsmartsheet_e63bf",
-       "ConnectionId": "948cc77dd17e496daa7c21055cd567c6",
+      "LogicalName": "shared_smartsheet",
+       "ConnectionId": "a0e8c344e15b4c23a248bf3697a318de",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_smartsheet"
     }
   ]
