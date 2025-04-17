@@ -13,7 +13,7 @@
     },
     {
       "LogicalName": "shared_smartsheet",
-       "ConnectionId": "a0e8c344e15b4c23a248bf3697a318de",
+      "ConnectionId": "a0e8c344e15b4c23a248bf3697a318de",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_smartsheet"
     }
   ]
