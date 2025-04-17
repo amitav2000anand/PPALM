@@ -7,12 +7,12 @@
   ],
   "ConnectionReferences": [
     {
-      "LogicalName": "ava_sharedoffice365_b6f35",
+      "LogicalName": "shared_office365",
       "ConnectionId": "fa19efa2f506430cbe55af11d9d45371",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365"
     },
     {
-      "LogicalName": "new_sharedsmartsheet_e63bf",
+      "LogicalName": "shared_smartsheet",
        "ConnectionId": "948cc77dd17e496daa7c21055cd567c6",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_smartsheet"
     }
