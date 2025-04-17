@@ -52,5 +52,8 @@ beginDialog:
     - kind: EndDialog
       id: lql7RQ
 
+    - kind: EndConversation
+      id: 1HXJts
+
 inputType: {}
 outputType: {}
