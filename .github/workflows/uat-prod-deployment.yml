@@ -106,7 +106,6 @@ jobs:
            client-secret: ${{ env.SECRET }}
            tenant-id: ${{ env.TENANT_ID }}
            solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}_managed.zip
-           use-deployment-settings-file: true
            deployment-settings-file: .github/DeploymentSettings-Prod.json
            force-overwrite: true
            publish-changes: true
