@@ -7,4 +7,5 @@ instructions: |-
   - Ensure responses are clear, concise, and easy to follow.
   - Maintain a friendly and supportive tone in all interactions.
 gptCapabilities:
+  webBrowsing: false
   codeInterpreter: false
