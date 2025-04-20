@@ -103,17 +103,17 @@ jobs:
          - name: List files in .github folder
            run: dir .github
          
-         - name: Import solution to prod env
-           uses: microsoft/powerplatform-actions/import-solution@v1
-           with:
-            environment-url: ${{ env.PROD_ENVIRONMENT_URL }}
-            app-id: ${{ env.CLIENT_ID }}
-            client-secret: ${{ env.SECRET }}
-            tenant-id: ${{ env.TENANT_ID }}
-            solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}_managed.zip
-            use-deployment-settings-file: true
-            deployment-settings-file: .github/DeploymentSettings-Prod.json
-            force-overwrite: true
-            publish-changes: true
-            run-asynchronously: true
-            max-async-wait-time: 500
+         # - name: Import solution to prod env
+         #   uses: microsoft/powerplatform-actions/import-solution@v1
+         #   with:
+         #    environment-url: ${{ env.PROD_ENVIRONMENT_URL }}
+         #    app-id: ${{ env.CLIENT_ID }}
+         #    client-secret: ${{ env.SECRET }}
+         #    tenant-id: ${{ env.TENANT_ID }}
+         #    solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}_managed.zip
+         #    use-deployment-settings-file: true
+         #    deployment-settings-file: .github/DeploymentSettings-Prod.json
+         #    force-overwrite: true
+         #    publish-changes: true
+         #    run-asynchronously: true
+         #    max-async-wait-time: 500
