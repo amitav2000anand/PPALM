@@ -4,9 +4,9 @@
       "SchemaName": "ava_SubscriptionKeySecretName",
       "Value": "#{environmentvariable.ava_SubscriptionKeySecretName}#",
       "Name": {
-        "Default": "Subscription Key Secret Name",
+        "Default": "UAT Subscription Key Secret Name",
         "ByLcid": {
-          "1033": "Subscription Key Secret Name"
+          "1033": "UAT Subscription Key Secret Name"
         }
       },
       "TypeId": 100000000,
