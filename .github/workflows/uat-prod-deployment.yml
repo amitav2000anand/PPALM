@@ -100,6 +100,9 @@ jobs:
              name: ${{ env.solution_name }}_managed
              path: ${{ env.solution_outbound_folder}}/
 
+         - name: List files in .github folder
+           run: dir .github
+         
          - name: Import solution to prod env
            uses: microsoft/powerplatform-actions/import-solution@v1
            with:
