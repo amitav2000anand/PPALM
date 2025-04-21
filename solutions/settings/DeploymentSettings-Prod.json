@@ -2,7 +2,7 @@
   "EnvironmentVariables": [
     {
       "SchemaName": "ava_SubscriptionKeySecretName",
-      "Value": "",
+      "Value": "#{environmentvariable.ava_SubscriptionKeySecretName}#",
       "Name": {
         "Default": "Subscription Key Secret Name",
         "ByLcid": {
