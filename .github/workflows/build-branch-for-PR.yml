@@ -82,7 +82,7 @@ jobs:
         solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
 
     - name: use pac command to generate Deployment settings file for UAT and Prod environment
-      run: pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_settings_folder}}/DeploymentSettings_UAT.json
+      run: pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/DeploymentSettings_UAT.json
         
     - name: unpack-solution action for unmanaged solution
       uses: microsoft/powerplatform-actions/unpack-solution@v1
