@@ -20,4 +20,4 @@ jobs:
       run: npm install -g pac
 
     - name: Verify Power Platform CLI installation
-      run: pac --version
+      run: pac help
