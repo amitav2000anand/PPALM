@@ -26,7 +26,6 @@ env:
   solution_source_folder: solutions
   solution_settings_folder: settings
   solution_release_folder: out/release
-  settings_config_folder: settings
 
 jobs:
   deploy-to-uat:
@@ -67,8 +66,7 @@ jobs:
           tenant-id: ${{ env.TENANT_ID }}
           solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}_managed.zip
           use-deployment-settings-file: true
-          # deployment-settings-file: .github/DeploymentSettings-UAT.json
-          deployment-settings-file: ${{ env.solution_source_folder}}/${{ env.settings_config_folder}}/DeploymentSettings-UAT.json
+          deployment-settings-file: ${{ env.solution_source_folder}}/${{ env.solution_settings_folder}}/DeploymentSettings-UAT.json
           force-overwrite: true
           publish-changes: true
           run-asynchronously: true
@@ -124,9 +122,7 @@ jobs:
             tenant-id: ${{ env.TENANT_ID }}
             solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}_managed.zip
             use-deployment-settings-file: true
-            # deployment-settings-file: .github/DeploymentSettings-Prod.json
-            # deployment-settings-file: ${{ env.solution_source_folder}}/${{ solution_settings_folder}}/DeploymentSettings-Prod.json
-            deployment-settings-file: ${{ env.solution_source_folder}}/${{ env.settings_config_folder}}/DeploymentSettings-Prod.json
+            deployment-settings-file: ${{ env.solution_source_folder}}/${{ env.solution_settings_folder}}/DeploymentSettings-Prod.json
             force-overwrite: true
             publish-changes: true
             run-asynchronously: true
