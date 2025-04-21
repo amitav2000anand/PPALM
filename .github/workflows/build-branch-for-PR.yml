@@ -70,18 +70,18 @@ jobs:
         solution-name: ${{ github.event.inputs.solution_name }}
         solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
 
-    - name: Set up .NET Core
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.0.x' # Adjust version if needed
+    # - name: Set up .NET Core
+    #   uses: actions/setup-dotnet@v3
+    #   with:
+    #     dotnet-version: '8.0.x' # Adjust version if needed
  
-    - name: Install Microsoft PowerApps CLI Tool
-      run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+    # - name: Install Microsoft PowerApps CLI Tool
+    #   run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
 
-    - name: use pac command to generate Deployment settings file for UAT and Prod environment
-      run: |
-        pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/DeploymentSettings_UAT.json
-        pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/DeploymentSettings_Prod.json  
+    # - name: use pac command to generate Deployment settings file for UAT and Prod environment
+    #   run: |
+    #     pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/DeploymentSettings_UAT.json
+    #     pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/DeploymentSettings_Prod.json  
 
     - name: unpack-solution action for unmanaged solution
       uses: microsoft/powerplatform-actions/unpack-solution@v1
