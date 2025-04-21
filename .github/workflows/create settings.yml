@@ -18,10 +18,14 @@ on:
        description: 'folder name to be created for settings JSON file and checked in *do not change*'
        required: true
        default: settings/
-      solution_settings_name:
+      UAT_solution_settings_name:
        description: 'folder name to be created for settings JSON file and checked in *do not change*'
        required: true
        default: DeploymentSettings-UAT.json
+      PROD_solution_settings_name:
+       description: 'folder name to be created for settings JSON file and checked in *do not change*'
+       required: true
+       default: DeploymentSettings-Prod.json
 
 env:
 #edit your values here
@@ -74,7 +78,8 @@ jobs:
 
     - name: use pac command to generate Deployment settings file for UAT and Prod environment
       run: |
-        pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/${{ github.event.inputs.solution_settings_name}}
+        pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/${{ github.event.inputs.UAT_solution_settings_name}}
+        pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/${{ github.event.inputs.Prod_solution_settings_name}}
 
     - name: unpack-solution action for unmanaged solution
       uses: microsoft/powerplatform-actions/unpack-solution@v1
