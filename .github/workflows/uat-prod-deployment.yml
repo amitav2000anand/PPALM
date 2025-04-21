@@ -56,14 +56,6 @@ jobs:
           solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}_managed.zip
           solution-type: Managed
 
-      - name: Verify file exists before upload
-        run: |
-          if [ -f ".github/DeploymentSettings-UAT.json" ]; then
-            echo "File exists!";
-          else
-            echo "File does not exist!"; exit 1;
-          fi
-
       - name: Import solution as managed to uat env
         uses: microsoft/powerplatform-actions/import-solution@v1
         with:
@@ -108,14 +100,6 @@ jobs:
              name: ${{ env.solution_name }}_managed
              path: ${{ env.solution_outbound_folder}}/
 
-         - name: Verify file exists before upload
-           run: |
-              if [ -f ".github/DeploymentSettings-Prod.json" ]; then
-                echo "File exists!";
-              else
-                echo "File does not exist!"; exit 1;
-              fi
-         
          # - name: Import solution to prod env
          #   uses: microsoft/powerplatform-actions/import-solution@v1
          #   with:
