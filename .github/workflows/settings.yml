@@ -1,0 +1,23 @@
+name: Power Platform CLI Installation
+
+on:
+  workflow_dispatch:
+
+jobs:
+  install-powerplatform-cli:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install Power Platform CLI
+      run: npm install -g pac
+
+    - name: Verify Power Platform CLI installation
+      run: pac --version
