@@ -15,6 +15,11 @@
   ],
   "ConnectionReferences": [
     {
+      "LogicalName": "ava_sharedcommondataserviceforapps_564a9",
+      "ConnectionId": "",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+    },
+    {
       "LogicalName": "ava_sharedoffice365_b6f35",
       "ConnectionId": "",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365"
