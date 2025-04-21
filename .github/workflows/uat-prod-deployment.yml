@@ -93,6 +93,18 @@ jobs:
         
          - name: Debug solution steps
            run: 'echo "Steps for Production Deployment"'
+
+         - uses: actions/checkout@v3
+           with:
+             lfs: true
+
+         - name: who-am-i action
+           uses: microsoft/powerplatform-actions/who-am-i@v1
+           with:
+            environment-url: ${{ env.BUILD_ENVIRONMENT_URL }}
+            app-id: ${{ env.CLIENT_ID }}
+            client-secret: ${{ env.SECRET }}
+            tenant-id: ${{ env.TENANT_ID }}
         
          - name: Fetch the ready to ship solution from GH artifact store
            uses: actions/download-artifact@v4
