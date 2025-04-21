@@ -11,13 +11,24 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v3
       with:
-        node-version: '11'
-
-    - name: Install Power Platform CLI
-      run: npm install -g pac
-
-    - name: Verify Power Platform CLI installation
+        dotnet-version: '7.0.x' # Adjust version if needed
+ 
+    - name: Install Microsoft PowerApps CLI Tool
+      run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+ 
+    - name: Run pac help
       run: pac help
+
+    # - name: Set up Node.js
+    #   uses: actions/setup-node@v2
+    #   with:
+    #     node-version: '11'
+
+    # - name: Install Power Platform CLI
+    #   run: npm install -g pac
+
+    # - name: Verify Power Platform CLI installation
+    #   run: pac help
