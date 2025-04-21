@@ -26,6 +26,8 @@ env:
   solution_source_folder: solutions
   solution_settings_folder: settings
   solution_release_folder: out/release
+permissions:
+  contents: write
 
 jobs:
   deploy-to-uat:
