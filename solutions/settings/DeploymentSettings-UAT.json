@@ -16,17 +16,17 @@
   "ConnectionReferences": [
     {
       "LogicalName": "ava_sharedcommondataserviceforapps_564a9",
-      "ConnectionId": "",
+      "ConnectionId": "d5c89d1a6c614fadb87616ab9e76a949",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
     },
     {
       "LogicalName": "ava_sharedoffice365_b6f35",
-      "ConnectionId": "",
+      "ConnectionId": "a231211e3a374880893203fbbed84b24",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365"
     },
     {
       "LogicalName": "new_sharedsmartsheet_e63bf",
-      "ConnectionId": "",
+      "ConnectionId": "a0e8c344e15b4c23a248bf3697a318de",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_smartsheet"
     }
   ]
