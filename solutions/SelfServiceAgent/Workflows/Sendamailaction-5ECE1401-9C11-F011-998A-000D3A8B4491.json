@@ -18,6 +18,15 @@
         "api": {
           "name": "shared_smartsheet"
         }
+      },
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ava_sharedcommondataserviceforapps_564a9"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
       }
     },
     "definition": {
@@ -52,7 +61,7 @@
       "actions": {
         "Send_an_email_(V2)": {
           "runAfter": {
-            "Get_a_sheet": [
+            "List_rows": [
               "Succeeded"
             ]
           },
@@ -119,6 +128,31 @@
             },
             "parameters": {
               "sheetId": "6552186218565508"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "List_rows": {
+          "runAfter": {
+            "Get_a_sheet": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fbd2b1d8-b96e-4889-bf6e-a2592e7a5147"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "accounts"
             },
             "authentication": {
               "type": "Raw",

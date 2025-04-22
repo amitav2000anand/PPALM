@@ -8,7 +8,7 @@ beginDialog:
       activity:
         text:
           - |-
-            Hello {System.User.FirstName}, Good Day!
+            Hello , Good Day!
             I'm  {System.Bot.Name}, an agent. Just so you are aware, I sometimes use AI to answer your questions. Ask me any thing you want. Try out few items on Studio.
         speak:
           - Thanks for calling, how can I help?
