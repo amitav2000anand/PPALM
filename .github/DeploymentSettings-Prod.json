@@ -2,15 +2,7 @@
   "EnvironmentVariables": [
     {
       "SchemaName": "ava_SubscriptionKeySecretName",
-      "Value": "#{environmentvariable.ava_SubscriptionKeySecretName}#",
-      "Name": {
-        "Default": "PROD Subscription Key Secret Name",
-        "ByLcid": {
-          "1033": "PROD Subscription Key Secret Name"
-        }
-      },
-      "TypeId": 100000000,
-      "IsRequired": false
+      "Value": "#{environmentvariable.ava_SubscriptionKeySecretName}#"
     }
   ],
   "ConnectionReferences": [
