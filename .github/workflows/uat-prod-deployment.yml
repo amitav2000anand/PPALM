@@ -75,7 +75,7 @@ jobs:
       #     pac solution create-settings --solution-zip ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip --settings-file ${{ env.solution_source_folder }}/${{ env.solution_settings_folder}}/${{ env.Prod_solution_settings_name}}
       - name: Print working directory
         shell: bash
-        run: ls -la .github
+        run: ls -la solutions/settings
 
       - name: Import solution as managed to uat env
         uses: microsoft/powerplatform-actions/import-solution@v1
