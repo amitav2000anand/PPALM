@@ -59,6 +59,19 @@ jobs:
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           solution-type: Managed
 
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x' # Adjust version if needed
+ 
+      - name: Install Microsoft PowerApps CLI Tool
+        run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+
+      - name: use pac command to generate Deployment settings file for UAT and Prod environment
+        run: |
+          pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/${{ github.event.inputs.UAT_solution_settings_name}}
+          pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/${{ github.event.inputs.Prod_solution_settings_name}}
+
       - name: Import solution as managed to uat env
         uses: microsoft/powerplatform-actions/import-solution@v1
         with:
@@ -69,7 +82,7 @@ jobs:
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           use-deployment-settings-file: true
           # deployment-settings-file: ${{ env.solution_outbound_folder }}/${{ env.solution_source_folder }}/${{ env.solution_settings_folder }}/DeploymentSettings-UAT.json
-          deployment-settings-file: solutions/settings/DeploymentSettings-UAT.json
+          deployment-settings-file: .github/DeploymentSettings-UAT.json
           force-overwrite: true
           publish-changes: true
           run-asynchronously: true
