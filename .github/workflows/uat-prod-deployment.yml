@@ -55,8 +55,8 @@ jobs:
       - name: Pack solution from source control into a solution.zip
         uses: microsoft/powerplatform-actions/pack-solution@v1
         with:
-          solution-folder: ${{ env.solution_source_folder}}/${{ env.solution_name }}
-          solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}_managed.zip
+          solution-folder: ${{ env.solution_source_folder }}/${{ env.solution_name }}
+          solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           solution-type: Managed
 
       - name: Import solution as managed to uat env
@@ -66,9 +66,9 @@ jobs:
           app-id: ${{ env.CLIENT_ID }}
           client-secret: ${{ env.SECRET }}
           tenant-id: ${{ env.TENANT_ID }}
-          solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}_managed.zip
+          solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           use-deployment-settings-file: true
-          deployment-settings-file: ${{ env.solution_source_folder}}/${{ env.solution_settings_folder}}/DeploymentSettings-UAT.json
+          deployment-settings-file: ${{ env.solution_source_folder }}/${{ env.solution_settings_folder }}/DeploymentSettings-UAT.json
           force-overwrite: true
           publish-changes: true
           run-asynchronously: true
@@ -78,7 +78,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.solution_name }}_managed
-          path: ${{ env.solution_outbound_folder}}/
+          path: ${{ env.solution_outbound_folder }}/
 
   deploy-to-prod:
        needs: [ deploy-to-uat ]
@@ -122,9 +122,9 @@ jobs:
             app-id: ${{ env.CLIENT_ID }}
             client-secret: ${{ env.SECRET }}
             tenant-id: ${{ env.TENANT_ID }}
-            solution-file: ${{ env.solution_outbound_folder}}/${{ env.solution_name }}_managed.zip
+            solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
             use-deployment-settings-file: true
-            deployment-settings-file: ${{ env.solution_source_folder}}/${{ env.solution_settings_folder}}/DeploymentSettings-Prod.json
+            deployment-settings-file: ${{ env.solution_source_folder }}/${{ env.solution_settings_folder }}/DeploymentSettings-Prod.json
             force-overwrite: true
             publish-changes: true
             run-asynchronously: true
