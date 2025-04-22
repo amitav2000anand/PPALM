@@ -67,10 +67,12 @@ jobs:
           client-secret: ${{ env.SECRET }}
           tenant-id: ${{ env.TENANT_ID }}
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
-          use-deployment-settings-file: true
+          use-deployment-settings-file: 'true'
           deployment-settings-file: ${{ env.solution_source_folder }}/${{ env.solution_settings_folder }}/DeploymentSettings-UAT.json
           force-overwrite: true
           publish-changes: true
+          run-asynchronously: true
+          max-async-wait-time: 60
         
       - name: Upload the ready to ship solution to GH artifact store
         uses: actions/upload-artifact@v4
