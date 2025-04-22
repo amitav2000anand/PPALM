@@ -87,8 +87,8 @@ jobs:
           deployment-settings-file: .github/DeploymentSettings-UAT.json
           force-overwrite: true
           publish-changes: true
-          # run-asynchronously: true
-          # max-async-wait-time: 60
+          run-asynchronously: true
+          max-async-wait-time: 60
         
       - name: Upload the ready to ship solution to GH artifact store
         uses: actions/upload-artifact@v4
