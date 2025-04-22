@@ -26,6 +26,8 @@ env:
   solution_source_folder: solutions
   solution_settings_folder: settings
   solution_release_folder: out/release
+  UAT_solution_settings_name: DeploymentSettings-UAT.json
+  PROD_solution_settings_name: DeploymentSettings-Prod.json
 permissions:
   contents: write
 
@@ -69,8 +71,8 @@ jobs:
 
       - name: use pac command to generate Deployment settings file for UAT and Prod environment
         run: |
-          pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/${{ github.event.inputs.UAT_solution_settings_name}}
-          pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/${{ github.event.inputs.Prod_solution_settings_name}}
+          pac solution create-settings --solution-zip ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip --settings-file ${{ env.solution_source_folder }}/${{ env.solution_settings_folder}}/${{ env.UAT_solution_settings_name}}
+          pac solution create-settings --solution-zip ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip --settings-file ${{ env.solution_source_folder }}/${{ env.solution_settings_folder}}/${{ env.Prod_solution_settings_name}}
 
       - name: Import solution as managed to uat env
         uses: microsoft/powerplatform-actions/import-solution@v1
@@ -82,7 +84,7 @@ jobs:
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           use-deployment-settings-file: true
           # deployment-settings-file: ${{ env.solution_outbound_folder }}/${{ env.solution_source_folder }}/${{ env.solution_settings_folder }}/DeploymentSettings-UAT.json
-          deployment-settings-file: .github/DeploymentSettings-UAT.json
+          deployment-settings-file: .solutions/settings/DeploymentSettings-UAT.json
           force-overwrite: true
           publish-changes: true
           run-asynchronously: true
