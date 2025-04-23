@@ -143,5 +143,5 @@ jobs:
             deployment-settings-file: ${{ env.solution_source_folder }}/${{ env.solution_settings_folder }}/${{ env.PROD_solution_settings_name }}
             force-overwrite: true
             publish-changes: true
-            # run-asynchronously: true
-            # max-async-wait-time: 500
+            run-asynchronously: true
+            max-async-wait-time: 60
