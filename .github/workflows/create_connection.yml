@@ -51,5 +51,6 @@ jobs:
 
     - name: use pac command to list connections in UAT environment
       run: |
+        pac auth create --environment "https://orga378c90d.crm.dynamics.com"
         pac connection list --environment "https://orga378c90d.crm.dynamics.com"
         
