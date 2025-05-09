@@ -28,6 +28,11 @@
       "LogicalName": "new_sharedsmartsheet_e63bf",
       "ConnectionId": "a0e8c344e15b4c23a248bf3697a318de",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_smartsheet"
+    },
+    {
+      "LogicalName": "new_sharedsmartsheet_e63bf",
+      "ConnectionId": "a0e8c344e15b4c23a248bf3697a318de",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_smartsheet"
     }
   ]
 }
