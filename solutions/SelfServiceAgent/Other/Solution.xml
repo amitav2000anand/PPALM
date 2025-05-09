@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.25033.232" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25033.232" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25033.00232">
+<ImportExportXml version="9.2.25035.244" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25035.244" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25035.00254">
   <SolutionManifest>
     <UniqueName>SelfServiceAgent</UniqueName>
     <LocalizedNames>

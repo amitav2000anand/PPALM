@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25033.232" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25033.00232">
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25035.244" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25035.00254">
   <Entities />
   <Roles />
   <Workflows />
@@ -106,6 +106,15 @@
     </AIModel>
   </AIModels>
   <connectionreferences>
+    <connectionreference connectionreferencelogicalname="ava_o365outlook">
+      <connectionreferencedisplayname>o365outlook</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
+      <description>o365outlook</description>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
     <connectionreference connectionreferencelogicalname="ava_sharedcommondataserviceforapps_564a9">
       <connectionreferencedisplayname>Microsoft Dataverse SelfServiceAgent-564a9</connectionreferencedisplayname>
       <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
