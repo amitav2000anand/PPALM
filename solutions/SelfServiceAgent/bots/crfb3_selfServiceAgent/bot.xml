@@ -14,13 +14,13 @@
   "contentVersion": 2,
   "lastFinishedPublishOperation": {
     "$kind": "PublishResultDetails",
-    "operationStart": "2025-04-22T03:17:20.8789822Z",
-    "operationEnd": "2025-04-22T03:17:25.7978752Z",
+    "operationStart": "2025-05-15T23:25:36.1351594Z",
+    "operationEnd": "2025-05-15T23:25:46.1204294Z",
     "status": "Succeeded"
   },
   "lastPublishedDetails": {
     "$kind": "SuccessfulPublishResultDetails",
-    "authenticationMode": "CustomAzureActiveDirectory"
+    "authenticationMode": "Integrated"
   },
   "currentSynchronizationState": {
     "$kind": "SynchronizationState",
@@ -33,7 +33,7 @@
     "provisioningStatus": "Provisioned",
     "state": "Synchronized"
   },
-  "lastSynchronizedOnUtc": "2025-05-15T22:58:48.7024814Z"
+  "lastSynchronizedOnUtc": "2025-05-15T23:25:56.7505265Z"
 }</synchronizationstatus>
   <template>default-2.1.0</template>
   <timezoneruleversionnumber>4</timezoneruleversionnumber>
