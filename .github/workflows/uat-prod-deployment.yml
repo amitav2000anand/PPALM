@@ -73,6 +73,7 @@ jobs:
           use-deployment-settings-file: true
           # deployment-settings-file: ${{ env.solution_source_folder }}/${{ env.solution_settings_folder }}/${{ env.UAT_solution_settings_name }}
           deployment-settings-file: .github/DeploymentSettings-UAT.json
+          skip-lower-version: true
           force-overwrite: true
           publish-changes: true
           run-asynchronously: true
@@ -130,6 +131,7 @@ jobs:
             use-deployment-settings-file: true
             # deployment-settings-file: ${{ env.solution_source_folder }}/${{ env.solution_settings_folder }}/${{ env.PROD_solution_settings_name }}
             deployment-settings-file: .github/DeploymentSettings-Prod.json
+            skip-lower-version: true
             force-overwrite: true
             publish-changes: true
             run-asynchronously: true
