@@ -31,6 +31,12 @@ beginDialog:
             - id: I need help in resolving an issue.
               displayName: I need help in resolving an issue.
 
+            - id: Create a Jira Ticket
+              displayName: Create a Jira Ticket
+
+            - id: Redirect to Other Service Desk
+              displayName: Redirect to Other Service Desk
+
     - kind: ConditionGroup
       id: conditionGroup_GlJVcK
       conditions:
