@@ -74,7 +74,6 @@ jobs:
           deployment-settings-file: ${{ env.solution_source_folder }}/${{ env.solution_settings_folder }}/${{ env.UAT_solution_settings_name }}
           # deployment-settings-file: .github/DeploymentSettings-UAT.json
           force-overwrite: true
-          overwrite-unmanaged-customizations: true
           publish-changes: true
           run-asynchronously: true
           max-async-wait-time: 60
@@ -131,7 +130,6 @@ jobs:
             use-deployment-settings-file: true
             deployment-settings-file: ${{ env.solution_source_folder }}/${{ env.solution_settings_folder }}/${{ env.PROD_solution_settings_name }}
             force-overwrite: true
-            overwrite-unmanaged-customizations: true
             publish-changes: true
             run-asynchronously: true
             max-async-wait-time: 60
