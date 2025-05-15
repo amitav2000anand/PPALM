@@ -61,19 +61,6 @@ jobs:
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           solution-type: Managed
 
-      # - name: Set up .NET Core
-      #   uses: actions/setup-dotnet@v3
-      #   with:
-      #     dotnet-version: '8.0.x' # Adjust version if needed
- 
-      # - name: Install Microsoft PowerApps CLI Tool
-      #   run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
-
-      # - name: use pac command to generate Deployment settings file for UAT and Prod environment
-      #   run: |
-      #     pac solution create-settings --solution-zip ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip --settings-file ${{ env.solution_source_folder }}/${{ env.solution_settings_folder}}/${{ env.UAT_solution_settings_name}}
-      #     pac solution create-settings --solution-zip ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip --settings-file ${{ env.solution_source_folder }}/${{ env.solution_settings_folder}}/${{ env.Prod_solution_settings_name}}
-
       - name: Import solution as managed to uat env
         uses: microsoft/powerplatform-actions/import-solution@v1
         with:
@@ -86,6 +73,7 @@ jobs:
           deployment-settings-file: ${{ env.solution_source_folder }}/${{ env.solution_settings_folder }}/${{ env.UAT_solution_settings_name }}
           # deployment-settings-file: .github/DeploymentSettings-UAT.json
           force-overwrite: true
+          overwrite-unmanaged-customizations: true
           publish-changes: true
           run-asynchronously: true
           max-async-wait-time: 60
@@ -142,6 +130,7 @@ jobs:
             use-deployment-settings-file: true
             deployment-settings-file: ${{ env.solution_source_folder }}/${{ env.solution_settings_folder }}/${{ env.PROD_solution_settings_name }}
             force-overwrite: true
+            overwrite-unmanaged-customizations: true
             publish-changes: true
             run-asynchronously: true
             max-async-wait-time: 60
