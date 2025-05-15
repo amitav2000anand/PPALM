@@ -28,6 +28,7 @@ env:
   solution_release_folder: out/release
   UAT_solution_settings_name: DeploymentSettings-UAT.json
   PROD_solution_settings_name: DeploymentSettings-Prod.json
+  SOLUTION_VERSION: 1.2.${{ github.run_number }}.0
 permissions:
   contents: write
 
