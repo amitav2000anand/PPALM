@@ -58,7 +58,7 @@ jobs:
       - name: Update Solution Version
         uses: microsoft/powerplatform-actions/update-solution-version@v1
         with:
-          build-version: 1.2.1.0
+          build-version: 0
           strategy: 'filetracking'
           tracker-file: 'ControlsStateVersionInfo.csv'
                 
