@@ -10,15 +10,6 @@
           "name": "shared_office365"
         }
       },
-      "shared_smartsheet": {
-        "runtimeSource": "invoker",
-        "connection": {
-          "connectionReferenceLogicalName": "new_sharedsmartsheet_e63bf"
-        },
-        "api": {
-          "name": "shared_smartsheet"
-        }
-      },
       "shared_commondataserviceforapps": {
         "runtimeSource": "embedded",
         "connection": {
@@ -87,60 +78,8 @@
             }
           }
         },
-        "List_the_sheets": {
-          "runAfter": {},
-          "metadata": {
-            "w737212649236356": "Power Platform POC",
-            "operationMetadataId": "47b9440c-9939-493c-9d7e-39445200e98b"
-          },
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_smartsheet",
-              "operationId": "ListSheets",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_smartsheet"
-            },
-            "parameters": {
-              "optionalFolderId": "w737212649236356"
-            },
-            "authentication": {
-              "type": "Raw",
-              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
-            }
-          }
-        },
-        "Get_a_sheet": {
-          "runAfter": {
-            "List_the_sheets": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "6552186218565508": "1. Power Platform POC Tasks",
-            "operationMetadataId": "d56737b8-b511-4b0b-aa80-7a54ddf18217"
-          },
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_smartsheet",
-              "operationId": "GetSheet",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_smartsheet"
-            },
-            "parameters": {
-              "sheetId": "6552186218565508"
-            },
-            "authentication": {
-              "type": "Raw",
-              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
-            }
-          }
-        },
         "List_rows": {
-          "runAfter": {
-            "Get_a_sheet": [
-              "Succeeded"
-            ]
-          },
+          "runAfter": {},
           "metadata": {
             "operationMetadataId": "fbd2b1d8-b96e-4889-bf6e-a2592e7a5147"
           },
