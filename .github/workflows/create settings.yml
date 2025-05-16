@@ -84,8 +84,8 @@ jobs:
       run: |
         # pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/${{ github.event.inputs.UAT_solution_settings_name}}
         # pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/${{ github.event.inputs.Prod_solution_settings_name}}
-        pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_settings_folder}}/${{ github.event.inputs.UAT_solution_settings_name}}
-        pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_settings_folder}}/${{ github.event.inputs.Prod_solution_settings_name}}
+        pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file settings/${{ github.event.inputs.UAT_solution_settings_name}}
+        pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file settings/${{ github.event.inputs.Prod_solution_settings_name}}
 
     - name: unpack-solution action for unmanaged solution
       uses: microsoft/powerplatform-actions/unpack-solution@v1
@@ -98,7 +98,7 @@ jobs:
     - name: branch-solution for managed, prepare it for a PullRequest
       uses: microsoft/powerplatform-actions/branch-solution@v1
       with:
-        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder }}
-        solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_settings_folder }}
+        solution-folder: ${{ github.event.inputs.solution_settings_folder }}
+        solution-target-folder: ${{ github.event.inputs.solution_settings_folder }}
         repo-token: ${{ secrets.GH_PAT }}
         allow-empty-commit: true
