@@ -55,11 +55,11 @@ jobs:
           client-secret: ${{ env.SECRET }}
           tenant-id: ${{ env.TENANT_ID }}
 
-      - name: Update Solution Version
-        uses: microsoft/powerplatform-actions/update-solution-version@v1
-        with:
-          strategy: 'filetracking'
-          tracker-file: 'ControlsStateVersionInfo.csv'
+      # - name: Update Solution Version
+      #   uses: microsoft/powerplatform-actions/update-solution-version@v1
+      #   with:
+      #     strategy: 'filetracking'
+      #     tracker-file: 'ControlsStateVersionInfo.csv'
                 
       - name: Pack solution from source control into a solution.zip
         uses: microsoft/powerplatform-actions/pack-solution@v1
