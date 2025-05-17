@@ -18,6 +18,15 @@
         "api": {
           "name": "shared_commondataserviceforapps"
         }
+      },
+      "shared_office365users": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "ava_sharedoffice365users_35c53"
+        },
+        "api": {
+          "name": "shared_office365users"
+        }
       }
     },
     "definition": {
@@ -52,7 +61,7 @@
       "actions": {
         "Send_an_email_(V2)": {
           "runAfter": {
-            "List_rows": [
+            "Get_my_profile_(V2)": [
               "Succeeded"
             ]
           },
@@ -92,6 +101,31 @@
             },
             "parameters": {
               "entityName": "accounts"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Get_my_profile_(V2)": {
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d9deb022-e937-4a4a-a034-729d7d021e06"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365users",
+              "operationId": "MyProfile_V2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
+            },
+            "parameters": {
+              "$select": "Amitav"
             },
             "authentication": {
               "type": "Raw",
