@@ -61,7 +61,7 @@ jobs:
           tenant-id: ${{ env.TENANT_ID }}
 
       - name: Update Solution Version
-        uses: microsoft/powerplatform-actions/update-solution-version@v0.1
+        uses: microsoft/powerplatform-actions/update-solution-version@v1
         with:
           # build-version: ${{ env.SOLUTION_VERSION }}
           strategy: 'filetracking'
