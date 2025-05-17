@@ -23,6 +23,11 @@
       "LogicalName": "ava_sharedoffice365_b6f35",
       "ConnectionId": "fa19efa2f506430cbe55af11d9d45371",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+    },
+    {
+      "LogicalName": "ava_sharedoffice365users_35c53",
+      "ConnectionId": "cf74ea89a7d749c6bf0041109d67d318",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
     }
   ]
 }
