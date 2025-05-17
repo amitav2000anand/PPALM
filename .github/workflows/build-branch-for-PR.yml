@@ -10,7 +10,7 @@ on:
         description: 'name of the solution to worked on from Power Platform'
         required: true
         default: SelfServiceAgent
-      #Do Not change these values
+      # Do Not change these values
       solution_exported_folder:
         description: 'folder name for staging the exported solution *do not change*'
         required: true
@@ -20,19 +20,20 @@ on:
         required: true
         default: out/solutions/
       solution_target_folder:
-       description: 'folder name to be created and checked in *do not change*'
-       required: true
-       default: solutions/
+        description: 'folder name to be created and checked in *do not change*'
+        required: true
+        default: solutions/
       solution_settings_folder:
-       description: 'folder name to be created for settings JSON file and checked in *do not change*'
-       required: true
-       default: settings/
+        description: 'folder name to be created for settings JSON file and checked in *do not change*'
+        required: true
+        default: settings/
 
 env:
-#edit your values here
+  # edit your values here
   ENVIRONMENT_URL: ${{ secrets.ENVIRONMENT_URL }}
   CLIENT_ID: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
   TENANT_ID: ${{ secrets.POWERPLATFORM_TENANT_ID }}
+  SOLUTION_VERSION: 1.2.1.1
 permissions:
   contents: write
 
@@ -44,59 +45,64 @@ jobs:
       RUNNER_DEBUG: 1
 
     steps:
-    - name: Install Power Platform Tools
-      uses: microsoft/powerplatform-actions/actions-install@v1
+      - name: Install Power Platform Tools
+        uses: microsoft/powerplatform-actions/actions-install@v1
       
-    - uses: actions/checkout@v3
-      with:
-        lfs: true
+      - uses: actions/checkout@v3
+        with:
+          lfs: true
 
-    - name: who-am-i action
-      uses: microsoft/powerplatform-actions/who-am-i@v1
-      with:
-        environment-url: ${{env.ENVIRONMENT_URL}}
-        app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.POWERPLATFORMSPN }}
-        tenant-id: ${{env.TENANT_ID}}
+      - name: who-am-i action
+        uses: microsoft/powerplatform-actions/who-am-i@v1
+        with:
+          environment-url: ${{ env.ENVIRONMENT_URL }}
+          app-id: ${{ env.CLIENT_ID }}
+          client-secret: ${{ secrets.POWERPLATFORMSPN }}
+          tenant-id: ${{ env.TENANT_ID }}
 
-    - name: export-solution action for managed solution
-      uses: microsoft/powerplatform-actions/export-solution@v1
-      with:
-        environment-url: ${{env.ENVIRONMENT_URL}}
-        app-id: ${{env.CLIENT_ID}}
-        client-secret: ${{ secrets.POWERPLATFORMSPN }}
-        tenant-id: ${{env.TENANT_ID}}
-        managed: true
-        solution-name: ${{ github.event.inputs.solution_name }}
-        solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
+      - name: Update Solution Version
+        uses: microsoft/powerplatform-actions/update-solution-version@v0.1
+        with:
+          build-version: ${{ env.SOLUTION_VERSION }}
+          strategy: 'filetracking'
+          tracker-file: 'ControlsStateVersionInfo.csv'
+    
+      - name: export-solution action for managed solution
+        uses: microsoft/powerplatform-actions/export-solution@v1
+        with:
+          environment-url: ${{ env.ENVIRONMENT_URL }}
+          app-id: ${{ env.CLIENT_ID }}
+          client-secret: ${{ secrets.POWERPLATFORMSPN }}
+          tenant-id: ${{ env.TENANT_ID }}
+          managed: true
+          solution-name: ${{ github.event.inputs.solution_name }}
+          solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
 
-    # - name: Set up .NET Core
-    #   uses: actions/setup-dotnet@v3
-    #   with:
-    #     dotnet-version: '8.0.x' # Adjust version if needed
+      # - name: Set up .NET Core
+      #   uses: actions/setup-dotnet@v3
+      #   with:
+      #     dotnet-version: '8.0.x' # Adjust version if needed
  
-    # - name: Install Microsoft PowerApps CLI Tool
-    #   run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+      # - name: Install Microsoft PowerApps CLI Tool
+      #   run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
 
-    # - name: use pac command to generate Deployment settings file for UAT and Prod environment
-    #   run: |
-    #     pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/DeploymentSettings_UAT.json
-    #     pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/DeploymentSettings_Prod.json  
+      # - name: use pac command to generate Deployment settings file for UAT and Prod environment
+      #   run: |
+      #     pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/DeploymentSettings_UAT.json
+      #     pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/DeploymentSettings_Prod.json  
 
-    - name: unpack-solution action for unmanaged solution
-      uses: microsoft/powerplatform-actions/unpack-solution@v1
-      with:
-        solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
-        solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
-        solution-type: 'Managed'
-        overwrite-files: true
+      - name: unpack-solution action for unmanaged solution
+        uses: microsoft/powerplatform-actions/unpack-solution@v1
+        with:
+          solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
+          solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
+          solution-type: 'Managed'
+          overwrite-files: true
 
-    - name: branch-solution for managed, prepare it for a PullRequest
-      uses: microsoft/powerplatform-actions/branch-solution@v1
-      with:
-        # solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
-        solution-folder: ${{ github.event.inputs.solution_folder}}
-        # solution-target-folder: ${{ github.event.inputs.solution_target_folder}}/${{ github.event.inputs.solution_name }}
-        solution-target-folder: ${{ github.event.inputs.solution_target_folder}}
-        repo-token: ${{ secrets.GH_PAT }}
-        allow-empty-commit: true
+      - name: branch-solution for managed, prepare it for a PullRequest
+        uses: microsoft/powerplatform-actions/branch-solution@v1
+        with:
+          solution-folder: ${{ github.event.inputs.solution_folder}}
+          solution-target-folder: ${{ github.event.inputs.solution_target_folder}}
+          repo-token: ${{ secrets.GH_PAT }}
+          allow-empty-commit: true
