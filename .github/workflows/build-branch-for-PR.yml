@@ -79,11 +79,6 @@ jobs:
       - name: Install Microsoft PowerApps CLI Tool
         run: dotnet  tool install --global Microsoft.PowerApps.CLI.Tool
 
-      # - name: use pac command to generate Deployment settings file for UAT and Prod environment
-      #   run: |
-      #     pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/DeploymentSettings_UAT.json
-      #     pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/DeploymentSettings_Prod.json  
-
       - name: unpack-solution action for unmanaged solution
         uses: microsoft/powerplatform-actions/unpack-solution@v1
         with:
@@ -91,18 +86,10 @@ jobs:
           solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
           solution-type: 'Managed'
           overwrite-files: true
-
       
       - name: Update Solution Version using PAC CLI
         run: |
           pac solution version update --path solutions/${{ github.event.inputs.solution_name }} --buildversion 1.0.0.${{ github.run_number }}
-
-
-      # - name: Update Solution Version
-      #   uses: microsoft/powerplatform-actions/update-solution-version@v1
-      #   with:
-      #     strategy: 'filetracking'
-      #     tracker-file: 'ControlsStateVersionInfo.csv'
 
       - name: branch-solution for managed, prepare it for a PullRequest
         uses: microsoft/powerplatform-actions/branch-solution@v1
