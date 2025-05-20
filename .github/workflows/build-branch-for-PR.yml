@@ -95,6 +95,7 @@ jobs:
       - name: Update Solution Version
         uses: microsoft/powerplatform-actions/update-solution-version@v1
         with:
+          solution-folder: solutions/${{ github.event.inputs.solution_name }}
           strategy: 'filetracking'
           tracker-file: 'ControlsStateVersionInfo.csv'
 
