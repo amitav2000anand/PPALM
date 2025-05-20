@@ -60,12 +60,6 @@ jobs:
           client-secret: ${{ secrets.POWERPLATFORMSPN }}
           tenant-id: ${{ env.TENANT_ID }}
 
-      - name: Update Solution Version
-        uses: microsoft/powerplatform-actions/update-solution-version@v1
-        with:
-          strategy: 'filetracking'
-          tracker-file: 'ControlsStateVersionInfo.csv'
-    
       - name: export-solution action for managed solution
         uses: microsoft/powerplatform-actions/export-solution@v1
         with:
@@ -97,6 +91,12 @@ jobs:
           solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
           solution-type: 'Managed'
           overwrite-files: true
+
+      - name: Update Solution Version
+        uses: microsoft/powerplatform-actions/update-solution-version@v1
+        with:
+          strategy: 'filetracking'
+          tracker-file: 'ControlsStateVersionInfo.csv'
 
       - name: branch-solution for managed, prepare it for a PullRequest
         uses: microsoft/powerplatform-actions/branch-solution@v1
