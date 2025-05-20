@@ -95,7 +95,7 @@ jobs:
       
       - name: Update Solution Version using PAC CLI
         run: |
-          pac solution version update --path solutions/YourSolutionName --buildversion 1.0.0.${{ github.run_number }}
+          pac solution version update --path solutions/${{ github.event.inputs.solution_name }} --buildversion 1.0.0.${{ github.run_number }}
 
 
       # - name: Update Solution Version
