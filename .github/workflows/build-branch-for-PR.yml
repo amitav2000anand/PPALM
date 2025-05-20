@@ -63,7 +63,6 @@ jobs:
       - name: Update Solution Version
         uses: microsoft/powerplatform-actions/update-solution-version@v1
         with:
-          environment-url: ${{ env.ENVIRONMENT_URL }}
           strategy: 'filetracking'
           tracker-file: 'ControlsStateVersionInfo.csv'
     
