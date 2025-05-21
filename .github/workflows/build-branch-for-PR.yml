@@ -58,7 +58,7 @@ jobs:
           client-secret: ${{ secrets.POWERPLATFORMSPN }}
           tenant-id: ${{ env.TENANT_ID }}
 
-      - name: Export solution (managed)
+      - name: Export solution (Unmanaged)
         uses: microsoft/powerplatform-actions/export-solution@v1
         with:
           environment-url: ${{ env.ENVIRONMENT_URL }}
@@ -67,7 +67,7 @@ jobs:
           tenant-id: ${{ env.TENANT_ID }}
           # managed: true
           solution-name: ${{ github.event.inputs.solution_name }}
-          solution-output-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}_managed.zip
+          solution-output-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}.zip
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v3
@@ -77,17 +77,17 @@ jobs:
       - name: Install Microsoft PowerApps CLI Tool
         run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
 
-      - name: Unpack solution (managed)
+      - name: Unpack solution (Unmanaged)
         uses: microsoft/powerplatform-actions/unpack-solution@v1
         with:
-          solution-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}_managed.zip
+          solution-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}.zip
           solution-folder: ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }}
           solution-type: 'Unmanaged'
           overwrite-files: true
 
       - name: Update Solution Version using PAC CLI
         run: |
-          pac solution version update --path ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }} --buildversion 1.0.0.${{ github.run_number }}
+          pac solution version --path ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }} --buildversion 1.0.0.${{ github.run_number }}
 
       - name: Branch solution for managed, prepare it for a Pull Request
         uses: microsoft/powerplatform-actions/branch-solution@v1
