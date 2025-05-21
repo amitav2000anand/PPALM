@@ -65,7 +65,7 @@ jobs:
           app-id: ${{ env.CLIENT_ID }}
           client-secret: ${{ secrets.POWERPLATFORMSPN }}
           tenant-id: ${{ env.TENANT_ID }}
-          managed: true
+          # managed: true
           solution-name: ${{ github.event.inputs.solution_name }}
           solution-output-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}_managed.zip
 
@@ -82,7 +82,7 @@ jobs:
         with:
           solution-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}_managed.zip
           solution-folder: ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }}
-          solution-type: 'Managed'
+          solution-type: 'Unmanaged'
           overwrite-files: true
 
       - name: Update Solution Version using PAC CLI
