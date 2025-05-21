@@ -87,7 +87,14 @@ jobs:
 
       - name: Update Solution Version using PAC CLI
         run: |
-          pac solution version --path ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }} --solution-version 1.0.0.${{ github.run_number }}
+          pac solution version \
+            --strategy FileTracking \
+            --buildversion 5 \
+            --revisionversion 12 \
+            --patchversion 3 \
+            --filename ${{ github.event.inputs.solution_name }}.zip.zip \
+            --solutionPath /solutions/${{ github.event.inputs.solution_name }}
+
 
       - name: Branch solution for managed, prepare it for a Pull Request
         uses: microsoft/powerplatform-actions/branch-solution@v1
