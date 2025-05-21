@@ -1,58 +1,56 @@
 name: export-and-branch-solution-updated
 # Export solution from DEV environment
-# unpack it and prepare, commit and push a git branch with the changes
+# Unpack it and prepare, commit and push a git branch with the changes
 
 on:
   workflow_dispatch:
     inputs:
-      # Change this value
       solution_name:
-        description: 'name of the solution to worked on from Power Platform'
+        description: 'Name of the solution to work on from Power Platform'
         required: true
         default: SelfServiceAgent
-      # Do Not change these values
       solution_exported_folder:
-        description: 'folder name for staging the exported solution *do not change*'
+        description: 'Folder name for staging the exported solution *do not change*'
         required: true
         default: out/exported/
       solution_folder:
-        description: 'staging the unpacked solution folder before check-in *do not change*'
+        description: 'Staging the unpacked solution folder before check-in *do not change*'
         required: true
         default: out/solutions/
       solution_target_folder:
-        description: 'folder name to be created and checked in *do not change*'
+        description: 'Folder name to be created and checked in *do not change*'
         required: true
         default: solutions/
       solution_settings_folder:
-        description: 'folder name to be created for settings JSON file and checked in *do not change*'
+        description: 'Folder name to be created for settings JSON file and checked in *do not change*'
         required: true
         default: settings/
 
 env:
-  # edit your values here
   ENVIRONMENT_URL: ${{ secrets.ENVIRONMENT_URL }}
   CLIENT_ID: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
   TENANT_ID: ${{ secrets.POWERPLATFORM_TENANT_ID }}
   SOLUTION_VERSION: 1.2.0.3
+
 permissions:
   contents: write
 
 jobs:
   checkin-to-repo-from-dev:
     runs-on: windows-latest
-    # or you can say runs-on: ubuntu-latest
     env:
       RUNNER_DEBUG: 1
 
     steps:
       - name: Install Power Platform Tools
         uses: microsoft/powerplatform-actions/actions-install@v1
-      
-      - uses: actions/checkout@v3
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
           lfs: true
 
-      - name: who-am-i action
+      - name: Who-am-I action
         uses: microsoft/powerplatform-actions/who-am-i@v1
         with:
           environment-url: ${{ env.ENVIRONMENT_URL }}
@@ -60,7 +58,7 @@ jobs:
           client-secret: ${{ secrets.POWERPLATFORMSPN }}
           tenant-id: ${{ env.TENANT_ID }}
 
-      - name: export-solution action for managed solution
+      - name: Export solution (managed)
         uses: microsoft/powerplatform-actions/export-solution@v1
         with:
           environment-url: ${{ env.ENVIRONMENT_URL }}
@@ -69,32 +67,34 @@ jobs:
           tenant-id: ${{ env.TENANT_ID }}
           managed: true
           solution-name: ${{ github.event.inputs.solution_name }}
-          solution-output-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
+          solution-output-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}_managed.zip
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x' # Adjust version if needed
- 
-      - name: Install Microsoft PowerApps CLI Tool
-        run: dotnet  tool install --global Microsoft.PowerApps.CLI.Tool
+          dotnet-version: '8.0.x'
 
-      - name: unpack-solution action for unmanaged solution
+      - name: Install Microsoft PowerApps CLI Tool
+        run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+
+      - name: Unpack solution (managed)
         uses: microsoft/powerplatform-actions/unpack-solution@v1
         with:
-          solution-file: ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip
-          solution-folder: ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_name }}
+          solution-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}_managed.zip
+          solution-folder: ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }}
           solution-type: 'Managed'
           overwrite-files: true
-      
-      - name: Update Solution Version using PAC CLI
-        run: |
-          pac solution version update --path solutions/${{ github.event.inputs.solution_name }} --buildversion 1.0.0.${{ github.run_number }}
 
-      - name: branch-solution for managed, prepare it for a PullRequest
+      - name: Update Solution Version using PAC CLI
+        run: |
+          pac solution version update \
+            --path ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }} \
+            --buildversion 1.0.0.${{ github.run_number }}
+
+      - name: Branch solution for managed, prepare it for a Pull Request
         uses: microsoft/powerplatform-actions/branch-solution@v1
         with:
-          solution-folder: ${{ github.event.inputs.solution_folder}}
-          solution-target-folder: ${{ github.event.inputs.solution_target_folder}}
+          solution-folder: ${{ github.event.inputs.solution_folder }}
+          solution-target-folder: ${{ github.event.inputs.solution_target_folder }}
           repo-token: ${{ secrets.GH_PAT }}
           allow-empty-commit: true
