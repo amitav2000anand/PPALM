@@ -65,7 +65,7 @@ jobs:
           app-id: ${{ env.CLIENT_ID }}
           client-secret: ${{ secrets.POWERPLATFORMSPN }}
           tenant-id: ${{ env.TENANT_ID }}
-          # managed: true
+          managed: true
           solution-name: ${{ github.event.inputs.solution_name }}
           solution-output-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}.zip
 
@@ -84,7 +84,11 @@ jobs:
           solution-folder: ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }}
           solution-type: 'Unmanaged'
           overwrite-files: true
-
+          
+      - name: Step After Exporting the Unmanaged Solution
+        run: |
+          pac solution unpack --zipfile ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip --folder ${{ env.solution_source_folder }}/${{ env.solution_name }} --packagetype Both
+          
       - name: Update Solution Version using PAC CLI
         run: |
           pac solution version --solutionPath ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }} --buildversion ${{ env.SOLUTION_VERSION }}
