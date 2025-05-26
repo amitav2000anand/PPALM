@@ -65,9 +65,19 @@ jobs:
           app-id: ${{ env.CLIENT_ID }}
           client-secret: ${{ secrets.POWERPLATFORMSPN }}
           tenant-id: ${{ env.TENANT_ID }}
-          # managed: true
           solution-name: ${{ github.event.inputs.solution_name }}
           solution-output-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}.zip
+
+      - name: Export solution (Managed)
+        uses: microsoft/powerplatform-actions/export-solution@v1
+        with:
+          environment-url: ${{ env.ENVIRONMENT_URL }}
+          app-id: ${{ env.CLIENT_ID }}
+          client-secret: ${{ secrets.POWERPLATFORMSPN }}
+          tenant-id: ${{ env.TENANT_ID }}
+          managed: true
+          solution-name: ${{ github.event.inputs.solution_name }}
+          solution-output-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}_managed.zip
 
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v3
@@ -77,7 +87,7 @@ jobs:
       - name: Install Microsoft PowerApps CLI Tool
         run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
 
-      - name: Unpack solution (Unmanaged)
+      - name: Unpack solution (Both)
         uses: microsoft/powerplatform-actions/unpack-solution@v1
         with:
           solution-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}.zip
