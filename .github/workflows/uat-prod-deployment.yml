@@ -42,6 +42,14 @@ jobs:
     steps:
       - name: Install Power Platform Tools
         uses: microsoft/powerplatform-actions/actions-install@v1
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Install Microsoft PowerApps CLI Tool
+        run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
         
       - uses: actions/checkout@v3
         with:
@@ -61,6 +69,10 @@ jobs:
           solution-folder: ${{ env.solution_source_folder }}/${{ env.solution_name }}
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           solution-type: Managed
+
+      - name: Step After Exporting the Unmanaged Solution
+        run: |
+         pac solution unpack --zipfile ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip --folder ${{ env.solution_source_folder }}/${{ env.solution_name }} --packagetype Both
 
       - name: Import solution as managed to uat env
         uses: microsoft/powerplatform-actions/import-solution@v1
