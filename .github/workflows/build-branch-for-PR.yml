@@ -85,6 +85,14 @@ jobs:
           solution-type: 'Unmanaged'
           overwrite-files: true
 
+      - name: Unpack solution (Managed)
+        uses: microsoft/powerplatform-actions/unpack-solution@v1
+        with:
+          solution-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}_managed.zip
+          solution-folder: ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }}
+          solution-type: 'Managed'
+          overwrite-files: true
+
       - name: Update Solution Version using PAC CLI
         run: |
           pac solution version --strategy Solution --solutionPath ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }}
