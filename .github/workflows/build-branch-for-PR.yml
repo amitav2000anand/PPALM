@@ -30,7 +30,7 @@ env:
   ENVIRONMENT_URL: ${{ secrets.ENVIRONMENT_URL }}
   CLIENT_ID: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
   TENANT_ID: ${{ secrets.POWERPLATFORM_TENANT_ID }}
-  SOLUTION_VERSION: 1.2.0.3
+  SOLUTION_VERSION: 3
 
 permissions:
   contents: write
