@@ -82,12 +82,12 @@ jobs:
         with:
           solution-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}.zip
           solution-folder: ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }}
-          solution-type: 'Unmanaged'
+          solution-type: 'Both'
           overwrite-files: true
           
-      - name: Step After Exporting the Unmanaged Solution
-        run: |
-          pac solution unpack --zipfile ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip --folder ${{ env.solution_source_folder }}/${{ env.solution_name }} --packagetype Both
+      # - name: Step After Exporting the Unmanaged Solution
+      #   run: |
+      #     pac solution unpack --zipfile ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip --folder ${{ env.solution_source_folder }}/${{ env.solution_name }} --packagetype Both
           
       - name: Update Solution Version using PAC CLI
         run: |
