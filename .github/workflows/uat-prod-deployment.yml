@@ -70,9 +70,9 @@ jobs:
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           solution-type: Managed
 
-      - name: Step After Exporting the Unmanaged Solution
-        run: |
-         pac solution unpack --zipfile ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip --folder ${{ env.solution_source_folder }}/${{ env.solution_name }} --packagetype Both
+      # - name: Step After Exporting the Unmanaged Solution
+      #   run: |
+      #    pac solution unpack --zipfile ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip --folder ${{ env.solution_source_folder }}/${{ env.solution_name }} --packagetype Both
 
       - name: Import solution as managed to uat env
         uses: microsoft/powerplatform-actions/import-solution@v1
