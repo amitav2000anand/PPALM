@@ -25,12 +25,15 @@ on:
         description: 'Folder name to be created for settings JSON file and checked in *do not change*'
         required: true
         default: settings/
+      SOLUTION_VERSION:
+        description: 'Version of Solution *do not change*'
+        required: true
+        default: 1.0.0.0
 
 env:
   ENVIRONMENT_URL: ${{ secrets.ENVIRONMENT_URL }}
   CLIENT_ID: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
   TENANT_ID: ${{ secrets.POWERPLATFORM_TENANT_ID }}
-  SOLUTION_VERSION: 3
 
 permissions:
   contents: write
@@ -95,13 +98,9 @@ jobs:
           solution-type: 'Both'
           overwrite-files: true
           
-      # - name: Step After Exporting the Unmanaged Solution
-      #   run: |
-      #     pac solution unpack --zipfile ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip --folder ${{ env.solution_source_folder }}/${{ env.solution_name }} --packagetype Both
-          
       - name: Update Solution Version using PAC CLI
         run: |
-          pac solution version --solutionPath ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }} --buildversion ${{ env.SOLUTION_VERSION }}
+          pac solution version --solutionPath ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }} --buildversion ${{ github.event.inputs.SOLUTION_VERSION }}
 
       - name: Branch solution for managed, prepare it for a Pull Request
         uses: microsoft/powerplatform-actions/branch-solution@v1
