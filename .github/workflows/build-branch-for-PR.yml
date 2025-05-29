@@ -130,7 +130,7 @@ jobs:
           #     # --filename ControlsStateVersionInfo.csv `
           # }
           ls .
-          pac solution version --solutionPath $solutionPath --strategy FileTracking --filename ControlsStateVersionInfo.csv
+          pac solution version --solutionPath $solutionPath --strategy FileTracking --filename "./ControlsStateVersionInfo.csv"
           
 
       - name: Branch solution for managed, prepare it for a Pull Request
