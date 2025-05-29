@@ -6,7 +6,7 @@ on:
 
 jobs:
   checkin-to-repo-from-dev:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Install xmllint (libxml2)
