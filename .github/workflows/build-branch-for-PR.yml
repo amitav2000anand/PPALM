@@ -117,12 +117,10 @@ jobs:
         run: |
           $build = $env:GITHUB_RUN_NUMBER
           $revision = "${{ github.event.inputs.SOLUTION_REVISION_VERSION }}"
-          pac solution version `
-            --solutionPath "${{ github.event.inputs.solution_exported_folder }}" `
-            # --strategy FileTracking `
-            # --filename ControlsStateVersionInfo.csv `
-            --buildversion $build
-            # --revisionversion $revision
+          pac solution version --solutionPath "${{ github.event.inputs.solution_exported_folder }}" --buildversion $build
+          # --revisionversion $revision 
+          # --strategy FileTracking `
+          # --filename ControlsStateVersionInfo.csv `
 
       - name: Branch solution for managed, prepare it for a Pull Request
         uses: microsoft/powerplatform-actions/branch-solution@v1
