@@ -121,7 +121,7 @@ jobs:
             --solutionPath "${{ github.event.inputs.solution_exported_folder }}" `
             # --strategy FileTracking `
             # --filename ControlsStateVersionInfo.csv `
-            --buildversion $build `
+            --buildversion $build
             # --revisionversion $revision
 
       - name: Branch solution for managed, prepare it for a Pull Request
