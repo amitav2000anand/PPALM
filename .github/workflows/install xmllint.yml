@@ -1,0 +1,11 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  checkin-to-repo-from-dev:
+    runs-on: windows-latest
+
+    steps:
+      - name: Install xmllint (libxml2)
+        run: choco install libxml2 -y
+        shell: powershell
