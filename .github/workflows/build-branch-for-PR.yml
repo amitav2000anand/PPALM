@@ -118,6 +118,7 @@ jobs:
           $build = $env:GITHUB_RUN_NUMBER
           $revision = "${{ github.event.inputs.SOLUTION_REVISION_VERSION }}"
           $solutionPath = "${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }}"
+          $csvPath = "$env:GITHUB_WORKSPACE/ControlsStateVersionInfo.csv"
       
           # if ($revision -gt "-1") {
           #   pac solution version --solutionPath $solutionPath --revisionversion $revision
@@ -130,7 +131,7 @@ jobs:
           #     # --filename ControlsStateVersionInfo.csv `
           # }
           ls .
-          pac solution version --solutionPath $solutionPath --strategy FileTracking --filename "./ControlsStateVersionInfo.csv"
+          pac solution version --solutionPath $solutionPath --strategy FileTracking --filename "$csvPath"
           
 
       - name: Branch solution for managed, prepare it for a Pull Request
