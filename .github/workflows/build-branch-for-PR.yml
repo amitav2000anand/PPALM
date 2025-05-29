@@ -97,10 +97,12 @@ jobs:
           solution-folder: ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }}
           solution-type: 'Both'
           overwrite-files: true
-          
-      - name: Update Solution Version using PAC CLI
-        run: |
-          pac solution set-version --solutionPath ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }} --version ${{ github.event.inputs.SOLUTION_VERSION }}
+
+      - name: Update Solution Version
+        uses: microsoft/powerplatform-actions/update-solution-version@v1
+        with:
+          build-version: ${{ github.event.inputs.SOLUTION_VERSION }}
+          strategy: 'solution'
 
       - name: Branch solution for managed, prepare it for a Pull Request
         uses: microsoft/powerplatform-actions/branch-solution@v1
