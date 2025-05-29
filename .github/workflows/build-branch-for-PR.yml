@@ -108,9 +108,21 @@ jobs:
       #     build-version: ${{ github.event.inputs.SOLUTION_VERSION }}
       #     strategy: 'solution'
 
-      - name: Set version using PAC CLI
+      # - name: Set version using PAC CLI
+      #   run: |
+      #    pac solution version --solutionPath ${{ github.event.inputs.solution_exported_folder }} --strategy Filetracking --filename ControlsStateVersionInfo.csv --buildversion ${{ env.GITHUB_RUN_NUMBER }} --revisionversion ${{ github.event.inputs.SOLUTION_REVISION_VERSION }}
+
+      - name: Set solution version using pac CLI
+        shell: pwsh
         run: |
-         pac solution version --solutionPath ${{ github.event.inputs.solution_exported_folder }} --strategy Filetracking --filename ControlsStateVersionInfo.csv --buildversion ${{ env.GITHUB_RUN_NUMBER }} --revisionversion ${{ github.event.inputs.SOLUTION_REVISION_VERSION }}
+          $build = $env:GITHUB_RUN_NUMBER
+          $revision = "${{ github.event.inputs.SOLUTION_REVISION_VERSION }}"
+          pac solution version `
+            --solutionPath "${{ github.event.inputs.solution_exported_folder }}" `
+            --strategy FileTracking `
+            --filename ControlsStateVersionInfo.csv `
+            --buildversion $build `
+            --revisionversion $revision
 
       - name: Branch solution for managed, prepare it for a Pull Request
         uses: microsoft/powerplatform-actions/branch-solution@v1
