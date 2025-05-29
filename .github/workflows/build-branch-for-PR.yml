@@ -110,7 +110,7 @@ jobs:
 
       # - name: Set version using PAC CLI
       #   run: |
-      #    pac solution version --solutionPath ${{ github.event.inputs.solution_exported_folder }} --strategy Filetracking --filename ControlsStateVersionInfo.csv --buildversion ${{ env.GITHUB_RUN_NUMBER }} --revisionversion ${{ github.event.inputs.SOLUTION_REVISION_VERSION }}
+      #    pac solution version --solutionPath ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }} --strategy Filetracking --filename ControlsStateVersionInfo.csv --buildversion ${{ env.GITHUB_RUN_NUMBER }} --revisionversion ${{ github.event.inputs.SOLUTION_REVISION_VERSION }}
 
       - name: Set solution version using pac CLI
         shell: pwsh
