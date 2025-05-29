@@ -1,3 +1,6 @@
+name: Install xmllint
+# Install xmllint
+
 on:
   workflow_dispatch:
 
@@ -7,5 +10,5 @@ jobs:
 
     steps:
       - name: Install xmllint (libxml2)
+        shell: pwsh
         run: choco install libxml2 -y
-        shell: powershell
