@@ -120,12 +120,12 @@ jobs:
           $solutionPath = "${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }}"
       
           if ($revision -gt "-1") {
-            pac solution version --solutionPath "$solutionPath" --revisionversion $revision
+            pac solution version --solutionPath $solutionPath --revisionversion $revision
               # --strategy FileTracking `
               # --filename ControlsStateVersionInfo.csv `
           }
           else {
-            pac solution version --solutionPath "$solutionPath" --buildversion $build
+            pac solution version --solutionPath $solutionPath --buildversion $build
               # --strategy FileTracking `
               # --filename ControlsStateVersionInfo.csv `
           }
