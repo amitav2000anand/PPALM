@@ -129,7 +129,7 @@ jobs:
           #     # --strategy FileTracking `
           #     # --filename ControlsStateVersionInfo.csv `
           # }
-          ls -la .
+          ls .
           pac solution version --solutionPath $solutionPath --strategy FileTracking --filename ControlsStateVersionInfo.csv
           
 
