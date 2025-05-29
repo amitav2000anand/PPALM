@@ -25,10 +25,14 @@ on:
         description: 'Folder name to be created for settings JSON file and checked in *do not change*'
         required: true
         default: settings/
-      SOLUTION_VERSION:
-        description: 'Version of Solution *do not change*'
+      # SOLUTION_BUILD_VERSION:
+      #   description: 'Build Version of Solution *do not change*'
+      #   required: true
+      #   default: '0'
+      SOLUTION_REVISION_VERSION:
+        description: 'Revision Version of Solution *do not change*'
         required: true
-        default: 1.0.0.0
+        default: '0'
 
 env:
   ENVIRONMENT_URL: ${{ secrets.ENVIRONMENT_URL }}
@@ -98,11 +102,15 @@ jobs:
           solution-type: 'Both'
           overwrite-files: true
 
-      - name: Update Solution Version
-        uses: microsoft/powerplatform-actions/update-solution-version@v1
-        with:
-          build-version: ${{ github.event.inputs.SOLUTION_VERSION }}
-          strategy: 'solution'
+      # - name: Update Solution Version
+      #   uses: microsoft/powerplatform-actions/update-solution-version@v1
+      #   with:
+      #     build-version: ${{ github.event.inputs.SOLUTION_VERSION }}
+      #     strategy: 'solution'
+
+      - name: Set version using PAC CLI
+        run: |
+         pac solution version --solutionPath ${{ github.event.inputs.solution_exported_folder }} --strategy Filetracking --filename ControlsStateVersionInfo.csv --buildversion ${{ env.GITHUB_RUN_NUMBER }} --revisionversion ${{ github.event.inputs.SOLUTION_REVISION_VERSION }}
 
       - name: Branch solution for managed, prepare it for a Pull Request
         uses: microsoft/powerplatform-actions/branch-solution@v1
