@@ -98,7 +98,7 @@ jobs:
           Install-Module -Name Microsoft.PowerApps.PowerShell -Force -AllowClobber
       
           Add-PowerAppsAccount -Username "SVC_Agent_account_prod@s63fb.onmicrosoft.com" `
-                               -Password "Tanvi@20june" 
+                               -Password (ConvertTo-SecureString "Tanvi@20june" -AsPlainText -Force) 
           
           # -AsPlainText -Force
       
