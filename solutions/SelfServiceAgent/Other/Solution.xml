@@ -8,7 +8,7 @@
     <Descriptions>
       <Description description="Upgrade of Self Service Agent" languagecode="1033" />
     </Descriptions>
-    <Version>1.2.89.2</Version>
+    <Version>1.2.90.2</Version>
     <Managed>2</Managed>
     <Publisher>
       <UniqueName>Avanade</UniqueName>
@@ -136,11 +136,6 @@
       <RootComponent type="401" id="{eef29acd-a826-4563-a168-b5b529a3f6a1}" behavior="0" />
       <RootComponent type="401" id="{fdf98225-dfba-496f-ba12-346a53eee110}" behavior="0" />
     </RootComponents>
-    <MissingDependencies>
-      <MissingDependency>
-        <Required type="EnvironmentVariableDefinition" displayName="ava_AppURL" solution="Active" id.schemaname="ava_AppURL" />
-        <Dependent type="botcomponent_environmentvariabledefinition" displayName="botcomponentid.schemaname=crfb3_selfServiceAgent.topic.ConversationStart,environmentvariabledefinitionid.schemaname=ava_AppURL" id.botcomponentid.schemaname="crfb3_selfServiceAgent.topic.ConversationStart" id.environmentvariabledefinitionid.schemaname="ava_AppURL" />
-      </MissingDependency>
-    </MissingDependencies>
+    <MissingDependencies />
   </SolutionManifest>
 </ImportExportXml>
