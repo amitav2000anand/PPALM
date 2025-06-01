@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25043.222" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25044.00202">
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25043.222" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25044.00206">
   <Entities />
   <Roles />
   <Workflows />
@@ -125,6 +125,14 @@
     <connectionreference connectionreferencelogicalname="ava_sharedoffice365users_35c53">
       <connectionreferencedisplayname>Office 365 Users SelfServiceAgent-35c53</connectionreferencedisplayname>
       <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365users</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="new_sharedazureadapplications_60644">
+      <connectionreferencedisplayname>Microsoft Entra ID App Registrations</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_azureadapplications</connectorid>
       <iscustomizable>1</iscustomizable>
       <promptingbehavior>0</promptingbehavior>
       <statecode>0</statecode>

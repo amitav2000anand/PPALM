@@ -13,6 +13,21 @@ beginDialog:
         speak:
           - Thanks for calling, how can I help?
 
+    - kind: InvokeFlowAction
+      id: invokeFlowAction_6vupJG
+      input: {}
+      output: {}
+      flowId: d4b2689a-7f3e-f011-b4cb-6045bdff81a6
+
+    - kind: SetVariable
+      id: setVariable_SRac05
+      variable: Topic.VarAppId
+      value: =Env.ava_AppURL
+
+    - kind: SendActivity
+      id: sendActivity_scQ9eT
+      activity: "Value : {Topic.VarAppId}"
+
     - kind: Question
       id: question_MySzk1
       interruptionPolicy:
