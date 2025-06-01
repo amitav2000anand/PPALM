@@ -98,7 +98,9 @@ jobs:
           Install-Module -Name Microsoft.PowerApps.PowerShell -Force -AllowClobber
       
           Add-PowerAppsAccount -Username "SVC_Agent_account_prod@s63fb.onmicrosoft.com" `
-                               -Password "Tanvi@20june" -AsPlainText -Force
+                               -Password "Tanvi@20june" 
+          
+          # -AsPlainText -Force
       
           $solution = Get-AdminPowerAppSolution -EnvironmentName ${{ env.BUILD_ENVIRONMENT_URL }} | Where-Object { $_.DisplayName -eq "SelfServiceAgent" }
       
