@@ -16,18 +16,23 @@
   "ConnectionReferences": [
     {
       "LogicalName": "ava_sharedcommondataserviceforapps_564a9",
-      "ConnectionId": "d5c89d1a6c614fadb87616ab9e76a949",
+      "ConnectionId": "d0102398c1f3423cb1e878bdad6212d6",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
     },
     {
       "LogicalName": "ava_sharedoffice365_b6f35",
-      "ConnectionId": "a231211e3a374880893203fbbed84b24",
+      "ConnectionId": "cf332cf19aff49f5b5d3a8ff10b1de82",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365"
     },
     {
       "LogicalName": "ava_sharedoffice365users_35c53",
-      "ConnectionId": "cd95b0afd00c4273b44edee6f235a36c",
+      "ConnectionId": "ceadc61e16e24842b44c9946aa136fd1",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
+    },
+    {
+      "LogicalName": "new_sharedazureadapplications_60644",
+      "ConnectionId": "f0820339fe484d1c85b7c5e696630531",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_azureadapplications"
     }
   ]
 }
