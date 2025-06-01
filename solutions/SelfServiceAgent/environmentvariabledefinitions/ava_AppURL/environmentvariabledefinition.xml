@@ -1,0 +1,11 @@
+<environmentvariabledefinition schemaname="ava_AppURL">
+  <defaultvalue>https://apps.powerapps.com/play/e/cec1202f-4f36-e6e1-900b-1fbfda683309/a/8d93205d-6d58-4979-bf18-518b0e2de6c4?tenantId=cf36141c-ddd7-45a7-b073-111f66d0b30c&amp;sourcetime=1730745649101</defaultvalue>
+  <displayname default="AppURL">
+    <label description="AppURL" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.0.0.0</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>

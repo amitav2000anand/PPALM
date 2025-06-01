@@ -1,0 +1,12 @@
+<botcomponent schemaname="crfb3_selfServiceAgent.topic.httpss63fbsharepointcom_sPf0NProOEAb0cAjlq8LJ">
+  <category>Authoritative</category>
+  <componenttype>16</componenttype>
+  <description>This knowledge source provides information found in https://s63fb.sharepoint.com SharePoint.</description>
+  <iscustomizable>0</iscustomizable>
+  <name>https://s63fb.sharepoint.com</name>
+  <parentbotid>
+    <schemaname>crfb3_selfServiceAgent</schemaname>
+  </parentbotid>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>
