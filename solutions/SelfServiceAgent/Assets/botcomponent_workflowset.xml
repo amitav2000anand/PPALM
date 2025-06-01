@@ -1,0 +1,5 @@
+<botcomponent_workflowset>
+  <botcomponent_workflow botcomponentid.schemaname="crfb3_selfServiceAgent.topic.ConversationStart" workflowid.workflowid="d4b2689a-7f3e-f011-b4cb-6045bdff81a6">
+    <iscustomizable>1</iscustomizable>
+  </botcomponent_workflow>
+</botcomponent_workflowset>
