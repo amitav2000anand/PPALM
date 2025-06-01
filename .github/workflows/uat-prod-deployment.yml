@@ -97,12 +97,9 @@ jobs:
           Install-Module -Name Microsoft.PowerApps.Administration.PowerShell -Force -AllowClobber
           Install-Module -Name Microsoft.PowerApps.PowerShell -Force -AllowClobber
       
-          Add-PowerAppsAccount -Username "SVC_Agent_account_prod@s63fb.onmicrosoft.com" `
-                               -Password (ConvertTo-SecureString "Tanvi@20june" -AsPlainText -Force) 
-          
-          # -AsPlainText -Force
+          Add-PowerAppsAccount -Username "SVC_Agent_account_prod@s63fb.onmicrosoft.com" -Password (ConvertTo-SecureString "Tanvi@20june" -AsPlainText -Force)
       
-          $solution = Get-AdminPowerAppSolution -EnvironmentName ${{ env.BUILD_ENVIRONMENT_URL }} | Where-Object { $_.DisplayName -eq "SelfServiceAgent" }
+          # $solution = Get-AdminPowerAppSolution -EnvironmentName ${{ env.BUILD_ENVIRONMENT_URL }} | Where-Object { $_.DisplayName -eq "SelfServiceAgent" }
       
           # Reassign ownership of each flow in the solution
           # $flows = Get-AdminFlow -EnvironmentName "<your-env-id>" | Where-Object { $_.SolutionId -eq $solution.SolutionId }
