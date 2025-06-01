@@ -7,18 +7,23 @@
   ],
   "ConnectionReferences": [
     {
-      "LogicalName": "ava_sharedcommondataserviceforapps_564a91",
-      "ConnectionId": "d5c89d1a6c614fadb87616ab9e76a949",
+      "LogicalName": "ava_sharedcommondataserviceforapps_564a9",
+      "ConnectionId": "d0102398c1f3423cb1e878bdad6212d6",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
     },
     {
-      "LogicalName": "ava_sharedoffice365_b6f351",
-      "ConnectionId": "a231211e3a374880893203fbbed84b24",
+      "LogicalName": "ava_sharedoffice365_b6f35",
+      "ConnectionId": "cf332cf19aff49f5b5d3a8ff10b1de82",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365"
     },
     {
-      "LogicalName": "new_sharedsmartsheet_e63bf1",
-      "ConnectionId": "a0e8c344e15b4c23a248bf3697a318de",
+      "LogicalName": "ava_sharedoffice365users_35c53",
+      "ConnectionId": "ceadc61e16e24842b44c9946aa136fd1",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
+    },
+    {
+      "LogicalName": "new_sharedazureadapplications_60644",
+      "ConnectionId": "f0820339fe484d1c85b7c5e696630531",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_smartsheet"
     }
   ]
