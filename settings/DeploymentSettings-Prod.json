@@ -11,6 +11,18 @@
       },
       "TypeId": 100000000,
       "IsRequired": false
+    },
+    {
+      "SchemaName": "ava_AppURL",
+      "Value": "#{environmentvariable.ava_AppURL}#",
+      "Name": {
+        "Default": "Subscription Key Secret Name",
+        "ByLcid": {
+          "1033": "Subscription Key Secret Name"
+        }
+      },
+      "TypeId": 100000000,
+      "IsRequired": false
     }
   ],
   "ConnectionReferences": [
