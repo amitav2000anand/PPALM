@@ -97,7 +97,7 @@ jobs:
 
       - name: Authenticate with service account
         run: |
-          pac auth create --username "${{ secrets.UAT_SERVICE_ACCOUNT_USERNAME }}" --password "${{ secrets.UAT_SERVICE_ACCOUNT_PASSWORD }}" --url "${{ env.BUILD_ENVIRONMENT_URL }}"
+          pac auth create --username ${{ secrets.UAT_SERVICE_ACCOUNT_USERNAME }} --password ${{ secrets.UAT_SERVICE_ACCOUNT_PASSWORD }} --url ${{ env.BUILD_ENVIRONMENT_URL }}
       
       - name: Import solution
         run: |
