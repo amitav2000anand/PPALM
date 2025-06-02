@@ -90,63 +90,63 @@ jobs:
           name: ${{ env.solution_name }}_managed
           path: ${{ env.solution_outbound_folder }}/
 
-  # deploy-to-prod:
-  #   needs: [deploy-to-uat]
-  #   runs-on: windows-latest
-  #   # or you can say runs-on: ubuntu-latest
-  #   env:
-  #     RUNNER_DEBUG: 1
+  deploy-to-prod:
+    needs: [deploy-to-uat]
+    runs-on: windows-latest
+    # or you can say runs-on: ubuntu-latest
+    env:
+      RUNNER_DEBUG: 1
 
-  #   environment:
-  #     name: PROD  
+    environment:
+      name: PROD  
 
-  #   steps:
-  #     - name: Install Power Platform Tools
-  #       uses: microsoft/powerplatform-actions/actions-install@v1
+    steps:
+      - name: Install Power Platform Tools
+        uses: microsoft/powerplatform-actions/actions-install@v1
         
-  #     - name: Debug solution steps
-  #       run: 'echo "Steps for Production Deployment"'
+      - name: Debug solution steps
+        run: 'echo "Steps for Production Deployment"'
 
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         lfs: true
+      - uses: actions/checkout@v3
+        with:
+          lfs: true
 
-  #     - name: who-am-i action
-  #       uses: microsoft/powerplatform-actions/who-am-i@v1
-  #       with:
-  #         environment-url: ${{ env.BUILD_ENVIRONMENT_URL }}
-  #         app-id: ${{ env.CLIENT_ID }}
-  #         client-secret: ${{ env.SECRET }}
-  #         tenant-id: ${{ env.TENANT_ID }}
+      - name: who-am-i action
+        uses: microsoft/powerplatform-actions/who-am-i@v1
+        with:
+          environment-url: ${{ env.BUILD_ENVIRONMENT_URL }}
+          app-id: ${{ env.CLIENT_ID }}
+          client-secret: ${{ env.SECRET }}
+          tenant-id: ${{ env.TENANT_ID }}
         
-  #     - name: Fetch the ready to ship solution from GH artifact store
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: ${{ env.solution_name }}_managed
-  #         path: ${{ env.solution_outbound_folder }}/
+      - name: Fetch the ready to ship solution from GH artifact store
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.solution_name }}_managed
+          path: ${{ env.solution_outbound_folder }}/
 
-      # - name: Delete old managed solution
-      #   uses: microsoft/powerplatform-actions/delete-solution@v1
-      #   with:
-      #     environment-url: ${{ env.PROD_ENVIRONMENT_URL }}
-      #     app-id: ${{ env.CLIENT_ID }}
-      #     client-secret: ${{ env.SECRET }}
-      #     tenant-id: ${{ env.TENANT_ID }}
-      #     solution-name: ${{ env.solution_name }}    
+      - name: Delete old managed solution
+        uses: microsoft/powerplatform-actions/delete-solution@v1
+        with:
+          environment-url: ${{ env.PROD_ENVIRONMENT_URL }}
+          app-id: ${{ env.CLIENT_ID }}
+          client-secret: ${{ env.SECRET }}
+          tenant-id: ${{ env.TENANT_ID }}
+          solution-name: ${{ env.solution_name }}    
 
-      # - name: Import solution to prod env
-      #   uses: microsoft/powerplatform-actions/import-solution@v1
-      #   with:
-      #     environment-url: ${{ env.PROD_ENVIRONMENT_URL }}
-      #     app-id: ${{ env.CLIENT_ID }}
-      #     client-secret: ${{ env.SECRET }}
-      #     tenant-id: ${{ env.TENANT_ID }}
-      #     solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
-      #     use-deployment-settings-file: true
-      #     # deployment-settings-file: ${{ env.solution_source_folder }}/${{ env.solution_settings_folder }}/${{ env.PROD_solution_settings_name }}
-      #     deployment-settings-file: settings/DeploymentSettings-Prod.json
-      #     # stage-and-upgrade: true
-      #     force-overwrite: true
-      #     publish-changes: true
-      #     run-asynchronously: true
-      #     max-async-wait-time: 60
+      - name: Import solution to prod env
+        uses: microsoft/powerplatform-actions/import-solution@v1
+        with:
+          environment-url: ${{ env.PROD_ENVIRONMENT_URL }}
+          user-name: ${{ secrets.PROD_SERVICE_ACCOUNT_USERNAME }}
+          password-secret: ${{ secrets.PROD_SERVICE_ACCOUNT_PASSWORD }} 
+          solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
+          use-deployment-settings-file: true
+          deployment-settings-file: settings/DeploymentSettings-Prod.json
+          force-overwrite: true
+          publish-changes: true
+          run-asynchronously: true
+          max-async-wait-time: 60
+          # app-id: ${{ env.CLIENT_ID }}
+          # client-secret: ${{ env.SECRET }}
+          # tenant-id: ${{ env.TENANT_ID }}
