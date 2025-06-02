@@ -70,52 +70,20 @@ jobs:
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           solution-type: Managed
 
-      # - name: Import solution as managed to uat env
-      #   uses: microsoft/powerplatform-actions/import-solution@v1
-      #   with:
-      #     environment-url: ${{ env.BUILD_ENVIRONMENT_URL }}
-      #     app-id: ${{ env.CLIENT_ID }}
-      #     client-secret: ${{ env.SECRET }}
-      #     tenant-id: ${{ env.TENANT_ID }}
-      #     solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
-      #     use-deployment-settings-file: true
-      #     # deployment-settings-file: ${{ env.solution_source_folder }}/${{ env.solution_settings_folder }}/${{ env.UAT_solution_settings_name }}
-      #     deployment-settings-file: settings/DeploymentSettings-UAT.json
-      #     # stage-and-upgrade: true
-      #     force-overwrite: true
-      #     publish-changes: true
-      #     run-asynchronously: true
-      #     max-async-wait-time: 60
-
-      - name: Use Node.js 14
-        uses: actions/setup-node@v3
+      - name: Import solution as managed to uat env
+        uses: microsoft/powerplatform-actions/import-solution@v1
         with:
-          node-version: '14'
-
-      - name: Install Power Platform CLI
-        run: npm install -g pac
-
-      - name: Authenticate with service account
-        shell: pwsh
-        run: |
-          pac auth create --url "https://orga378c90d.crm.dynamics.com" `
-                          --username "svc_ai_agent_uat@s63fb.onmicrosoft.com" `
-                          --password "Tanvi@20june"
-      
-      - name: Import solution
-        run: |
-          pac solution import --path "${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip" --environment "${{ env.BUILD_ENVIRONMENT_URL }}"
-
-      # - name: Reassign Flow Ownership to Service Account
-      #   shell: pwsh
-      #   run: |
-      #     ./settings/Set-FlowOwner.ps1 -EnvironmentId "b342a3e1-3bd5-e88f-b364-f764fdcc0019" -ServiceAccountObjectId "2de53832-3c0b-407a-b791-244423d119a3"
-      #   env:
-      #     CLIENT_ID: ${{ env.CLIENT_ID }}
-      #     CLIENT_SECRET: ${{ env.SECRET }}
-      #     TENANT_ID: ${{ env.TENANT_ID }}
-
-      
+          environment-url: ${{ env.BUILD_ENVIRONMENT_URL }}
+          user-name: ${{ secrets.UAT_SERVICE_ACCOUNT_USERNAME }}
+          password-secret: ${{ secrets.UAT_SERVICE_ACCOUNT_PASSWORD }} 
+          solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
+          use-deployment-settings-file: true
+          deployment-settings-file: settings/DeploymentSettings-UAT.json
+          force-overwrite: true
+          publish-changes: true
+          run-asynchronously: true
+          max-async-wait-time: 60
+            
       - name: Upload the ready to ship solution to GH artifact store
         uses: actions/upload-artifact@v4
         with:
