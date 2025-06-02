@@ -1,5 +1,3 @@
-name: release-solution-to-uat-prod
-
 env:
   DEV_ENVIRONMENT_URL: '${{ secrets.ENVIRONMENT_URL }}'
   BUILD_ENVIRONMENT_URL: '${{ secrets.BUILD_ENVIRONMENT_URL }}'
