@@ -70,10 +70,6 @@ jobs:
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           solution-type: Managed
 
-      # - name: Step After Exporting the Unmanaged Solution
-      #   run: |
-      #    pac solution unpack --zipfile ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip --folder ${{ env.solution_source_folder }}/${{ env.solution_name }} --packagetype Both
-
       - name: Import solution as managed to uat env
         uses: microsoft/powerplatform-actions/import-solution@v1
         with:
@@ -91,32 +87,21 @@ jobs:
           run-asynchronously: true
           max-async-wait-time: 60
 
-      - name: Set Solution Owner to Service Account
+      - name: Reassign Flow Ownership to Service Account
         shell: pwsh
         run: |
-          Install-Module -Name Microsoft.PowerApps.Administration.PowerShell -Force -AllowClobber
-          Install-Module -Name Microsoft.PowerApps.PowerShell -Force -AllowClobber
-      
-          Add-PowerAppsAccount -Username "SVC_Agent_account_prod@s63fb.onmicrosoft.com" -Password (ConvertTo-SecureString "Tanvi@20june" -AsPlainText -Force)
-      
-          # $solution = Get-AdminPowerAppSolution -EnvironmentName ${{ env.BUILD_ENVIRONMENT_URL }} | Where-Object { $_.DisplayName -eq "SelfServiceAgent" }
-      
-          # Reassign ownership of each flow in the solution
-          # $flows = Get-AdminFlow -EnvironmentName "<your-env-id>" | Where-Object { $_.SolutionId -eq $solution.SolutionId }
-      
-          # foreach ($flow in $flows) {
-          #   Set-AdminFlowOwnerRole -EnvironmentName $flow.EnvironmentName `
-          #                          -FlowName $flow.FlowName `
-          #                          -PrincipalObjectId "<service-account-object-id>" `
-          #                          -RoleName "Owner"
-          # }
+          ./scripts/Set-FlowOwner.ps1 -EnvironmentId "b342a3e1-3bd5-e88f-b364-f764fdcc0019" -ServiceAccountObjectId "2de53832-3c0b-407a-b791-244423d119a3"
+        env:
+          CLIENT_ID: ${{ env.CLIENT_ID }}
+          CLIENT_SECRET: ${{ env.SECRET }}
+          TENANT_ID: ${{ env.TENANT_ID }}
 
       
-      # - name: Upload the ready to ship solution to GH artifact store
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: ${{ env.solution_name }}_managed
-      #     path: ${{ env.solution_outbound_folder }}/
+      - name: Upload the ready to ship solution to GH artifact store
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.solution_name }}_managed
+          path: ${{ env.solution_outbound_folder }}/
 
   # deploy-to-prod:
   #   needs: [deploy-to-uat]
