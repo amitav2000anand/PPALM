@@ -59,9 +59,8 @@ jobs:
         uses: microsoft/powerplatform-actions/who-am-i@v1
         with:
           environment-url: ${{ env.BUILD_ENVIRONMENT_URL }}
-          app-id: ${{ env.CLIENT_ID }}
-          client-secret: ${{ env.SECRET }}
-          tenant-id: ${{ env.TENANT_ID }}
+          user-name: ${{ secrets.UAT_SERVICE_ACCOUNT_USERNAME }}
+          password-secret: ${{ secrets.UAT_SERVICE_ACCOUNT_PASSWORD }}
 
       - name: Pack solution from source control into a solution.zip
         uses: microsoft/powerplatform-actions/pack-solution@v1
@@ -115,9 +114,8 @@ jobs:
         uses: microsoft/powerplatform-actions/who-am-i@v1
         with:
           environment-url: ${{ env.PROD_ENVIRONMENT_URL }}
-          app-id: ${{ env.CLIENT_ID }}
-          client-secret: ${{ env.SECRET }}
-          tenant-id: ${{ env.TENANT_ID }}
+          user-name: ${{ secrets.PROD_SERVICE_ACCOUNT_USERNAME }}
+          password-secret: ${{ secrets.PROD_SERVICE_ACCOUNT_PASSWORD }} 
         
       - name: Fetch the ready to ship solution from GH artifact store
         uses: actions/download-artifact@v4
