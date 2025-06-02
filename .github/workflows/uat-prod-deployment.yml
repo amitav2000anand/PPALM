@@ -90,7 +90,7 @@ jobs:
       - name: Reassign Flow Ownership to Service Account
         shell: pwsh
         run: |
-          ./scripts/Set-FlowOwner.ps1 -EnvironmentId "b342a3e1-3bd5-e88f-b364-f764fdcc0019" -ServiceAccountObjectId "2de53832-3c0b-407a-b791-244423d119a3"
+          ./settings/Set-FlowOwner.ps1 -EnvironmentId "b342a3e1-3bd5-e88f-b364-f764fdcc0019" -ServiceAccountObjectId "2de53832-3c0b-407a-b791-244423d119a3"
         env:
           CLIENT_ID: ${{ env.CLIENT_ID }}
           CLIENT_SECRET: ${{ env.SECRET }}
