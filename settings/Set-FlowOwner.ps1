@@ -1,12 +1,12 @@
 name: release-solution-to-uat-prod
 
 env:
-  DEV_ENVIRONMENT_URL: ${{ secrets.ENVIRONMENT_URL }}
-  BUILD_ENVIRONMENT_URL: ${{ secrets.BUILD_ENVIRONMENT_URL }}
-  PROD_ENVIRONMENT_URL: ${{ secrets.PRODUCTION_ENVIRONMENT_URL }}
-  CLIENT_ID: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
-  TENANT_ID: ${{ secrets.POWERPLATFORM_TENANT_ID }}
-  SECRET: ${{ secrets.POWERPLATFORMSPN }}
+  DEV_ENVIRONMENT_URL: '${{ secrets.ENVIRONMENT_URL }}'
+  BUILD_ENVIRONMENT_URL: '${{ secrets.BUILD_ENVIRONMENT_URL }}'
+  PROD_ENVIRONMENT_URL: '${{ secrets.PRODUCTION_ENVIRONMENT_URL }}'
+  CLIENT_ID: '${{ secrets.POWERPLATFORM_CLIENT_ID }}'
+  TENANT_ID: '${{ secrets.POWERPLATFORM_TENANT_ID }}'
+  SECRET: '${{ secrets.POWERPLATFORMSPN }}'
   
 param (
     [string]$EnvironmentId,
