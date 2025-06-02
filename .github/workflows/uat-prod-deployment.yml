@@ -98,9 +98,9 @@ jobs:
       - name: Authenticate with service account
         shell: pwsh
         run: |
-          pac auth create --url ${{ env.BUILD_ENVIRONMENT_URL }} `
-                          --username ${{ secrets.UAT_SERVICE_ACCOUNT_USERNAME }} `
-                          --password ${{ secrets.UAT_SERVICE_ACCOUNT_PASSWORD }}
+          pac auth create --url "https://orga378c90d.crm.dynamics.com" `
+                          --username "svc_ai_agent_uat@s63fb.onmicrosoft.com" `
+                          --password "Tanvi@20june"
       
       - name: Import solution
         run: |
