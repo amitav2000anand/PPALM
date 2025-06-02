@@ -18,8 +18,9 @@ $credential = New-Object System.Management.Automation.PSCredential($clientId, $s
 Connect-AzAccount -ServicePrincipal -Credential $credential -Tenant $tenantId
 
 # Get all flows in the environment
+Write-Host "Fetching flows from environment: $EnvironmentId"
 $flows = Get-AdminFlow -EnvironmentName $EnvironmentId
-
+Write-Host "Found $($flows.Count) flows. Starting reassignment..."
 foreach ($flow in $flows) {
     Write-Host "Assigning owner for flow: $($flow.DisplayName)"
     Set-AdminFlowOwnerRole -EnvironmentName $EnvironmentId `
