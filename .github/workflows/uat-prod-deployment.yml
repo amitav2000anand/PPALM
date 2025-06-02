@@ -87,6 +87,11 @@ jobs:
       #     run-asynchronously: true
       #     max-async-wait-time: 60
 
+      - name: Use Node.js 14
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
       - name: Install Power Platform CLI
         run: npm install -g pac
 
