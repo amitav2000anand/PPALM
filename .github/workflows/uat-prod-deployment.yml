@@ -96,15 +96,15 @@ jobs:
         run: npm install -g pac
 
       - name: Authenticate with service account
+        shell: pwsh
         run: |
-          pac auth create --url ${{ env.BUILD_ENVIRONMENT_URL }} \
-                          --username ${{ secrets.UAT_SERVICE_ACCOUNT_USERNAME }} \
+          pac auth create --url ${{ env.BUILD_ENVIRONMENT_URL }} `
+                          --username ${{ secrets.UAT_SERVICE_ACCOUNT_USERNAME }} `
                           --password ${{ secrets.UAT_SERVICE_ACCOUNT_PASSWORD }}
       
       - name: Import solution
         run: |
           pac solution import --path "${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip" --environment "${{ env.BUILD_ENVIRONMENT_URL }}"
-
 
       # - name: Reassign Flow Ownership to Service Account
       #   shell: pwsh
