@@ -73,8 +73,11 @@ jobs:
         uses: microsoft/powerplatform-actions/import-solution@v1
         with:
           environment-url: ${{ env.BUILD_ENVIRONMENT_URL }}
-          user-name: ${{ secrets.UAT_SERVICE_ACCOUNT_USERNAME }}
-          password-secret: ${{ secrets.UAT_SERVICE_ACCOUNT_PASSWORD }} 
+          app-id: ${{ env.CLIENT_ID }}
+          client-secret: ${{ env.SECRET }}
+          tenant-id: ${{ env.TENANT_ID }}
+          # user-name: ${{ secrets.UAT_SERVICE_ACCOUNT_USERNAME }}
+          # password-secret: ${{ secrets.UAT_SERVICE_ACCOUNT_PASSWORD }} 
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           use-deployment-settings-file: true
           deployment-settings-file: settings/DeploymentSettings-UAT.json
@@ -127,8 +130,11 @@ jobs:
         uses: microsoft/powerplatform-actions/import-solution@v1
         with:
           environment-url: ${{ env.PROD_ENVIRONMENT_URL }}
-          user-name: ${{ secrets.PROD_SERVICE_ACCOUNT_USERNAME }}
-          password-secret: ${{ secrets.PROD_SERVICE_ACCOUNT_PASSWORD }} 
+          app-id: ${{ env.CLIENT_ID }}
+          client-secret: ${{ env.SECRET }}
+          tenant-id: ${{ env.TENANT_ID }}
+          # user-name: ${{ secrets.PROD_SERVICE_ACCOUNT_USERNAME }}
+          # password-secret: ${{ secrets.PROD_SERVICE_ACCOUNT_PASSWORD }} 
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           use-deployment-settings-file: true
           deployment-settings-file: settings/DeploymentSettings-Prod.json
