@@ -28,7 +28,7 @@
   "ConnectionReferences": [
     {
       "LogicalName": "ava_sharedcommondataserviceforapps_564a9",
-      "ConnectionId": "43cb9e47-32eb-4ade-b5a6-f3126ab84e4b",
+      "ConnectionId": "shared-commondataser-43cb9e47-32eb-4ade-b5a6-f3126ab84e4b,
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
     },
     {
