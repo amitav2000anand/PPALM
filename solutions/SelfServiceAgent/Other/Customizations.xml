@@ -106,8 +106,24 @@
     </AIModel>
   </AIModels>
   <connectionreferences>
+    <connectionreference connectionreferencelogicalname="ava_sharedazureadapplications_3f2aa">
+      <connectionreferencedisplayname>Microsoft Entra ID App Registrations SelfServiceAgent-3f2aa</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_azureadapplications</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
     <connectionreference connectionreferencelogicalname="ava_sharedcommondataserviceforapps_564a9">
       <connectionreferencedisplayname>Microsoft Dataverse SelfServiceAgent-564a9</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ava_sharedcommondataserviceforapps_59d18">
+      <connectionreferencedisplayname>Microsoft Dataverse SelfServiceAgent-59d18</connectionreferencedisplayname>
       <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
       <iscustomizable>1</iscustomizable>
       <promptingbehavior>0</promptingbehavior>
