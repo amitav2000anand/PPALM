@@ -9,6 +9,15 @@
         "api": {
           "name": "shared_azureadapplications"
         }
+      },
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ava_sharedcommondataserviceforapps_59d18"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
       }
     },
     "definition": {
@@ -62,7 +71,11 @@
           }
         },
         "Get_Application": {
-          "runAfter": {},
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
           "metadata": {
             "operationMetadataId": "0a873968-cf31-47aa-b430-bb03ecc1ee49"
           },
@@ -75,6 +88,24 @@
             },
             "parameters": {
               "id": "17467616-492f-47e7-8e38-adfcb63f4353"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "59665a3a-9866-4753-8de1-87a59bd08b5f"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "crfb3_itsupporttickets"
             },
             "authentication": "@parameters('$authentication')"
           }
