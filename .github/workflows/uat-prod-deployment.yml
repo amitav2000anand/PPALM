@@ -79,7 +79,7 @@ jobs:
           # user-name: ${{ secrets.UAT_SERVICE_ACCOUNT_USERNAME }}
           # password-secret: ${{ secrets.UAT_SERVICE_ACCOUNT_PASSWORD }} 
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
-          # stage-and-upgrade: true
+          stage-and-upgrade: true
           use-deployment-settings-file: true
           deployment-settings-file: settings/DeploymentSettings-UAT.json
           force-overwrite: true
@@ -137,7 +137,7 @@ jobs:
           # user-name: ${{ secrets.PROD_SERVICE_ACCOUNT_USERNAME }}
           # password-secret: ${{ secrets.PROD_SERVICE_ACCOUNT_PASSWORD }} 
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
-          # stage-and-upgrade: true
+          stage-and-upgrade: true
           use-deployment-settings-file: true
           deployment-settings-file: settings/DeploymentSettings-Prod.json
           force-overwrite: true
