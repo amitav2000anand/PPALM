@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.25043.222" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25043.222" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25044.00206">
+<ImportExportXml version="9.2.25044.206" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25044.206" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25044.00206">
   <SolutionManifest>
     <UniqueName>SelfServiceAgent</UniqueName>
     <LocalizedNames>
@@ -8,7 +8,7 @@
     <Descriptions>
       <Description description="Upgrade of Self Service Agent" languagecode="1033" />
     </Descriptions>
-    <Version>1.2.90.2</Version>
+    <Version>1.2.91.4</Version>
     <Managed>2</Managed>
     <Publisher>
       <UniqueName>Avanade</UniqueName>
@@ -131,6 +131,7 @@
     </Publisher>
     <RootComponents>
       <RootComponent type="1" schemaName="crfb3_itsupportticket" behavior="0" />
+      <RootComponent type="20" id="{e5e635ba-e240-f011-b4cb-6045bdff81a6}" behavior="0" />
       <RootComponent type="29" id="{5ece1401-9c11-f011-998a-000d3a8b4491}" behavior="0" />
       <RootComponent type="29" id="{d4b2689a-7f3e-f011-b4cb-6045bdff81a6}" behavior="0" />
       <RootComponent type="401" id="{eef29acd-a826-4563-a168-b5b529a3f6a1}" behavior="0" />

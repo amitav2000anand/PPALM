@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25043.222" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25044.00206">
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25044.206" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25044.00206">
   <Entities />
   <Roles />
   <Workflows />
@@ -106,9 +106,25 @@
     </AIModel>
   </AIModels>
   <connectionreferences>
+    <connectionreference connectionreferencelogicalname="ava_sharedcommondataserviceforapps_4f855">
+      <connectionreferencedisplayname>Microsoft Dataverse SelfServiceAgent-4f855</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
     <connectionreference connectionreferencelogicalname="ava_sharedcommondataserviceforapps_564a9">
       <connectionreferencedisplayname>Microsoft Dataverse SelfServiceAgent-564a9</connectionreferencedisplayname>
       <connectorid>/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ava_sharedoffice365_8022a">
+      <connectionreferencedisplayname>Office 365 Outlook SelfServiceAgent-8022a</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365</connectorid>
       <iscustomizable>1</iscustomizable>
       <promptingbehavior>0</promptingbehavior>
       <statecode>0</statecode>
@@ -124,6 +140,22 @@
     </connectionreference>
     <connectionreference connectionreferencelogicalname="ava_sharedoffice365users_35c53">
       <connectionreferencedisplayname>Office 365 Users SelfServiceAgent-35c53</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365users</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ava_sharedoffice365users_95a70">
+      <connectionreferencedisplayname>Office 365 Users SelfServiceAgent-95a70</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365users</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <promptingbehavior>0</promptingbehavior>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="ava_sharedoffice365users_f67b6">
+      <connectionreferencedisplayname>Office 365 Users SelfServiceAgent-f67b6</connectionreferencedisplayname>
       <connectorid>/providers/Microsoft.PowerApps/apis/shared_office365users</connectorid>
       <iscustomizable>1</iscustomizable>
       <promptingbehavior>0</promptingbehavior>
