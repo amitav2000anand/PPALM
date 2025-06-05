@@ -102,7 +102,12 @@ jobs:
           # Authenticate with Power Platform
           $securePass = ConvertTo-SecureString "${{ secrets.UAT_POWER_PLATFORM_PASSWORD }}" -AsPlainText -Force
           $cred = New-Object System.Management.Automation.PSCredential ("${{ secrets.UAT_POWER_PLATFORM_USERNAME }}", $securePass)
-          Add-PowerAppsAccount -Credential $cred
+          # Add-PowerAppsAccount -Credential $cred
+          
+          Add-PowerAppsAccount `
+            -ApplicationId "${{ env.CLIENT_ID }}" `
+            -TenantId "${{ env.TENANT_ID }}" `
+            -ClientSecret "${{ env.SECRET }}"
 
           # Authenticate with Azure AD
           $aadPass = ConvertTo-SecureString "${{ secrets.AZURE_AD_PASSWORD }}" -AsPlainText -Force
