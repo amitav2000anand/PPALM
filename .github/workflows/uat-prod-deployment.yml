@@ -119,8 +119,15 @@ jobs:
           $solutionName = "${{ env.solution_name }}"
           $serviceAccountEmail = "${{ secrets.UAT_POWER_PLATFORM_USERNAME }}"
 
+          Install-Module Microsoft.Graph -Scope CurrentUser -Force -AllowClobber
+          Connect-MgGraph -ClientId "env.CLIENT_ID" -TenantId "env.TENANT_ID" -ClientSecret "env.SECRET"
+
+
           # Get the Object ID of the service account
-          $serviceAccount = Get-AzureADUser -ObjectId $serviceAccountEmail
+          # $serviceAccount = Get-AzureADUser -ObjectId $serviceAccountEmail
+          $serviceAccount = Get-MgUser -UserId "<service-account-email>"
+          $objectId = $serviceAccount.Id
+
 
           # Get all flows in the solution
           $solutionComponents = Get-AdminPowerAppSolutionComponent -EnvironmentName $environmentName -SolutionName $solutionName
