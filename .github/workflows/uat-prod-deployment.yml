@@ -73,11 +73,11 @@ jobs:
         uses: microsoft/powerplatform-actions/import-solution@v1
         with:
           environment-url: ${{ env.BUILD_ENVIRONMENT_URL }}
-          app-id: ${{ env.CLIENT_ID }}
-          client-secret: ${{ env.SECRET }}
-          tenant-id: ${{ env.TENANT_ID }}
-          # user-name: ${{ secrets.UAT_SERVICE_ACCOUNT_USERNAME }}
-          # password-secret: ${{ secrets.UAT_SERVICE_ACCOUNT_PASSWORD }} 
+          # app-id: ${{ env.CLIENT_ID }}
+          # client-secret: ${{ env.SECRET }}
+          # tenant-id: ${{ env.TENANT_ID }}
+          user-name: ${{ secrets.UAT_SERVICE_ACCOUNT_USERNAME }}
+          password-secret: ${{ secrets.UAT_SERVICE_ACCOUNT_PASSWORD }} 
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           stage-and-upgrade: true
           use-deployment-settings-file: true
@@ -93,58 +93,58 @@ jobs:
           name: ${{ env.solution_name }}_managed
           path: ${{ env.solution_outbound_folder }}/
 
-      - name: Install PowerShell modules and update flow ownership
-        shell: pwsh
-        run: |
-          Install-Module -Name Microsoft.PowerApps.Administration.PowerShell -Force -AllowClobber
-          Install-Module -Name AzureAD -Force -AllowClobber
+      # - name: Install PowerShell modules and update flow ownership
+      #   shell: pwsh
+      #   run: |
+      #     Install-Module -Name Microsoft.PowerApps.Administration.PowerShell -Force -AllowClobber
+      #     Install-Module -Name AzureAD -Force -AllowClobber
 
-          # Authenticate with Power Platform
-          $securePass = ConvertTo-SecureString "${{ secrets.UAT_POWER_PLATFORM_PASSWORD }}" -AsPlainText -Force
-          $cred = New-Object System.Management.Automation.PSCredential ("${{ secrets.UAT_POWER_PLATFORM_USERNAME }}", $securePass)
-          # Add-PowerAppsAccount -Credential $cred
+      #     # Authenticate with Power Platform
+      #     $securePass = ConvertTo-SecureString "${{ secrets.UAT_POWER_PLATFORM_PASSWORD }}" -AsPlainText -Force
+      #     $cred = New-Object System.Management.Automation.PSCredential ("${{ secrets.UAT_POWER_PLATFORM_USERNAME }}", $securePass)
+      #     # Add-PowerAppsAccount -Credential $cred
           
-          Add-PowerAppsAccount `
-            -ApplicationId "${{ env.CLIENT_ID }}" `
-            -TenantId "${{ env.TENANT_ID }}" `
-            -ClientSecret "${{ env.SECRET }}"
+      #     Add-PowerAppsAccount `
+      #       -ApplicationId "${{ env.CLIENT_ID }}" `
+      #       -TenantId "${{ env.TENANT_ID }}" `
+      #       -ClientSecret "${{ env.SECRET }}"
 
-          # Authenticate with Azure AD
-          $aadPass = ConvertTo-SecureString "${{ secrets.AZURE_AD_PASSWORD }}" -AsPlainText -Force
-          $aadCred = New-Object System.Management.Automation.PSCredential ("${{ secrets.AZURE_AD_USERNAME }}", $aadPass)
-          # Connect-AzureAD -Credential $aadCred
+      #     # Authenticate with Azure AD
+      #     $aadPass = ConvertTo-SecureString "${{ secrets.AZURE_AD_PASSWORD }}" -AsPlainText -Force
+      #     $aadCred = New-Object System.Management.Automation.PSCredential ("${{ secrets.AZURE_AD_USERNAME }}", $aadPass)
+      #     # Connect-AzureAD -Credential $aadCred
 
-          # Define environment, solution, and service account
-          $environmentName = "${{ env.BUILD_ENVIRONMENT_URL }}"
-          $solutionName = "${{ env.solution_name }}"
-          $serviceAccountEmail = "${{ secrets.UAT_POWER_PLATFORM_USERNAME }}"
+      #     # Define environment, solution, and service account
+      #     $environmentName = "${{ env.BUILD_ENVIRONMENT_URL }}"
+      #     $solutionName = "${{ env.solution_name }}"
+      #     $serviceAccountEmail = "${{ secrets.UAT_POWER_PLATFORM_USERNAME }}"
 
-          Install-Module Microsoft.Graph -Scope CurrentUser -Force -AllowClobber
+      #     Install-Module Microsoft.Graph -Scope CurrentUser -Force -AllowClobber
           
-          Connect-MgGraph -ClientId "${{ env.CLIENT_ID }}" -TenantId "${{ env.TENANT_ID }}" -ClientSecret "${{ env.SECRET }}" -Scopes "https://graph.microsoft.com/.default"
+      #     Connect-MgGraph -ClientId "${{ env.CLIENT_ID }}" -TenantId "${{ env.TENANT_ID }}" -ClientSecret "${{ env.SECRET }}" -Scopes "https://graph.microsoft.com/.default"
 
-          # Get the Object ID of the service account
-          # $serviceAccount = Get-AzureADUser -ObjectId $serviceAccountEmail
-          $serviceAccount = Get-MgUser -UserId "<service-account-email>"
-          $objectId = $serviceAccount.Id
+      #     # Get the Object ID of the service account
+      #     # $serviceAccount = Get-AzureADUser -ObjectId $serviceAccountEmail
+      #     $serviceAccount = Get-MgUser -UserId "<service-account-email>"
+      #     $objectId = $serviceAccount.Id
 
 
-          # Get all flows in the solution
-          $solutionComponents = Get-AdminPowerAppSolutionComponent -EnvironmentName $environmentName -SolutionName $solutionName
-          $flows = $solutionComponents | Where-Object { $_.ComponentType -eq 5 }  # 5 = Flow
+      #     # Get all flows in the solution
+      #     $solutionComponents = Get-AdminPowerAppSolutionComponent -EnvironmentName $environmentName -SolutionName $solutionName
+      #     $flows = $solutionComponents | Where-Object { $_.ComponentType -eq 5 }  # 5 = Flow
 
-          # Loop through each flow and assign ownership
-          foreach ($flow in $flows) {
-              $flowName = $flow.ComponentName
-              Write-Host "Updating owner for flow: $flowName"
-              Set-AdminFlowOwnerRole -EnvironmentName $environmentName `
-                                     -FlowName $flowName `
-                                     -PrincipalType User `
-                                     -RoleName CanEdit `
-                                     -PrincipalObjectId $serviceAccount.ObjectId
-          }
+      #     # Loop through each flow and assign ownership
+      #     foreach ($flow in $flows) {
+      #         $flowName = $flow.ComponentName
+      #         Write-Host "Updating owner for flow: $flowName"
+      #         Set-AdminFlowOwnerRole -EnvironmentName $environmentName `
+      #                                -FlowName $flowName `
+      #                                -PrincipalType User `
+      #                                -RoleName CanEdit `
+      #                                -PrincipalObjectId $serviceAccount.ObjectId
+      #     }
 
-          Write-Host "✅ Flow ownership update completed."
+      #     Write-Host "✅ Flow ownership update completed."
 
   deploy-to-prod:
     needs: [deploy-to-uat]
@@ -184,11 +184,11 @@ jobs:
         uses: microsoft/powerplatform-actions/import-solution@v1
         with:
           environment-url: ${{ env.PROD_ENVIRONMENT_URL }}
-          app-id: ${{ env.CLIENT_ID }}
-          client-secret: ${{ env.SECRET }}
-          tenant-id: ${{ env.TENANT_ID }}
-          # user-name: ${{ secrets.PROD_SERVICE_ACCOUNT_USERNAME }}
-          # password-secret: ${{ secrets.PROD_SERVICE_ACCOUNT_PASSWORD }} 
+          # app-id: ${{ env.CLIENT_ID }}
+          # client-secret: ${{ env.SECRET }}
+          # tenant-id: ${{ env.TENANT_ID }}
+          user-name: ${{ secrets.PROD_SERVICE_ACCOUNT_USERNAME }}
+          password-secret: ${{ secrets.PROD_SERVICE_ACCOUNT_PASSWORD }} 
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           stage-and-upgrade: true
           use-deployment-settings-file: true
