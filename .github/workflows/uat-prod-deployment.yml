@@ -120,8 +120,11 @@ jobs:
           $serviceAccountEmail = "${{ secrets.UAT_POWER_PLATFORM_USERNAME }}"
 
           Install-Module Microsoft.Graph -Scope CurrentUser -Force -AllowClobber
-          Connect-MgGraph -ClientId "env.CLIENT_ID" -TenantId "env.TENANT_ID" -ClientSecret "env.SECRET"
-
+          
+          Connect-MgGraph -ClientId $env:CLIENT_ID `
+                          -TenantId $env:TENANT_ID `
+                          -ClientSecret $env:SECRET `
+                          -Scopes "https://graph.microsoft.com/.default"
 
           # Get the Object ID of the service account
           # $serviceAccount = Get-AzureADUser -ObjectId $serviceAccountEmail
