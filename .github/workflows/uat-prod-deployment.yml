@@ -112,7 +112,7 @@ jobs:
           # Authenticate with Azure AD
           $aadPass = ConvertTo-SecureString "${{ secrets.AZURE_AD_PASSWORD }}" -AsPlainText -Force
           $aadCred = New-Object System.Management.Automation.PSCredential ("${{ secrets.AZURE_AD_USERNAME }}", $aadPass)
-          Connect-AzureAD -Credential $aadCred
+          # Connect-AzureAD -Credential $aadCred
 
           # Define environment, solution, and service account
           $environmentName = "${{ env.BUILD_ENVIRONMENT_URL }}"
