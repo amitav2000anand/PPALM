@@ -2,7 +2,7 @@
   "properties": {
     "connectionReferences": {
       "shared_office365": {
-        "runtimeSource": "embedded",
+        "runtimeSource": "invoker",
         "connection": {
           "connectionReferenceLogicalName": "ava_sharedoffice365_b6f35"
         },
@@ -11,7 +11,9 @@
         }
       },
       "shared_commondataserviceforapps": {
-        "impersonation": {},
+        "impersonation": {
+          "source": "invoker"
+        },
         "runtimeSource": "embedded",
         "connection": {
           "connectionReferenceLogicalName": "ava_sharedcommondataserviceforapps_564a9"
@@ -21,7 +23,7 @@
         }
       },
       "shared_office365users": {
-        "runtimeSource": "embedded",
+        "runtimeSource": "invoker",
         "connection": {
           "connectionReferenceLogicalName": "ava_sharedoffice365users_35c53"
         },
