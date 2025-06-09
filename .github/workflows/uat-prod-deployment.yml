@@ -69,10 +69,6 @@ jobs:
           solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
           solution-type: Managed
 
-      - name: Remove Unmanaged Layers
-        run: |
-          pac solution clean --name ${{ env.solution_name }} --environment ${{ env.BUILD_ENVIRONMENT_URL }}
-
       - name: Import solution as managed to uat env
         uses: microsoft/powerplatform-actions/import-solution@v1
         with:
