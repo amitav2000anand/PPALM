@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.25044.206" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25044.206" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25044.00206">
+<ImportExportXml version="9.2.25051.192" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25051.192" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25051.00192">
   <SolutionManifest>
     <UniqueName>SelfServiceAgent</UniqueName>
     <LocalizedNames>
@@ -8,7 +8,7 @@
     <Descriptions>
       <Description description="Upgrade of Self Service Agent" languagecode="1033" />
     </Descriptions>
-    <Version>1.2.95.5</Version>
+    <Version>1.2.97.6</Version>
     <Managed>2</Managed>
     <Publisher>
       <UniqueName>Avanade</UniqueName>
