@@ -1,0 +1,134 @@
+name: export-and-branch-solution-updated
+# Export solution from DEV environment
+# Unpack it and prepare, commit and push a git branch with the changes
+
+on:
+  workflow_dispatch:
+    inputs:
+      solution_name:
+        description: 'Name of the solution to work on from Power Platform'
+        required: true
+        default: SelfServiceAgent
+      solution_exported_folder:
+        description: 'Folder name for staging the exported solution *do not change*'
+        required: true
+        default: out/exported/
+      solution_folder:
+        description: 'Staging the unpacked solution folder before check-in *do not change*'
+        required: true
+        default: out/solutions/
+      solution_target_folder:
+        description: 'Folder name to be created and checked in *do not change*'
+        required: true
+        default: solutions/
+      solution_settings_folder:
+        description: 'Folder name to be created for settings JSON file and checked in *do not change*'
+        required: true
+        default: settings/
+      # SOLUTION_BUILD_VERSION:
+      #   description: 'Build Version of Solution *do not change*'
+      #   required: true
+      #   default: '0'
+      SOLUTION_REVISION_VERSION:
+        description: 'Revision Version of Solution *do not change*'
+        required: true
+        default: '-1'
+
+env:
+  ENVIRONMENT_URL: ${{ secrets.ENVIRONMENT_URL }}
+  CLIENT_ID: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
+  TENANT_ID: ${{ secrets.POWERPLATFORM_TENANT_ID }}
+
+permissions:
+  contents: write
+
+jobs:
+  checkin-to-repo-from-dev:
+    runs-on: windows-latest
+    env:
+      RUNNER_DEBUG: 1
+
+    steps:
+      - name: Install Power Platform Tools
+        uses: microsoft/powerplatform-actions/actions-install@v1
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          lfs: true
+
+      - name: Who-am-I action
+        uses: microsoft/powerplatform-actions/who-am-i@v1
+        with:
+          environment-url: ${{ env.ENVIRONMENT_URL }}
+          app-id: ${{ env.CLIENT_ID }}
+          client-secret: ${{ secrets.POWERPLATFORMSPN }}
+          tenant-id: ${{ env.TENANT_ID }}
+
+      # - name: Export solution (Unmanaged)
+      #   uses: microsoft/powerplatform-actions/export-solution@v1
+      #   with:
+      #     environment-url: ${{ env.ENVIRONMENT_URL }}
+      #     app-id: ${{ env.CLIENT_ID }}
+      #     client-secret: ${{ secrets.POWERPLATFORMSPN }}
+      #     tenant-id: ${{ env.TENANT_ID }}
+      #     solution-name: ${{ github.event.inputs.solution_name }}
+      #     solution-output-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}.zip
+
+      - name: Export solution (Managed)
+        uses: microsoft/powerplatform-actions/export-solution@v1
+        with:
+          environment-url: ${{ env.ENVIRONMENT_URL }}
+          app-id: ${{ env.CLIENT_ID }}
+          client-secret: ${{ secrets.POWERPLATFORMSPN }}
+          tenant-id: ${{ env.TENANT_ID }}
+          managed: true
+          solution-name: ${{ github.event.inputs.solution_name }}
+          solution-output-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}_managed.zip
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Install Microsoft PowerApps CLI Tool
+        run: dotnet tool install --global Microsoft.PowerApps.CLI.Tool
+
+      - name: Unpack solution (Both)
+        uses: microsoft/powerplatform-actions/unpack-solution@v1
+        with:
+          solution-file: ${{ github.event.inputs.solution_exported_folder }}${{ github.event.inputs.solution_name }}.zip
+          solution-folder: ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }}
+          solution-type: 'Both'
+          overwrite-files: true
+
+      - name: Set solution version based on revision input
+        shell: pwsh
+        run: |
+          $build = $env:GITHUB_RUN_NUMBER
+          $revision = "${{ github.event.inputs.SOLUTION_REVISION_VERSION }}"
+          $solutionPath = "${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }}"
+          $csvPath = "$env:GITHUB_WORKSPACE/ControlsStateVersionInfo.csv"
+          # ls .
+          # pac solution version --solutionPath $solutionPath --strategy FileTracking --filename "$csvPath"
+          if ($revision -gt "-1") {
+            pac solution version --solutionPath $solutionPath --revisionversion $revision
+              # --strategy FileTracking `
+              # --filename ControlsStateVersionInfo.csv `
+          }
+          else {
+            pac solution version --solutionPath $solutionPath --buildversion $build
+              # --strategy FileTracking `
+              # --filename ControlsStateVersionInfo.csv `
+          }
+          # ls .
+          # pac solution version --solutionPath $solutionPath --strategy FileTracking --filename ".github/ControlsStateVersionInfo.csv"
+          
+
+      - name: Branch solution for managed, prepare it for a Pull Request
+        uses: microsoft/powerplatform-actions/branch-solution@v1
+        with:
+          solution-folder: ${{ github.event.inputs.solution_folder }}
+          solution-target-folder: ${{ github.event.inputs.solution_target_folder }}
+          repo-token: ${{ secrets.GH_PAT }}
+          allow-empty-commit: true
