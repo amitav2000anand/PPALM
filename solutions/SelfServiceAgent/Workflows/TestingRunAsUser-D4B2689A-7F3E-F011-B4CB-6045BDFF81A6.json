@@ -2,7 +2,7 @@
   "properties": {
     "connectionReferences": {
       "shared_azureadapplications": {
-        "runtimeSource": "embedded",
+        "runtimeSource": "invoker",
         "connection": {
           "connectionReferenceLogicalName": "new_sharedazureadapplications_60644"
         },
@@ -11,7 +11,9 @@
         }
       },
       "shared_commondataserviceforapps": {
-        "impersonation": {},
+        "impersonation": {
+          "source": "invoker"
+        },
         "runtimeSource": "embedded",
         "connection": {
           "connectionReferenceLogicalName": "ava_sharedcommondataserviceforapps_564a9"
