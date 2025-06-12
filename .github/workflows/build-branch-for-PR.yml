@@ -45,6 +45,7 @@ permissions:
 jobs:
   checkin-to-repo-from-dev:
     runs-on: windows-latest
+    # or runs-on: ubuntu-latest
     env:
       RUNNER_DEBUG: 1
 
