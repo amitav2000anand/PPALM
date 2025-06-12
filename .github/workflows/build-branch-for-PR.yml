@@ -25,10 +25,10 @@ on:
         description: 'Folder name to be created for settings JSON file and checked in *do not change*'
         required: true
         default: settings/
-      # SOLUTION_BUILD_VERSION:
-      #   description: 'Build Version of Solution *do not change*'
-      #   required: true
-      #   default: '0'
+      SOLUTION_BUILD_VERSION:
+        description: 'Build Version of Solution *do not change*'
+        required: true
+        default: '0'
       SOLUTION_REVISION_VERSION:
         description: 'Revision Version of Solution *do not change*'
         required: true
@@ -102,16 +102,6 @@ jobs:
           solution-type: 'Both'
           overwrite-files: true
 
-      # - name: Update Solution Version
-      #   uses: microsoft/powerplatform-actions/update-solution-version@v1
-      #   with:
-      #     build-version: ${{ github.event.inputs.SOLUTION_VERSION }}
-      #     strategy: 'solution'
-
-      # - name: Set version using PAC CLI
-      #   run: |
-      #    pac solution version --solutionPath ${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }} --strategy Filetracking --filename ControlsStateVersionInfo.csv --buildversion ${{ env.GITHUB_RUN_NUMBER }} --revisionversion ${{ github.event.inputs.SOLUTION_REVISION_VERSION }}
-
       - name: Set solution version based on revision input
         shell: pwsh
         run: |
@@ -119,21 +109,12 @@ jobs:
           $revision = "${{ github.event.inputs.SOLUTION_REVISION_VERSION }}"
           $solutionPath = "${{ github.event.inputs.solution_folder }}${{ github.event.inputs.solution_name }}"
           $csvPath = "$env:GITHUB_WORKSPACE/ControlsStateVersionInfo.csv"
-          # ls .
-          # pac solution version --solutionPath $solutionPath --strategy FileTracking --filename "$csvPath"
           if ($revision -gt "-1") {
             pac solution version --solutionPath $solutionPath --revisionversion $revision
-              # --strategy FileTracking `
-              # --filename ControlsStateVersionInfo.csv `
           }
           else {
             pac solution version --solutionPath $solutionPath --buildversion $build
-              # --strategy FileTracking `
-              # --filename ControlsStateVersionInfo.csv `
           }
-          # ls .
-          # pac solution version --solutionPath $solutionPath --strategy FileTracking --filename ".github/ControlsStateVersionInfo.csv"
-          
 
       - name: Branch solution for managed, prepare it for a Pull Request
         uses: microsoft/powerplatform-actions/branch-solution@v1
