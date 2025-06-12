@@ -82,8 +82,6 @@ jobs:
 
     - name: use pac command to generate Deployment settings file for UAT and Prod environment
       run: |
-        # pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/${{ github.event.inputs.UAT_solution_settings_name}}
-        # pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file ${{ github.event.inputs.solution_folder}}/${{ github.event.inputs.solution_settings_folder}}/${{ github.event.inputs.Prod_solution_settings_name}}
         pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file settings/${{ github.event.inputs.UAT_solution_settings_name}}
         pac solution create-settings --solution-zip ${{ github.event.inputs.solution_exported_folder}}/${{ github.event.inputs.solution_name }}_managed.zip --settings-file settings/${{ github.event.inputs.Prod_solution_settings_name}}
 
