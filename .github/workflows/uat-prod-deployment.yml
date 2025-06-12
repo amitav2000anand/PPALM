@@ -1,8 +1,5 @@
 name: release-solution-to-uat-prod
 
-# convert solution to managed (using a build PowerPlatform environment for the conversion)
-# upload the solution to the GitHub artifacts
-# Commented out on:pull_request- workflow should not fire-Testing
 on:
   workflow_dispatch:
 # on:
@@ -12,7 +9,6 @@ on:
 #     branches:
 #       - main
       
-#   workflow_dispatch:
 env:
   DEV_ENVIRONMENT_URL: ${{ secrets.ENVIRONMENT_URL }}
   BUILD_ENVIRONMENT_URL: ${{ secrets.BUILD_ENVIRONMENT_URL }}
@@ -35,7 +31,7 @@ permissions:
 jobs:
   deploy-to-uat:
     runs-on: windows-latest
-    # or you can say runs-on: ubuntu-latest
+    # or runs-on: ubuntu-latest
     env:
       RUNNER_DEBUG: 1
 
@@ -92,59 +88,6 @@ jobs:
         with:
           name: ${{ env.solution_name }}_managed
           path: ${{ env.solution_outbound_folder }}/
-
-      # - name: Install PowerShell modules and update flow ownership
-      #   shell: pwsh
-      #   run: |
-      #     Install-Module -Name Microsoft.PowerApps.Administration.PowerShell -Force -AllowClobber
-      #     Install-Module -Name AzureAD -Force -AllowClobber
-
-      #     # Authenticate with Power Platform
-      #     $securePass = ConvertTo-SecureString "${{ secrets.UAT_POWER_PLATFORM_PASSWORD }}" -AsPlainText -Force
-      #     $cred = New-Object System.Management.Automation.PSCredential ("${{ secrets.UAT_POWER_PLATFORM_USERNAME }}", $securePass)
-      #     # Add-PowerAppsAccount -Credential $cred
-          
-      #     Add-PowerAppsAccount `
-      #       -ApplicationId "${{ env.CLIENT_ID }}" `
-      #       -TenantId "${{ env.TENANT_ID }}" `
-      #       -ClientSecret "${{ env.SECRET }}"
-
-      #     # Authenticate with Azure AD
-      #     $aadPass = ConvertTo-SecureString "${{ secrets.AZURE_AD_PASSWORD }}" -AsPlainText -Force
-      #     $aadCred = New-Object System.Management.Automation.PSCredential ("${{ secrets.AZURE_AD_USERNAME }}", $aadPass)
-      #     # Connect-AzureAD -Credential $aadCred
-
-      #     # Define environment, solution, and service account
-      #     $environmentName = "${{ env.BUILD_ENVIRONMENT_URL }}"
-      #     $solutionName = "${{ env.solution_name }}"
-      #     $serviceAccountEmail = "${{ secrets.UAT_POWER_PLATFORM_USERNAME }}"
-
-      #     Install-Module Microsoft.Graph -Scope CurrentUser -Force -AllowClobber
-          
-      #     Connect-MgGraph -ClientId "${{ env.CLIENT_ID }}" -TenantId "${{ env.TENANT_ID }}" -ClientSecret "${{ env.SECRET }}" -Scopes "https://graph.microsoft.com/.default"
-
-      #     # Get the Object ID of the service account
-      #     # $serviceAccount = Get-AzureADUser -ObjectId $serviceAccountEmail
-      #     $serviceAccount = Get-MgUser -UserId "<service-account-email>"
-      #     $objectId = $serviceAccount.Id
-
-
-      #     # Get all flows in the solution
-      #     $solutionComponents = Get-AdminPowerAppSolutionComponent -EnvironmentName $environmentName -SolutionName $solutionName
-      #     $flows = $solutionComponents | Where-Object { $_.ComponentType -eq 5 }  # 5 = Flow
-
-      #     # Loop through each flow and assign ownership
-      #     foreach ($flow in $flows) {
-      #         $flowName = $flow.ComponentName
-      #         Write-Host "Updating owner for flow: $flowName"
-      #         Set-AdminFlowOwnerRole -EnvironmentName $environmentName `
-      #                                -FlowName $flowName `
-      #                                -PrincipalType User `
-      #                                -RoleName CanEdit `
-      #                                -PrincipalObjectId $serviceAccount.ObjectId
-      #     }
-
-      #     Write-Host "✅ Flow ownership update completed."
 
   deploy-to-prod:
     needs: [deploy-to-uat]
