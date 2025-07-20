@@ -1,7 +1,7 @@
 <botcomponent schemaname="crfb3_selfServiceAgent.topic.ResetConversation">
   <componenttype>9</componenttype>
   <iscustomizable>0</iscustomizable>
-  <name>Reset Conversation</name>
+  <name>Reset Conversation - GenAI</name>
   <parentbotid>
     <schemaname>crfb3_selfServiceAgent</schemaname>
   </parentbotid>

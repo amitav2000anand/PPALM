@@ -1,35 +1,6 @@
 {
   "properties": {
-    "connectionReferences": {
-      "shared_office365": {
-        "runtimeSource": "embedded",
-        "connection": {
-          "connectionReferenceLogicalName": "ava_sharedoffice365_b6f35"
-        },
-        "api": {
-          "name": "shared_office365"
-        }
-      },
-      "shared_commondataserviceforapps": {
-        "impersonation": {},
-        "runtimeSource": "embedded",
-        "connection": {
-          "connectionReferenceLogicalName": "ava_sharedcommondataserviceforapps_564a9"
-        },
-        "api": {
-          "name": "shared_commondataserviceforapps"
-        }
-      },
-      "shared_office365users": {
-        "runtimeSource": "embedded",
-        "connection": {
-          "connectionReferenceLogicalName": "ava_sharedoffice365users_35c53"
-        },
-        "api": {
-          "name": "shared_office365users"
-        }
-      }
-    },
+    "connectionReferences": {},
     "definition": {
       "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
       "contentVersion": "1.0.0.0",
@@ -136,7 +107,7 @@
         }
       }
     },
-    "templateName": ""
+    "templateName": null
   },
   "schemaVersion": "1.0.0.0"
 }

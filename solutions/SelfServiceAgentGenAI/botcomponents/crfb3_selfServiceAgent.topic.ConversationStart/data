@@ -3,6 +3,11 @@ beginDialog:
   kind: OnConversationStart
   id: main
   actions:
+    - kind: SetVariable
+      id: setVariable_wOOkPo
+      variable: Global.varHasConvoStarted
+      value: =true
+
     - kind: SendActivity
       id: sendMessage_M0LuhV
       activity:
@@ -15,6 +20,11 @@ beginDialog:
         speak:
           - Thanks for calling, how can I help?
 
+    - kind: LogCustomTelemetryEvent
+      id: vM7pLa
+      eventName: EnvironmentId
+      properties: =System.Bot.Id
+
     - kind: InvokeFlowAction
       id: invokeFlowAction_6vupJG
       input: {}
@@ -25,10 +35,6 @@ beginDialog:
       id: setVariable_SRac05
       variable: Topic.VarAppId
       value: =Env.ava_AppURL
-
-    - kind: SendActivity
-      id: sendActivity_scQ9eT
-      activity: "Value : {Topic.VarAppId}"
 
     - kind: Question
       id: question_MySzk1

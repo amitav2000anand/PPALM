@@ -4,6 +4,16 @@ beginDialog:
   id: main
   priority: -1
   actions:
+    - kind: ConditionGroup
+      id: conditionGroup_pLrJv9
+      conditions:
+        - id: conditionItem_g0jkI8
+          condition: =Global.varHasConvoStarted = false && IsBlank(Global.varHasConvoStarted)
+          actions:
+            - kind: BeginDialog
+              id: qw15Wf
+              dialog: crfb3_selfServiceAgent.topic.ConversationStart
+
     - kind: SearchAndSummarizeContent
       id: search-content
       variable: Topic.Answer
