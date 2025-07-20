@@ -8,7 +8,7 @@ on:
       solution_name:
         description: 'Name of the solution to work on from Power Platform'
         required: true
-        default: SelfServiceAgent
+        default: SelfServiceAgentGenAI
       solution_exported_folder:
         description: 'Folder name for staging the exported solution *do not change*'
         required: true
