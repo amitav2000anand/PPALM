@@ -26,5 +26,15 @@
       "ConnectionId": "f0820339fe484d1c85b7c5e696630531",
       "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_azureadapplications"
     }
-  ]
+  ],
+  "authentication": {
+    "type": "Manual",
+    "manual": {
+      "loginUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+      "tokenExchangeUrl": "https://login.microsoftonline.com/common/oauth2/token",
+      "clientId": "27eb69cb-53e6-40db-8533-dfa804dca4ac",
+      "scopes": "profile openid Sites.Read.All Files.Read.All",
+      "resource": "https://graph.microsoft.com"
+    }
+  }
 }
