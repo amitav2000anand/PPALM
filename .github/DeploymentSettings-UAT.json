@@ -30,11 +30,11 @@
   "authentication": {
     "type": "Manual",
     "manual": {
-      "loginUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
-      "tokenExchangeUrl": "https://login.microsoftonline.com/common/oauth2/token",
+      "loginUrl": "https://login.microsoftonline.com/582af8b1-0ad0-4519-bae9-067c35c065c2/oauth2/v2.0/authorize",
+      "tokenExchangeUrl": "api://27eb69cb-53e6-40db-8533-dfa804dca4ac",
       "clientId": "27eb69cb-53e6-40db-8533-dfa804dca4ac",
       "scopes": "profile openid Sites.Read.All Files.Read.All",
-      "resource": "https://graph.microsoft.com"
+      "resource": ""
     }
   }
 }
