@@ -16,7 +16,7 @@ env:
   CLIENT_ID: ${{ secrets.POWERPLATFORM_CLIENT_ID }}
   TENANT_ID: ${{ secrets.POWERPLATFORM_TENANT_ID }}
   SECRET: ${{ secrets.POWERPLATFORMSPN }}
-  solution_name: SelfServiceAgent
+  solution_name: SelfServiceAgentGenAI
   solution_shipping_folder: out/ship
   solution_outbound_folder: out/solutions
   solution_source_folder: solutions
