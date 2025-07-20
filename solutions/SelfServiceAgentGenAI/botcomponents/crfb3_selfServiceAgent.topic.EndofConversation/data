@@ -73,3 +73,8 @@ beginDialog:
             - kind: SendActivity
               id: GrVHEW
               activity: Go ahead. I'm listening.
+
+    - kind: SetVariable
+      id: setVariable_zsUkHJ
+      variable: Global.varHasConvoStarted
+      value: false

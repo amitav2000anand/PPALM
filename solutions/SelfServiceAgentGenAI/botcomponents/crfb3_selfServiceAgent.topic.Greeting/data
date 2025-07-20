@@ -13,11 +13,21 @@ beginDialog:
       - Hi
 
   actions:
+    - kind: ConditionGroup
+      id: conditionGroup_Df9RUv
+      conditions:
+        - id: conditionItem_iZ7ldQ
+          condition: =Global.varHasConvoStarted = false && IsBlank(Global.varHasConvoStarted)
+          actions:
+            - kind: BeginDialog
+              id: lMdIbN
+              dialog: crfb3_selfServiceAgent.topic.Greeting
+
     - kind: SendActivity
       id: sendMessage_abmysR
       activity:
         text:
-          - Hello, how can I help you today?
+          - Hello {System.User.FirstName}, how can I help you today?
         speak:
           - Hello, <break strength="medium" /> how can I help?
 

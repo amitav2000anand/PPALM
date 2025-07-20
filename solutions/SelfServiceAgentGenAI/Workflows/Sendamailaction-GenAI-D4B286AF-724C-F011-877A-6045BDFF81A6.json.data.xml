@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Workflow WorkflowId="{5ece1401-9c11-f011-998a-000d3a8b4491}" Name="Send a mail action" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <JsonFileName>/Workflows/Sendamailaction-5ECE1401-9C11-F011-998A-000D3A8B4491.json</JsonFileName>
+<Workflow WorkflowId="{d4b286af-724c-f011-877a-6045bdff81a6}" Name="Send a mail action - Gen AI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <JsonFileName>/Workflows/Sendamailaction-GenAI-D4B286AF-724C-F011-877A-6045BDFF81A6.json</JsonFileName>
   <Type>1</Type>
   <Subprocess>0</Subprocess>
   <Category>5</Category>
@@ -11,17 +11,17 @@
   <TriggerOnDelete>0</TriggerOnDelete>
   <AsyncAutodelete>0</AsyncAutodelete>
   <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
-  <StateCode>1</StateCode>
-  <StatusCode>2</StatusCode>
+  <StateCode>0</StateCode>
+  <StatusCode>1</StatusCode>
   <RunAs>1</RunAs>
   <IsTransacted>1</IsTransacted>
-  <IntroducedVersion>1.0.0.2</IntroducedVersion>
+  <IntroducedVersion>1.5.0.2</IntroducedVersion>
   <IsCustomizable>1</IsCustomizable>
   <BusinessProcessType>0</BusinessProcessType>
   <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
   <ModernFlowType>0</ModernFlowType>
   <PrimaryEntity>none</PrimaryEntity>
   <LocalizedNames>
-    <LocalizedName languagecode="1033" description="Send a mail action" />
+    <LocalizedName languagecode="1033" description="Send a mail action - Gen AI" />
   </LocalizedNames>
 </Workflow>
