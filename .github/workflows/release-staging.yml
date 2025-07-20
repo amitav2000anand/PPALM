@@ -6,7 +6,7 @@ on:
       solution_name:
         description: 'The solution name.'
         type: string
-        default: SelfServiceAgent
+        default: SelfServiceAgentGenAI
       solution_shipping_folder:
         description: 'Folder for staging the exported solution *do not change*'
         type: string
